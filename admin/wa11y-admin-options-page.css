@@ -1,0 +1,60 @@
+/* Customize the save buttons */
+#save-wa11y-settings,
+#save-wa11y-settings-mb {
+    display: block;
+    background-color: #0074a2 !important;
+    width: 100%;
+    height: auto;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    background-repeat: no-repeat;
+    padding: 8px 12px !important;
+    border: 0;
+    margin: 0;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+    color: #fff !important;
+    text-align: center;
+    font-weight: bold;
+    text-decoration: none;
+    cursor: pointer;
+    font-size: 1.1em;
+    line-height: 1.3em;
+    box-shadow: none !important;
+    vertical-align: middle;
+}
+
+#save-wa11y-settings-mb {
+    margin: 10px 0 0 0;
+}
+
+/* Stylize the "Enable Tools" metabox */
+#wa11y-enable-tools .inside {
+    margin: 0;
+    padding: 20px;
+}
+
+#wa11y-enable-tools-list,
+#wa11y-enable-tools-list li {
+    display: block;
+    margin: 0;
+    border: 0;
+    padding: 0;
+}
+
+#wa11y-enable-tools-list  input.tool-checkbox {
+    margin: 0 5px 0 0;
+}
+
+#wa11y-enable-tools-list label.tool-label {
+    font-size: 17px;
+    font-weight: bold;
+    line-height: 1em;
+}
+
+#wa11y-enable-tools-list p.tool-desc {
+    margin: 10px 0 0 0;
+    padding: 0 0 0 25px;
+}
