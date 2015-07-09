@@ -37,12 +37,38 @@ function wa11y_enqueue_admin_styles( $hook_suffix ) {
 		case $wa11y_options_page:
 
 			// Enqueue the styles for our options page
-			wp_enqueue_style( 'wa11y-admin-options', plugin_dir_url( __FILE__ ) . 'wa11y-admin-options-page.css', array(), WA11Y_VERSION );
+			wp_enqueue_style( 'wa11y-admin-options', plugin_dir_url( __FILE__ ) . 'wa11y-admin-options-page.min.css', array(), WA11Y_VERSION );
 
 			// Enqueue the script for our options page
 			//wp_enqueue_script( 'wa11y-admin-options', plugin_dir_url( __FILE__ ) . 'wa11y-admin-options-page.js', array( 'jquery' ), WA11Y_VERSION, false );
 
 			break;
+
+	}
+
+	// Load tools in the admin
+
+	// Get our settings
+	$wa11y_settings = wa11y_get_settings();
+
+	// Only need to worry about this stuff if we have enabled tools
+	if ( $wa11y_enable_tools = isset( $wa11y_settings[ 'enable_tools' ] ) ? $wa11y_settings[ 'enable_tools' ] : array() ) {
+
+		// If tota11y is enabled...
+		if ( in_array( 'tota11y', $wa11y_enable_tools ) ) {
+
+			// Get tota11y settings
+			$wa11y_tota11y_settings = isset( $wa11y_settings[ 'tools' ] ) && isset( $wa11y_settings[ 'tools' ][ 'tota11y' ] ) ? $wa11y_settings[ 'tools' ][ 'tota11y' ] : array();
+
+			// Load tota11y in the admin if set
+			if ( isset( $wa11y_tota11y_settings[ 'load_in_admin' ] ) && $wa11y_tota11y_settings[ 'load_in_admin' ] > 0 ) {
+
+				// This file belongs in the header
+				wp_enqueue_script( 'tota11y', plugins_url( '/includes/tota11y/tota11y.min.js', dirname( __FILE__ ) ) );
+
+			}
+
+		}
 
 	}
 
@@ -95,6 +121,9 @@ function wa11y_add_options_meta_boxes() {
 	// Enable Tools
 	add_meta_box( 'wa11y-enable-tools', __( 'Enable Tools', 'wa11y' ), 'wa11y_print_options_meta_boxes', $wa11y_options_page, 'normal', 'core', $wa11y_saved_settings );
 
+	// tota11y Settings
+	add_meta_box( 'wa11y-tota11y-settings', __( 'tota11y Settings', 'wa11y' ), 'wa11y_print_options_meta_boxes', $wa11y_options_page, 'normal', 'core', $wa11y_saved_settings );
+
 }
 
 /**
@@ -132,17 +161,56 @@ function wa11y_print_options_meta_boxes( $post, $metabox ) {
 		case 'wa11y-enable-tools':
 
 			// Get enable tools settings
-			$wa11y_enable_tools = isset( $wa11y_settings[ 'enable_tools' ] ) ? $wa11y_settings[ 'enable_tools' ] : array();
+			$wa11y_enable_tools_settings = isset( $wa11y_settings[ 'enable_tools' ] ) ? $wa11y_settings[ 'enable_tools' ] : array();
 
 			?><fieldset>
 				<ul id="wa11y-enable-tools-list">
 					<li>
-						<input class="tool-checkbox" id="tota11y" type="checkbox" name="wa11y_settings[enable_tools][]" value="tota11y"<?php checked( is_array( $wa11y_enable_tools ) && in_array( 'tota11y', $wa11y_enable_tools) ); ?> />
-						<label class="tool-label" for="tota11y">tota11y</label>
-						<p class="tool-desc">tota11y is a single JavaScript file that inserts a small button in the bottom corner of your document and helps visualize how your site performs with assistive technologies.</p>
+						<input class="tool-checkbox" id="tota11y" type="checkbox" name="wa11y_settings[enable_tools][]" value="tota11y"<?php checked( is_array( $wa11y_enable_tools_settings ) && in_array( 'tota11y', $wa11y_enable_tools_settings) ); ?> />
+						<label class="tool-label" for="tota11y">tota11y</label> <a class="view-tool-settings" href="#wa11y-tota11y-settings">(view settings)</a>
+						<p class="tool-desc"><a href="http://khan.github.io/tota11y/" target="_blank">tota11y</a> is a single JavaScript file that inserts a small button in the bottom corner of your document and helps visualize how your site performs with assistive technologies.</p>
 					</li>
 				</ul>
 			</fieldset><?php
+
+			break;
+
+		// tota11y Settings
+		case 'wa11y-tota11y-settings':
+
+			// Get tota11y settings
+			$wa11y_tota11y_settings = isset( $wa11y_settings[ 'tools' ] ) && isset( $wa11y_settings[ 'tools' ][ 'tota11y' ] ) ? $wa11y_settings[ 'tools' ][ 'tota11y' ] : array();
+
+			// Get the user roles
+			$user_roles = get_editable_roles();
+
+			?><div class="wa11y-tool-settings">
+				<p class="tool-desc"><a href="http://khan.github.io/tota11y/" target="_blank">tota11y</a> is a single JavaScript file that inserts a small button in the bottom corner of your document and helps visualize how your site performs with assistive technologies.</p>
+				<fieldset>
+					<ul id="wa11y-tota11y-settings-list" class="tool-settings-list"><?php
+
+						if ( ! empty( $user_roles ) ) {
+							?><li><label class="tool-setting-header">Only load tota11y for specific user roles:</label> <?php
+
+								foreach( $user_roles as $user_role_key => $user_role ) {
+									?><input class="tool-checkbox" id="tota11y-user-role-<?php echo $user_role_key; ?>" type="checkbox" name="wa11y_settings[tools][tota11y][load_user_roles][]" value="<?php echo $user_role_key; ?>"<?php checked( isset( $wa11y_tota11y_settings[ 'load_user_roles' ] ) && in_array( $user_role_key, $wa11y_tota11y_settings[ 'load_user_roles' ] ) ); ?> />
+									<label class="tool-label" for="tota11y-user-role-<?php echo $user_role_key; ?>"><?php echo $user_role[ 'name' ]; ?></label><?php
+								}
+
+							?></li><?php
+						}
+
+						?><li><label class="tool-setting-header" for="tota11y-user-capability">Only load tota11y for a specific user capability:</label> <input id="tota11y-user-capability" type="text" name="wa11y_settings[tools][tota11y][load_user_capability]" value="<?php echo isset( $wa11y_tota11y_settings[ 'load_user_capability' ] ) ? $wa11y_tota11y_settings[ 'load_user_capability' ] : null; ?>" /></li>
+
+						<li><label class="tool-setting-header" for="tota11y-admin">Load tota11y in the admin:</label>
+							<input class="tool-checkbox" id="tota11y-admin-yes" type="radio" name="wa11y_settings[tools][tota11y][load_in_admin]" value="1"<?php checked( isset( $wa11y_tota11y_settings[ 'load_in_admin' ] ) && $wa11y_tota11y_settings[ 'load_in_admin' ] > 0 ); ?> />
+							<label class="tool-label" for="tota11y-admin-yes">Yes</label>
+							<input class="tool-checkbox" id="tota11y-admin-no" type="radio" name="wa11y_settings[tools][tota11y][load_in_admin]" value="0"<?php checked( ! ( isset( $wa11y_tota11y_settings[ 'load_in_admin' ] ) && $wa11y_tota11y_settings[ 'load_in_admin' ] > 0 ) ); ?> />
+							<label class="tool-label" for="tota11y-admin-no">No</label>
+
+					</ul>
+				</fieldset>
+			</div> <!-- .wa11y-tool-settings --><?php
 
 			break;
 

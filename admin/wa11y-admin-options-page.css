@@ -45,16 +45,55 @@
 }
 
 #wa11y-enable-tools-list  input.tool-checkbox {
+    display: inline-block;
     margin: 0 5px 0 0;
 }
 
 #wa11y-enable-tools-list label.tool-label {
-    font-size: 17px;
+    display: inline-block;
+    font-size: 18px;
     font-weight: bold;
     line-height: 1em;
 }
 
+#wa11y-enable-tools-list a.view-tool-settings {
+    display: inline-block;
+    font-size: 13px;
+    line-height: 1em;
+    padding: 0;
+    margin: 0 0 0 7px;
+}
+
 #wa11y-enable-tools-list p.tool-desc {
     margin: 10px 0 0 0;
-    padding: 0 0 0 25px;
+    padding: 0 0 0 26px;
+}
+
+.wa11y-tool-settings ul.tool-settings-list {
+    display: block;
+    list-style: none;
+    margin: 10px 0;
+    padding: 0 0 0 26px;
+}
+
+.wa11y-tool-settings ul.tool-settings-list li {
+    display: block;
+    list-style: none;
+    margin: 0 0 12px 0;
+    padding: 0;
+}
+
+.wa11y-tool-settings ul.tool-settings-list .tool-checkbox {
+    margin: 0 5px 0 10px;
+}
+
+.wa11y-tool-settings label.tool-setting-header {
+    display: inline-block;
+    margin: 0 10px 0 0;
+    font-size: 14px;
+    font-weight: bold;
+}
+
+.wa11y-tool-settings label.tool-setting-header + .tool-checkbox {
+    margin-left: 0;
 }
