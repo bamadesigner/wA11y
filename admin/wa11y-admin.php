@@ -147,14 +147,14 @@ function wa11y_print_options_meta_boxes( $post, $metabox ) {
 			?><p>@TODO: ADD DESCRIPTION Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras risus urna, ullamcorper in ullamcorper in, dapibus vel leo. Nam diam odio, aliquam quis accumsan a, viverra non sem. Pellentesque non fringilla sapien.</p><?php
 
 			// Print the plugin version and author (with link to site)
-			?><p><strong>Version:</strong> <?php echo preg_match( '/^([0-9]+)$/i', WA11Y_VERSION ) ? number_format( WA11Y_VERSION, 1, '.', '' ) : WA11Y_VERSION; ?><br />
-			<strong>Author:</strong> <a href="http://bamadesigner.com/" target="_blank">Rachel Carden</a></p><?php
+			?><p><strong><?php echo _e( 'Version', 'wa11y' ); ?>:</strong> <?php echo preg_match( '/^([0-9]+)$/i', WA11Y_VERSION ) ? number_format( WA11Y_VERSION, 1, '.', '' ) : WA11Y_VERSION; ?><br />
+			<strong><?php echo _e( 'Author', 'wa11y' ); ?>:</strong> <a href="http://bamadesigner.com/" target="_blank">Rachel Carden</a></p><?php
 
 			break;
 
 		// Save Changes
 		case 'wa11y-save-changes':
-			echo submit_button( 'Save Your Changes', 'primary', 'save_wa11y_settings', false, array( 'id' => 'save-wa11y-settings-mb' ) );
+			echo submit_button( __( 'Save Your Changes', 'wa11y' ), 'primary', 'save_wa11y_settings', false, array( 'id' => 'save-wa11y-settings-mb' ) );
 			break;
 
 		// Enable Tools
@@ -168,7 +168,7 @@ function wa11y_print_options_meta_boxes( $post, $metabox ) {
 					<li>
 						<input class="tool-checkbox" id="tota11y" type="checkbox" name="wa11y_settings[enable_tools][]" value="tota11y"<?php checked( is_array( $wa11y_enable_tools_settings ) && in_array( 'tota11y', $wa11y_enable_tools_settings) ); ?> />
 						<label class="tool-label" for="tota11y">tota11y</label> <a class="view-tool-settings" href="#wa11y-tota11y-settings">(view settings)</a>
-						<p class="tool-desc"><a href="http://khan.github.io/tota11y/" target="_blank">tota11y</a> is a single JavaScript file that inserts a small button in the bottom corner of your document and helps visualize how your site performs with assistive technologies.</p>
+						<p class="tool-desc"><?php printf( __( '%1$s%2$s%3$s is a single JavaScript file that inserts a small button in the bottom corner of your document and helps visualize how your site performs with assistive technologies.', 'wa11y' ), '<a href="http://khan.github.io/tota11y/" target="_blank">', 'tota11y', '</a>' ); ?></p>
 					</li>
 				</ul>
 			</fieldset><?php
@@ -185,12 +185,12 @@ function wa11y_print_options_meta_boxes( $post, $metabox ) {
 			$user_roles = get_editable_roles();
 
 			?><div class="wa11y-tool-settings">
-				<p class="tool-desc"><a href="http://khan.github.io/tota11y/" target="_blank">tota11y</a> is a single JavaScript file that inserts a small button in the bottom corner of your document and helps visualize how your site performs with assistive technologies.</p>
+				<p class="tool-desc"><?php printf( __( '%1$s%2$s%3$s is a single JavaScript file that inserts a small button in the bottom corner of your document and helps visualize how your site performs with assistive technologies.', 'wa11y' ), '<a href="http://khan.github.io/tota11y/" target="_blank">', 'tota11y', '</a>' ); ?></p>
 				<fieldset>
 					<ul id="wa11y-tota11y-settings-list" class="tool-settings-list"><?php
 
 						if ( ! empty( $user_roles ) ) {
-							?><li><label class="tool-setting-header">Only load tota11y for specific user roles:</label> <?php
+							?><li><label class="tool-setting-header"><?php printf( __( 'Only load %1$s for specific user roles', 'wa11y' ), 'tota11y' ); ?>:</label> <?php
 
 								foreach( $user_roles as $user_role_key => $user_role ) {
 									?><input class="tool-checkbox" id="tota11y-user-role-<?php echo $user_role_key; ?>" type="checkbox" name="wa11y_settings[tools][tota11y][load_user_roles][]" value="<?php echo $user_role_key; ?>"<?php checked( isset( $wa11y_tota11y_settings[ 'load_user_roles' ] ) && in_array( $user_role_key, $wa11y_tota11y_settings[ 'load_user_roles' ] ) ); ?> />
@@ -200,13 +200,13 @@ function wa11y_print_options_meta_boxes( $post, $metabox ) {
 							?></li><?php
 						}
 
-						?><li><label class="tool-setting-header" for="tota11y-user-capability">Only load tota11y for a specific user capability:</label> <input id="tota11y-user-capability" type="text" name="wa11y_settings[tools][tota11y][load_user_capability]" value="<?php echo isset( $wa11y_tota11y_settings[ 'load_user_capability' ] ) ? $wa11y_tota11y_settings[ 'load_user_capability' ] : null; ?>" /></li>
+						?><li><label class="tool-setting-header" for="tota11y-user-capability"><?php printf( __( 'Only load %1$s for a specific user capability', 'wa11y' ), 'tota11y' ); ?>:</label> <input id="tota11y-user-capability" type="text" name="wa11y_settings[tools][tota11y][load_user_capability]" value="<?php echo isset( $wa11y_tota11y_settings[ 'load_user_capability' ] ) ? $wa11y_tota11y_settings[ 'load_user_capability' ] : null; ?>" /></li>
 
-						<li><label class="tool-setting-header" for="tota11y-admin">Load tota11y in the admin:</label>
+						<li><label class="tool-setting-header" for="tota11y-admin"><?php printf( __( 'Load %1$s in the admin', 'wa11y' ), 'tota11y' ); ?>:</label>
 							<input class="tool-checkbox" id="tota11y-admin-yes" type="radio" name="wa11y_settings[tools][tota11y][load_in_admin]" value="1"<?php checked( isset( $wa11y_tota11y_settings[ 'load_in_admin' ] ) && $wa11y_tota11y_settings[ 'load_in_admin' ] > 0 ); ?> />
-							<label class="tool-label" for="tota11y-admin-yes">Yes</label>
+							<label class="tool-label" for="tota11y-admin-yes"><?php _e( 'Yes', 'wa11y' ); ?></label>
 							<input class="tool-checkbox" id="tota11y-admin-no" type="radio" name="wa11y_settings[tools][tota11y][load_in_admin]" value="0"<?php checked( ! ( isset( $wa11y_tota11y_settings[ 'load_in_admin' ] ) && $wa11y_tota11y_settings[ 'load_in_admin' ] > 0 ) ); ?> />
-							<label class="tool-label" for="tota11y-admin-no">No</label>
+							<label class="tool-label" for="tota11y-admin-no"><?php _e( 'No', 'wa11y' ); ?></label>
 
 					</ul>
 				</fieldset>
