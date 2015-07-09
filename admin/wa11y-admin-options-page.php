@@ -7,8 +7,8 @@
 global $wa11y_options_page;
  
 ?><div id="wa11y-options" class="wrap options">
-	
-	<h2><?php echo esc_html( get_admin_page_title() ); ?></h2>
+
+	<h2><span aria-hidden="true">Wa11y</span><span class="screen-reader-text">Wally</span></h2>
 	
 	<form method="post" action="options.php"><?php
 		
