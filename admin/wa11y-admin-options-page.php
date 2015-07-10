@@ -8,7 +8,7 @@ global $wa11y_options_page;
  
 ?><div id="wa11y-options" class="wrap options">
 
-	<h2><span aria-hidden="true">Wa11y</span><span class="screen-reader-text">Wally</span></h2>
+	<h2><span aria-hidden="true">Wa11y</span><span class="screen-reader-text">Wally</span> - The Web Accessibility Toolbox</h2>
 	
 	<form method="post" action="options.php"><?php
 		
