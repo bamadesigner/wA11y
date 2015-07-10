@@ -35,7 +35,7 @@ function wa11y_get_settings() {
 		return $wa11y_settings;
 	}
 
-	return $wa11y_settings = get_option( 'wa11y_settings', array(
+	return $wa11y_settings = apply_filters( 'wa11y_settings', get_option( 'wa11y_settings', array(
 		'tools' => array(
 			'tota11y' => array(
 				'load_user_roles'       => array( 'administrator' ),
@@ -48,7 +48,7 @@ function wa11y_get_settings() {
 				'load_in_admin'         => 0,
 			)
 		)
-	) );
+	) ) );
 }
 
 /**
@@ -140,11 +140,14 @@ function wa11y_add_to_admin_bar( $wp_admin_bar ) {
 			    $wave_url = ( ! ( isset( $_SERVER[ 'HTTPS' ] ) && $_SERVER[ 'HTTPS' ] == 'on' ) ? 'http://' : 'https://' ) . $_SERVER[ 'SERVER_NAME' ] . ( isset( $_SERVER[ 'REQUEST_URI' ] ) ? $_SERVER[ 'REQUEST_URI' ] : null );
 		    }
 
+		    // Filter the WAVE url - includes $post object if it exists
+		    $wave_url = apply_filters( 'wa11y_wave_url', $wave_url, ( isset( $post ) ? $post : false ) );
+
 		    // Add WAVE node if we have a URL
 		    if ( ! empty( $wave_url ) ) {
 			    $wa11y_nodes[] = array(
 				    'id'    => 'wa11y-wave',
-				    'title' => 'WAVE Evaluation',
+				    'title' => sprintf( __( '%s Evaluation', 'wa11y' ), 'WAVE' ),
 				    'href'  => 'http://wave.webaim.org/report#/' . urlencode( $wave_url ),
 				    'meta'  => array( 'target' => '_blank' ),
 			    );
@@ -160,7 +163,7 @@ function wa11y_add_to_admin_bar( $wp_admin_bar ) {
 		// Add parent Wa11y node
 		$wp_admin_bar->add_node( array(
 			'id'    	=> 'wa11y',
-			'title' 	=> 'Wa11y',
+			'title' 	=> '<span aria-hidden="true">Wa11y</span><span class="screen-reader-text">Wally</span>',
 			'parent'	=> false,
 		));
 
