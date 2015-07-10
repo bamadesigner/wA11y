@@ -189,6 +189,9 @@ function wa11y_print_options_meta_boxes( $post, $metabox ) {
 	// Get enable tools settings
 	$wa11y_enable_tools_settings = isset( $wa11y_settings[ 'enable_tools' ] ) ? $wa11y_settings[ 'enable_tools' ] : array();
 
+	// Get the user roles
+	$user_roles = get_editable_roles();
+
 	switch( $metabox[ 'id' ] ) {
 
 		// About Wa11y
@@ -214,9 +217,6 @@ function wa11y_print_options_meta_boxes( $post, $metabox ) {
 			// Get tota11y settings
 			$wa11y_tota11y_settings = isset( $wa11y_settings[ 'tools' ] ) && isset( $wa11y_settings[ 'tools' ][ 'tota11y' ] ) ? $wa11y_settings[ 'tools' ][ 'tota11y' ] : array();
 
-			// Get the user roles
-			$user_roles = get_editable_roles();
-
 			?><div class="wa11y-tool-settings">
 				<input class="tool-checkbox" id="tota11y" type="checkbox" name="wa11y_settings[enable_tools][]" value="tota11y"<?php checked( is_array( $wa11y_enable_tools_settings ) && in_array( 'tota11y', $wa11y_enable_tools_settings) ); ?> />
 				<label class="tool-label" for="tota11y"><?php printf( __( 'Enable %1$s', 'wa11y' ), 'tota11y' ); ?></label>
@@ -241,7 +241,7 @@ function wa11y_print_options_meta_boxes( $post, $metabox ) {
 							<input class="tool-option-checkbox" id="tota11y-admin-yes" type="radio" name="wa11y_settings[tools][tota11y][load_in_admin]" value="1"<?php checked( isset( $wa11y_tota11y_settings[ 'load_in_admin' ] ) && $wa11y_tota11y_settings[ 'load_in_admin' ] > 0 ); ?> />
 							<label class="tool-option-label" for="tota11y-admin-yes"><?php _e( 'Yes', 'wa11y' ); ?></label>
 							<input class="tool-option-checkbox" id="tota11y-admin-no" type="radio" name="wa11y_settings[tools][tota11y][load_in_admin]" value="0"<?php checked( ! ( isset( $wa11y_tota11y_settings[ 'load_in_admin' ] ) && $wa11y_tota11y_settings[ 'load_in_admin' ] > 0 ) ); ?> />
-							<label class="tool-option-label" for="tota11y-admin-no"><?php _e( 'No', 'wa11y' ); ?></label>
+							<label class="tool-option-label" for="tota11y-admin-no"><?php _e( 'No', 'wa11y' ); ?></label> <span class="tool-option-side-note"><?php printf( __( 'This will load the %1$s button on all pages in the admin to give you a glimpse of admin accessibility.', 'wa11y' ), 'tota11y' ); ?></span></li>
 
 					</ul>
 					<p class="tool-settings-list-desc"><?php printf( __( 'If no user roles are selected or user capability is provided, %1$s will load for all logged-in users.', 'wa11y' ), 'tota11y' ); ?></p>
@@ -253,11 +253,36 @@ function wa11y_print_options_meta_boxes( $post, $metabox ) {
 		// WAVE Settings
 		case 'wa11y-wave-settings':
 
+			// Get WAVE settings
+			$wa11y_wave_settings = isset( $wa11y_settings[ 'tools' ] ) && isset( $wa11y_settings[ 'tools' ][ 'wave' ] ) ? $wa11y_settings[ 'tools' ][ 'wave' ] : array();
+
 			?><div class="wa11y-tool-settings">
 				<input class="tool-checkbox" id="wave" type="checkbox" name="wa11y_settings[enable_tools][]" value="wave"<?php checked( is_array( $wa11y_enable_tools_settings ) && in_array( 'wave', $wa11y_enable_tools_settings) ); ?> />
 				<label class="tool-label" for="wave"><?php printf( __( 'Enable %1$s (Web Accessibility Evaluation Tool)', 'wa11y' ), 'WAVE' ); ?></label>
-				<p class="tool-desc"><?php printf( __( '%1$s%2$s%3$s is a free evaluation tool provided by WebAIM (Web Accessibility In Mind). It can be used to evaluate a live website for a wide range of accessibility issues.', 'wa11y' ), '<a href="http://webaim.org/" target="_blank">', 'WAVE', '</a>' ); ?></p>
+				<p class="tool-desc"><?php printf( __( '%1$s%2$s%3$s is a free evaluation tool provided by WebAIM (Web Accessibility In Mind). It can be used to evaluate a live website for a wide range of accessibility issues.', 'wa11y' ), '<a href="http://webaim.org/" target="_blank">', 'WAVE', '</a>' ); ?> <strong><em><?php printf( __( 'This tool is not embedded on your site but rather allows you to easily navigate to, or display, the %1$s tool in order to evaluate your site.', 'wa11y' ), 'WebAim WAVE' ); ?></em></strong></p>
 				<fieldset>
+					<ul id="wa11y-wave-settings-list" class="tool-settings-list"><?php
+
+						if ( ! empty( $user_roles ) ) {
+							?><li><label class="tool-option-header"><?php printf( __( 'Only show %1$s for specific user roles', 'wa11y' ), 'WAVE' ); ?>:</label> <?php
+
+							foreach( $user_roles as $user_role_key => $user_role ) {
+								?><input class="tool-option-checkbox" id="wave-user-role-<?php echo $user_role_key; ?>" type="checkbox" name="wa11y_settings[tools][wave][load_user_roles][]" value="<?php echo $user_role_key; ?>"<?php checked( isset( $wa11y_wave_settings[ 'load_user_roles' ] ) && in_array( $user_role_key, $wa11y_wave_settings[ 'load_user_roles' ] ) ); ?> />
+								<label class="tool-option-label" for="wave-user-role-<?php echo $user_role_key; ?>"><?php echo $user_role[ 'name' ]; ?></label><?php
+							}
+
+							?></li><?php
+						}
+
+						?><li><label class="tool-option-header" for="wave-user-capability"><?php printf( __( 'Only show %1$s for a specific user capability', 'wa11y' ), 'WAVE' ); ?>:</label> <input id="wave-user-capability" type="text" name="wa11y_settings[tools][wave][load_user_capability]" value="<?php echo isset( $wa11y_wave_settings[ 'load_user_capability' ] ) ? $wa11y_wave_settings[ 'load_user_capability' ] : null; ?>" /> <span class="tool-option-side-note">e.g. view_wave</span></span></li>
+
+						<li><label class="tool-option-header" for="wave-admin"><?php printf( __( 'Show %1$s in the admin', 'wa11y' ), 'WAVE' ); ?>:</label>
+							<input class="tool-option-checkbox" id="wave-admin-yes" type="radio" name="wa11y_settings[tools][wave][load_in_admin]" value="1"<?php checked( isset( $wa11y_wave_settings[ 'load_in_admin' ] ) && $wa11y_wave_settings[ 'load_in_admin' ] > 0 ); ?> />
+							<label class="tool-option-label" for="wave-admin-yes"><?php _e( 'Yes', 'wa11y' ); ?></label>
+							<input class="tool-option-checkbox" id="wave-admin-no" type="radio" name="wa11y_settings[tools][wave][load_in_admin]" value="0"<?php checked( ! ( isset( $wa11y_wave_settings[ 'load_in_admin' ] ) && $wa11y_wave_settings[ 'load_in_admin' ] > 0 ) ); ?> />
+							<label class="tool-option-label" for="wave-admin-no"><?php _e( 'No', 'wa11y' ); ?></label> <span class="tool-option-side-note"><?php printf( __( '%1$s will only display in the admin on screens where you are editing a post or a page.', 'wa11y' ), 'WAVE' ); ?></span></li>
+					</ul>
+					<p class="tool-settings-list-desc"><?php printf( __( 'If no user roles are selected or user capability is provided, %1$s will display for all logged-in users.', 'wa11y' ), 'WAVE' ); ?></p>
 				</fieldset>
 			</div><?php
 

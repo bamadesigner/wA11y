@@ -39,7 +39,12 @@ function wa11y_get_settings() {
 		'tools' => array(
 			'tota11y' => array(
 				'load_user_roles'       => array( 'administrator' ),
-				'load_user_capability'  => '',
+				'load_user_capability'  => null,
+				'load_in_admin'         => 0,
+			),
+			'wave' => array(
+				'load_user_roles'       => array( 'administrator' ),
+				'load_user_capability'  => null,
 				'load_in_admin'         => 0,
 			)
 		)
@@ -54,11 +59,10 @@ function wa11y_get_settings() {
  */
 add_action( 'admin_bar_menu', 'wa11y_add_to_admin_bar', 100 );
 function wa11y_add_to_admin_bar( $wp_admin_bar ) {
+	global $current_screen, $post;
 
-	// Right now it's only on the front end
-	if ( is_admin() ) {
-		return;
-	}
+	// Are we in the admin?
+	$is_admin = is_admin();
 
 	// Get our settings
 	$wa11y_settings = wa11y_get_settings();
@@ -75,21 +79,82 @@ function wa11y_add_to_admin_bar( $wp_admin_bar ) {
     if ( in_array( 'wave', $wa11y_enable_tools ) ) {
 
 	    // Get wave settings
-	    //$wa11y_wave_settings = isset( $wa11y_settings[ 'tools' ] ) && isset( $wa11y_settings[ 'tools' ][ 'wave' ] ) ? $wa11y_settings[ 'tools' ][ 'wave' ] : array();
+	    $wa11y_wave_settings = isset( $wa11y_settings[ 'tools' ] ) && isset( $wa11y_settings[ 'tools' ][ 'wave' ] ) ? $wa11y_settings[ 'tools' ][ 'wave' ] : array();
 
-		// Build the current URL
-		$current_url = ( ! ( isset( $_SERVER[ 'HTTPS' ] ) && $_SERVER[ 'HTTPS' ] == 'on' ) ? 'http://' : 'https://' ) . $_SERVER[ 'SERVER_NAME' ] . ( isset( $_SERVER[ 'REQUEST_URI' ] ) ? $_SERVER[ 'REQUEST_URI' ] : NULL );
+	    // Will be true if we should load WAVE - by default, load in admin per setting or if logged in on front end
+	    $load_wave = $is_admin ? ( isset( $wa11y_wave_settings[ 'load_in_admin' ] ) && $wa11y_wave_settings[ 'load_in_admin' ] > 0 ) : is_user_logged_in();
 
-		// Add WAVE node
-		$wa11y_nodes[] = array(
-			'id'    	=> 'wa11y-wave',
-			'title' 	=> 'WAVE Evaluation',
-			'href'		=> 'http://wave.webaim.org/report#/' . urlencode( $current_url ),
-			'meta'		=> array( 'target' => '_blank' ),
-			);
+	    // Will hold WAVE URL
+	    $wave_url = null;
+
+	    // If user roles are set, turn off it not a user role
+	    if ( isset( $wa11y_wave_settings[ 'load_user_roles' ] ) && is_array( $wa11y_wave_settings[ 'load_user_roles' ] ) ) {
+
+		    // Get current user
+		    if ( ( $current_user = wp_get_current_user() )
+		         && ( $current_user_roles = isset( $current_user->roles ) ? $current_user->roles : false )
+		         && is_array( $current_user_roles ) ) {
+
+			    // Find out if they share values
+			    $user_roles_intersect = array_intersect( $wa11y_wave_settings[ 'load_user_roles' ], $current_user_roles );
+
+			    // If they do not intersect, turn off
+			    if ( empty( $user_roles_intersect ) ) {
+				    $load_wave = false;
+			    }
+
+		    }
+
+	    }
+
+	    // If user capability is set, turn off if not capable
+	    if ( ! empty( $wa11y_wave_settings[ 'load_user_capability' ] ) ) {
+		    $load_wave = current_user_can( $wa11y_wave_settings[ 'load_user_capability' ] );
+	    }
+
+	    // Only load in the admin on edit post screens
+	    if ( $load_wave && $is_admin ) {
+
+		    if ( ! ( isset( $post ) && isset( $post->ID ) && isset( $current_screen ) && isset( $current_screen->base ) && 'post' == $current_screen->base ) ) {
+
+			    // Don't load WAVE
+			    $load_wave = false;
+
+		    } else {
+
+			    // Get the WAVE URL
+			    $wave_url = get_permalink( $post->ID );
+
+		    }
+
+	    }
+
+	    // Filter whether or not to load - passes the WAVE settings
+	    $load_wave = apply_filters( 'wa11y_load_wave', $load_wave, $wa11y_wave_settings );
+
+	    // If we need to load WAVE...
+	    if ( $load_wave ) {
+
+		    // Build the current URL for front end
+		    if ( ! $is_admin ) {
+			    $wave_url = ( ! ( isset( $_SERVER[ 'HTTPS' ] ) && $_SERVER[ 'HTTPS' ] == 'on' ) ? 'http://' : 'https://' ) . $_SERVER[ 'SERVER_NAME' ] . ( isset( $_SERVER[ 'REQUEST_URI' ] ) ? $_SERVER[ 'REQUEST_URI' ] : null );
+		    }
+
+		    // Add WAVE node if we have a URL
+		    if ( ! empty( $wave_url ) ) {
+			    $wa11y_nodes[] = array(
+				    'id'    => 'wa11y-wave',
+				    'title' => 'WAVE Evaluation',
+				    'href'  => 'http://wave.webaim.org/report#/' . urlencode( $wave_url ),
+				    'meta'  => array( 'target' => '_blank' ),
+			    );
+		    }
+
+	    }
 
 	}
 
+	// If we have nodes to add...
 	if ( ! empty( $wa11y_nodes ) ) {
 
 		// Add parent Wa11y node
