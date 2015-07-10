@@ -60,11 +60,11 @@
 
 .wa11y-tool-settings .tool-settings-warning {
     display: block;
-    background: #f7ebeb;
+    background: #faf2f2; /*5%*/
     padding: 12px 20px 12px 26px;
     margin: 10px -20px 0 -20px;
     border: 0;
-    border-top: 1px solid #ebcccc;
+    border-top: 1px solid #f5e5e5; /*10%*/
     font-style: italic;
     color: #770000;
     font-weight: bold;
@@ -76,18 +76,18 @@
     margin: 0 -20px 0 -20px;
     padding: 0;
     border: 0;
-    border-top: 1px solid #a6cedf;
-    border-bottom: 1px solid #a6cedf;
+    border-top: 1px solid #d4e8ef; /*17%*/
+    border-bottom: 1px solid #d4e8ef; /*17%*/
 }
 
 .wa11y-tool-settings ul.tool-settings-list li {
     display: block;
-    background: #ebf4f8;
+    background: #f2f8fa; /*5%*/
     list-style: none;
     margin: 0;
     padding: 15px 20px 10px 26px;
     border: 0;
-    border-bottom: 1px solid #ddd;
+    border-bottom: 1px solid #d4e8ef; /*17%*/
 }
 
 .wa11y-tool-settings label.tool-option-header {
