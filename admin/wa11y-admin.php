@@ -122,19 +122,19 @@ function wa11y_add_options_meta_boxes() {
 	global $wa11y_options_page;
 
 	// Get our saved settings
-	$wa11y_saved_settings = wa11y_get_settings();
+	$wa11y_settings = wa11y_get_settings();
 
 	// About this Plugin
-	add_meta_box( 'wa11y-about', __( 'About Wa11y', 'wa11y' ), 'wa11y_print_options_meta_boxes', $wa11y_options_page, 'side', 'core', $wa11y_saved_settings );
+	add_meta_box( 'wa11y-about', __( 'About Wa11y', 'wa11y' ), 'wa11y_print_options_meta_boxes', $wa11y_options_page, 'side', 'core', $wa11y_settings );
 
 	// Save Changes
-	add_meta_box( 'wa11y-save-changes', __( 'Save Changes', 'wa11y' ), 'wa11y_print_options_meta_boxes', $wa11y_options_page, 'side', 'core', $wa11y_saved_settings );
+	add_meta_box( 'wa11y-save-changes', __( 'Save Changes', 'wa11y' ), 'wa11y_print_options_meta_boxes', $wa11y_options_page, 'side', 'core', $wa11y_settings );
 
 	// Enable Tools
-	add_meta_box( 'wa11y-enable-tools', __( 'Enable Tools', 'wa11y' ), 'wa11y_print_options_meta_boxes', $wa11y_options_page, 'normal', 'core', $wa11y_saved_settings );
+	add_meta_box( 'wa11y-enable-tools', __( 'Enable Tools', 'wa11y' ), 'wa11y_print_options_meta_boxes', $wa11y_options_page, 'normal', 'core', $wa11y_settings );
 
 	// tota11y Settings
-	add_meta_box( 'wa11y-tota11y-settings', __( 'tota11y Settings', 'wa11y' ), 'wa11y_print_options_meta_boxes', $wa11y_options_page, 'normal', 'core', $wa11y_saved_settings );
+	add_meta_box( 'wa11y-tota11y-settings', __( 'tota11y Settings', 'wa11y' ), 'wa11y_print_options_meta_boxes', $wa11y_options_page, 'normal', 'core', $wa11y_settings );
 
 }
 
