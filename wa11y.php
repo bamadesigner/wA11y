@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Plugin Name:       Wa11y
+ * Plugin Name:       Wa11y - The Web Accessibility Toolbox
  * Plugin URI:        http://bamadesigner.com
  * Description:       @TODO This is a short description of what the plugin does. It's displayed in the WordPress admin area.
  * Version:           1.0
