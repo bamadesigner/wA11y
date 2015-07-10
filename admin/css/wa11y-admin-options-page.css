@@ -58,6 +58,9 @@
     color: #016288;
     color: #000;
 }
+.wa11y-tool-settings .tool-header label.tool-label .thinner {
+    font-weight: normal;
+}
 
 .wa11y-tool-settings .tool-header p.tool-desc {
     margin: 10px 0 0 0;
@@ -84,6 +87,27 @@
     background: url( '../images/tota11y-glasses.svg' ) 0 0 no-repeat;
     background-size: 80px auto;
 }
+.wa11y-tool-settings .tool-header.tota11y .tota11y-red {
+    color: #db0f0f;
+}
+.wa11y-tool-settings .tool-header.tota11y .tota11y-orange {
+    color: #ffb710;
+}
+.wa11y-tool-settings .tool-header.tota11y .tota11y-yellow {
+    color: #f5d800;
+}
+.wa11y-tool-settings .tool-header.tota11y .tota11y-green {
+    color: #56d516;
+}
+.wa11y-tool-settings .tool-header.tota11y .tota11y-blue {
+    color: #139fb4;
+}
+.wa11y-tool-settings .tool-header.tota11y .tota11y-indigo {
+    color: #1251af;
+}
+.wa11y-tool-settings .tool-header.tota11y .tota11y-violet {
+    color: #5c12af;
+}
 
 /* Customize the WAVE header */
 .wa11y-tool-settings .tool-header.wave {
@@ -98,6 +122,13 @@
     top: 0;
     background: url( '../images/webaim-head.png' ) 0 0 no-repeat;
     background-size: auto 85px;
+}
+
+.wa11y-tool-settings .tool-header.wave .wave-red {
+    color: #BF1722;
+}
+.wa11y-tool-settings .tool-header.wave .wave-gray {
+    color: #363636;
 }
 
 @media screen and (min-width: 640px) {
