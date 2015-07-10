@@ -232,7 +232,7 @@ function wa11y_print_options_meta_boxes( $post, $metabox ) {
 							?></li><?php
 						}
 
-						?><li><label class="tool-option-header" for="tota11y-user-capability"><?php printf( __( 'Only load %1$s for a specific user capability', 'wa11y' ), 'tota11y' ); ?>:</label> <input id="tota11y-user-capability" type="text" name="wa11y_settings[tools][tota11y][load_user_capability]" value="<?php echo isset( $wa11y_tota11y_settings[ 'load_user_capability' ] ) ? $wa11y_tota11y_settings[ 'load_user_capability' ] : null; ?>" /></li>
+						?><li><label class="tool-option-header" for="tota11y-user-capability"><?php printf( __( 'Only load %1$s for a specific user capability', 'wa11y' ), 'tota11y' ); ?>:</label> <input id="tota11y-user-capability" type="text" name="wa11y_settings[tools][tota11y][load_user_capability]" value="<?php echo isset( $wa11y_tota11y_settings[ 'load_user_capability' ] ) ? $wa11y_tota11y_settings[ 'load_user_capability' ] : null; ?>" /> <span class="tool-option-side-note">e.g. view_tota11y</span></span></li>
 
 						<li><label class="tool-option-header" for="tota11y-admin"><?php printf( __( 'Load %1$s in the admin', 'wa11y' ), 'tota11y' ); ?>:</label>
 							<input class="tool-option-checkbox" id="tota11y-admin-yes" type="radio" name="wa11y_settings[tools][tota11y][load_in_admin]" value="1"<?php checked( isset( $wa11y_tota11y_settings[ 'load_in_admin' ] ) && $wa11y_tota11y_settings[ 'load_in_admin' ] > 0 ); ?> />

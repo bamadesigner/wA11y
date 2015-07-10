@@ -39,7 +39,7 @@ function wa11y_get_settings() {
 		'tools' => array(
 			'tota11y' => array(
 				'load_user_roles'       => array( 'administrator' ),
-				'load_user_capability'  => 'view_tota11y',
+				'load_user_capability'  => '',
 				'load_in_admin'         => 0,
 			)
 		)
