@@ -26,7 +26,12 @@ if( is_admin() ) {
 	require_once plugin_dir_path( __FILE__ ) . 'admin/wa11y-admin.php';
 }
 
-// Get Wa11y settings
+/**
+ * Get Wa11y settings
+ *
+ * @since   1.0
+ * @filter  'wa11y_settings' - array with the settings
+ */
 function wa11y_get_settings() {
 	global $wa11y_settings;
 
@@ -56,6 +61,8 @@ function wa11y_get_settings() {
  *
  * @since   1.0
  * @param 	WP_Admin_Bar - $wp_admin_bar - WP_Admin_Bar instance, passed by reference
+ * @filter  'wa11y_load_wave' - boolean on whether or not to load the WAVE tool. Passes the WAVE settings.
+ * @filter  'wa11y_wave_url' - string containing the WAVE evaluation URL. Passes the $post object if it exists.
  */
 add_action( 'admin_bar_menu', 'wa11y_add_to_admin_bar', 100 );
 function wa11y_add_to_admin_bar( $wp_admin_bar ) {
@@ -129,7 +136,7 @@ function wa11y_add_to_admin_bar( $wp_admin_bar ) {
 
 	    }
 
-	    // Filter whether or not to load - passes the WAVE settings
+	    // Filter whether or not to load WAVE - passes the WAVE settings
 	    $load_wave = apply_filters( 'wa11y_load_wave', $load_wave, $wa11y_wave_settings );
 
 	    // If we need to load WAVE...
@@ -176,7 +183,12 @@ function wa11y_add_to_admin_bar( $wp_admin_bar ) {
 
 }
 
-// Load the script tools
+/**
+ * Load the scripts needed for our tools.
+ *
+ * @since   1.0
+ * @filter  'wa11y_load_tota11y' - boolean on whether or not to load the tota11y tool. Passes the tota11y settings.
+ */
 add_action( 'wp_enqueue_scripts', 'wa11y_load_script_tools' );
 function wa11y_load_script_tools() {
 
@@ -222,7 +234,7 @@ function wa11y_load_script_tools() {
 		    $load_tota11y = current_user_can( $wa11y_tota11y_settings[ 'load_user_capability' ] );
 	    }
 
-	    // Filter whether or not to load - passes the tota11y settings
+	    // Filter whether or not to load tota11y - passes the tota11y settings
 	    $load_tota11y = apply_filters( 'wa11y_load_tota11y', $load_tota11y, $wa11y_tota11y_settings );
 
 	    // We need to load tota11y

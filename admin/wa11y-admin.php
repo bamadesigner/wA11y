@@ -26,6 +26,7 @@ function wa11y_sanitize_settings( $settings ) {
  *
  * @since   1.0
  * @param   string - $hook_suffix - the hook/ID of the current page
+ * @filter  'wa11y_load_tota11y' - boolean on whether or not to load the tota11y tool. Passes the tota11y settings.
  */
 add_action( 'admin_enqueue_scripts', 'wa11y_enqueue_admin_styles' );
 function wa11y_enqueue_admin_styles( $hook_suffix ) {
@@ -103,7 +104,7 @@ function wa11y_enqueue_admin_styles( $hook_suffix ) {
 					$load_tota11y = current_user_can( $wa11y_tota11y_settings[ 'load_user_capability' ] );
 				}
 
-				// Filter whether or not to load - passes the tota11y settings
+				// Filter whether or not to load tota11y - passes the tota11y settings
 				$load_tota11y = apply_filters( 'wa11y_load_tota11y', $load_tota11y, $wa11y_tota11y_settings );
 
 				// We need to load tota11y
@@ -161,7 +162,7 @@ function wa11y_add_options_meta_boxes() {
 	$wa11y_settings = wa11y_get_settings();
 
 	// About this Plugin
-	add_meta_box( 'wa11y-about', __( 'About Wa11y', 'wa11y' ), 'wa11y_print_options_meta_boxes', $wa11y_options_page, 'side', 'core', $wa11y_settings );
+	add_meta_box( 'wa11y-about', sprintf( __( 'About %s', 'wa11y' ), 'Wa11y' ), 'wa11y_print_options_meta_boxes', $wa11y_options_page, 'side', 'core', $wa11y_settings );
 
 	// Save Changes
 	add_meta_box( 'wa11y-save-changes', __( 'Save Changes', 'wa11y' ), 'wa11y_print_options_meta_boxes', $wa11y_options_page, 'side', 'core', $wa11y_settings );
@@ -310,7 +311,7 @@ add_filter( 'plugin_action_links_wa11y/wa11y.php', 'wa11y_add_plugin_action_link
 function wa11y_add_plugin_action_links( $actions, $plugin_file, $plugin_data, $context ) {
 
 	// Add link to our settings page
-	$actions[ 'settings' ] = '<a href="' . add_query_arg( array( 'page' => 'wa11y' ), admin_url( 'options-general.php' ) ) . '" title="' . esc_attr__( 'Visit Wa11y\'s settings page', 'wa11y' ) . '">' . __( 'Settings' , 'wa11y' ) . '</a>';
+	$actions[ 'settings' ] = '<a href="' . add_query_arg( array( 'page' => 'wa11y' ), admin_url( 'options-general.php' ) ) . '" title="' . esc_attr__( "Visit this plugin's settings page", 'wa11y' ) . '">' . __( 'Settings' , 'wa11y' ) . '</a>';
 
 	return $actions;
 

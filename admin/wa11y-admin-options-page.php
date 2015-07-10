@@ -2,6 +2,8 @@
 
 /**
  * Provides the view for the options page.
+ *
+ * @since   1.0
  */
 
 global $wa11y_options_page;
