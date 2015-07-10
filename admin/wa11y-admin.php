@@ -218,9 +218,11 @@ function wa11y_print_options_meta_boxes( $post, $metabox ) {
 			$wa11y_tota11y_settings = isset( $wa11y_settings[ 'tools' ] ) && isset( $wa11y_settings[ 'tools' ][ 'tota11y' ] ) ? $wa11y_settings[ 'tools' ][ 'tota11y' ] : array();
 
 			?><div class="wa11y-tool-settings">
-				<input class="tool-checkbox" id="tota11y" type="checkbox" name="wa11y_settings[enable_tools][]" value="tota11y"<?php checked( is_array( $wa11y_enable_tools_settings ) && in_array( 'tota11y', $wa11y_enable_tools_settings) ); ?> />
-				<label class="tool-label" for="tota11y"><?php printf( __( 'Enable %1$s', 'wa11y' ), 'tota11y' ); ?></label>
-				<p class="tool-desc"><?php printf( __( '%1$s%2$s%3$s is a single JavaScript file that inserts a small button in the bottom corner of your document and helps visualize how your site performs with assistive technologies.', 'wa11y' ), '<a href="http://khan.github.io/tota11y/" target="_blank">', 'tota11y', '</a>' ); ?> <strong><em><?php _e( 'Unless specified below, this tool will only load on the front-end of your site.', 'wa11y' ); ?></em></strong></p>
+				<div class="tool-header tota11y has-logo">
+					<input class="tool-checkbox" id="tota11y" type="checkbox" name="wa11y_settings[enable_tools][]" value="tota11y"<?php checked( is_array( $wa11y_enable_tools_settings ) && in_array( 'tota11y', $wa11y_enable_tools_settings) ); ?> />
+					<label class="tool-label" for="tota11y"><?php printf( __( 'Enable %1$s', 'wa11y' ), 'tota11y' ); ?></label>
+					<p class="tool-desc"><?php printf( __( '%1$s%2$s%3$s is an accessibility visualization toolkit provided by your friends at %4$s%5$s%6$s. It is a single JavaScript file that inserts a small button in the bottom corner of your document and helps visualize how your site performs with assistive technologies.', 'wa11y' ), '<a href="http://khan.github.io/tota11y/" target="_blank">', 'tota11y', '</a>', '<a href="http://khanacademy.org/" target="_blank">', 'Khan Academy', '</a>' ); ?> <strong><em><?php _e( 'Unless specified below, this tool will only load on the front-end of your site.', 'wa11y' ); ?></em></strong></p>
+				</div> <!-- .tool-header -->
 				<p class="tool-settings-warning"><?php printf( __( 'If no user roles are selected or user capability is provided, %1$s will load for all logged-in users.', 'wa11y' ), 'tota11y' ); ?></p>
 				<fieldset>
 					<ul id="wa11y-tota11y-settings-list" class="tool-settings-list"><?php
@@ -257,9 +259,11 @@ function wa11y_print_options_meta_boxes( $post, $metabox ) {
 			$wa11y_wave_settings = isset( $wa11y_settings[ 'tools' ] ) && isset( $wa11y_settings[ 'tools' ][ 'wave' ] ) ? $wa11y_settings[ 'tools' ][ 'wave' ] : array();
 
 			?><div class="wa11y-tool-settings">
-				<input class="tool-checkbox" id="wave" type="checkbox" name="wa11y_settings[enable_tools][]" value="wave"<?php checked( is_array( $wa11y_enable_tools_settings ) && in_array( 'wave', $wa11y_enable_tools_settings) ); ?> />
-				<label class="tool-label" for="wave"><?php printf( __( 'Enable %1$s (Web Accessibility Evaluation Tool)', 'wa11y' ), 'WAVE' ); ?></label>
-				<p class="tool-desc"><?php printf( __( '%1$s%2$s%3$s is a free evaluation tool provided by WebAIM (Web Accessibility In Mind). It can be used to evaluate a live website for a wide range of accessibility issues.', 'wa11y' ), '<a href="http://webaim.org/" target="_blank">', 'WAVE', '</a>' ); ?> <strong><em><?php printf( __( 'This tool is not embedded on your site but rather allows you to easily navigate to, or display, the %1$s tool in order to evaluate your site.', 'wa11y' ), 'WebAim WAVE' ); ?></em></strong></p>
+				<div class="tool-header wave has-logo">
+					<input class="tool-checkbox" id="wave" type="checkbox" name="wa11y_settings[enable_tools][]" value="wave"<?php checked( is_array( $wa11y_enable_tools_settings ) && in_array( 'wave', $wa11y_enable_tools_settings) ); ?> />
+					<label class="tool-label" for="wave"><?php printf( __( 'Enable %1$s (Web Accessibility Evaluation Tool)', 'wa11y' ), 'WAVE' ); ?></label>
+					<p class="tool-desc"><?php printf( __( '%1$s%2$s%3$s is a free evaluation tool provided by %4$s%5$s (Web Accessibility In Mind)%6$s. It can be used to evaluate a live website for a wide range of accessibility issues.', 'wa11y' ), '<a href="http://wave.webaim.org/" target="_blank">', 'WAVE', '</a>', '<a href="http://webaim.org/" target="_blank">', 'WebAIM', '</a>' ); ?> <strong><em><?php printf( __( 'This tool is not embedded on your site but rather allows you to easily navigate to, or display, the %1$s tool in order to evaluate your site.', 'wa11y' ), 'WebAim WAVE' ); ?></em></strong></p>
+				</div> <!-- .tool-header -->
 				<p class="tool-settings-warning"><?php printf( __( 'If no user roles are selected or user capability is provided, %1$s will display for all logged-in users.', 'wa11y' ), 'WAVE' ); ?></p>
 				<fieldset>
 					<ul id="wa11y-wave-settings-list" class="tool-settings-list"><?php

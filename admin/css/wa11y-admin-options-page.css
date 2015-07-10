@@ -37,24 +37,47 @@
     padding: 20px 20px 0 20px;
 }
 
-.wa11y-tool-settings input.tool-checkbox {
+.wa11y-tool-settings .tool-header {
+    margin: 0 0 20px 0;
+}
+
+.wa11y-tool-settings .tool-header input.tool-checkbox {
     display: inline-block;
     margin: 0 8px 0 0;
 }
-.wa11y-tool-settings input.tool-checkbox:before {
+.wa11y-tool-settings .tool-header input.tool-checkbox:before {
     color: #016288;
 }
 
-.wa11y-tool-settings label.tool-label {
+.wa11y-tool-settings .tool-header label.tool-label {
     display: inline-block;
     font-size: 18px;
     font-weight: bold;
     line-height: 1em;
     color: #016288;
+    color: #000;
+}
+
+.wa11y-tool-settings .tool-header.has-logo {
+    padding-left: 105px;
+}
+
+/* Customize the tota11y header */
+.wa11y-tool-settings .tool-header.tota11y {
+    background: url( '../images/tota11y-glasses.svg' ) 0 10px no-repeat;
+    background-size: 80px auto;
+    min-height: 35px;
+}
+
+/* Customize the WAVE header */
+.wa11y-tool-settings .tool-header.wave {
+    background: url( '../images/webaim-head.png' ) 5px 0 no-repeat;
+    background-size: auto 85px;
+    min-height: 85px;
 }
 
 .wa11y-tool-settings p.tool-desc {
-    margin: 10px 0 20px 0;
+    margin: 10px 0 0 0;
     padding: 0;
 }
 
