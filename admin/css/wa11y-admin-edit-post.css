@@ -1,0 +1,12 @@
+#wa11y-wave-evaluation .inside {
+    padding: 0;
+    margin: 0 0 -5px 0;
+}
+
+iframe#wa11y-wave-evaluation-iframe {
+    width: 100%;
+    min-height: 600px;
+    margin: 0;
+    padding: 0;
+    border: 0;
+}

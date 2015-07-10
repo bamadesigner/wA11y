@@ -40,10 +40,11 @@ function wa11y_enqueue_admin_styles( $hook_suffix ) {
 		// Add styles to our options page
 		case $wa11y_options_page:
 
-			// Enqueue the styles for our options page
+			// Enqueue our styles for our options page
 			wp_enqueue_style( 'wa11y-admin-options', plugin_dir_url( __FILE__ ) . 'css/wa11y-admin-options-page.min.css', array(), WA11Y_VERSION );
 
-			// Enqueue the script for our options page
+			// Enqueue our script for our options page
+			// @TODO remove if never created
 			//wp_enqueue_script( 'wa11y-admin-options', plugin_dir_url( __FILE__ ) . 'js/wa11y-admin-options-page.js', array( 'jquery' ), WA11Y_VERSION, false );
 
 			break;
@@ -51,6 +52,9 @@ function wa11y_enqueue_admin_styles( $hook_suffix ) {
 		// Add styles to the "Edit Post" screen
 		case 'post.php':
 		case 'post-new.php':
+
+			// Enqueue our styles for the edit post screen
+			wp_enqueue_style( 'wa11y-admin-edit-post', plugin_dir_url( __FILE__ ) . 'css/wa11y-admin-edit-post.min.css', array(), WA11Y_VERSION );
 
 			// Register axe - goes in header
 			//wp_register_script( 'axe', plugins_url( '/includes/axe/axe.min.js' , dirname(__FILE__ ) ) );
@@ -118,6 +122,51 @@ function wa11y_enqueue_admin_styles( $hook_suffix ) {
 			}
 
 		}
+
+	}
+
+}
+
+/**
+ * Adds meta boxes to the "Edit Post" screen.
+ *
+ * @since   1.0
+ * @param	string - the post type that's being edited
+ * @param	object - information about the post that's being edited
+ */
+add_action( 'add_meta_boxes', 'wa11y_add_post_meta_boxes', 10, 2 );
+function wa11y_add_post_meta_boxes( $post_type, $post ) {
+
+	// Get our saved settings
+	$wa11y_settings = wa11y_get_settings();
+
+	// Add WAVE Evaluation meta box
+	add_meta_box( 'wa11y-wave-evaluation', sprintf( __( '%1$s - %2$s Evaluation', 'wa11y' ), 'Wa11y', 'WAVE' ), 'wa11y_print_post_meta_boxes', $post_type, 'normal', 'core', $wa11y_settings );
+
+}
+
+/**
+ * Print the meta boxes for the "Edit Post" screen.
+ *
+ * @since   1.0
+ * @param	array - $post - information about the current post
+ * @param	array - $metabox - information about the metabox
+ */
+function wa11y_print_post_meta_boxes( $post, $metabox ) {
+
+	// Get the saved settings passed to the meta boxes
+	$wa11y_settings = isset( $metabox[ 'args' ] ) ? $metabox[ 'args' ] : array();
+
+	// Get enable tools settings
+	//$wa11y_enable_tools_settings = isset( $wa11y_settings[ 'enable_tools' ] ) ? $wa11y_settings[ 'enable_tools' ] : array();
+
+	switch( $metabox[ 'id' ] ) {
+
+		case 'wa11y-wave-evaluation':
+
+			?><iframe id="wa11y-wave-evaluation-iframe" src="http://wave.webaim.org/report#/<?php echo urlencode( get_permalink( $post->ID ) ); ?>"></iframe><?php
+
+			break;
 
 	}
 
@@ -218,11 +267,17 @@ function wa11y_print_options_meta_boxes( $post, $metabox ) {
 			// Get tota11y settings
 			$wa11y_tota11y_settings = isset( $wa11y_settings[ 'tools' ] ) && isset( $wa11y_settings[ 'tools' ][ 'tota11y' ] ) ? $wa11y_settings[ 'tools' ][ 'tota11y' ] : array();
 
-			?><div class="wa11y-tool-settings">
+			?><div class="wa11y-tool-settings tota11y">
 				<div class="tool-header tota11y has-logo">
 					<input class="tool-checkbox" id="tota11y" type="checkbox" name="wa11y_settings[enable_tools][]" value="tota11y"<?php checked( is_array( $wa11y_enable_tools_settings ) && in_array( 'tota11y', $wa11y_enable_tools_settings) ); ?> />
 					<label class="tool-label" for="tota11y"><?php printf( __( 'Enable %s', 'wa11y' ), '<span class="tota11y-red">t</span><span class="tota11y-orange">o</span><span class="tota11y-yellow">t</span><span class="tota11y-green">a</span><span class="tota11y-blue">1</span><span class="tota11y-indigo">1</span><span class="tota11y-violet">y</span>' ); ?></label>
-					<p class="tool-desc"><?php printf( __( '%1$s%2$s%3$s is an accessibility visualization toolkit provided by your friends at %4$s%5$s%6$s. It is a single JavaScript file that inserts a small button in the bottom corner of your document and helps visualize how your site performs with assistive technologies.', 'wa11y' ), '<a href="http://khan.github.io/tota11y/" target="_blank">', 'tota11y', '</a>', '<a href="http://khanacademy.org/" target="_blank">', 'Khan Academy', '</a>' ); ?> <strong><em><?php _e( 'Unless specified below, this tool will only load on the front-end of your site.', 'wa11y' ); ?></em></strong></p>
+					<div class="tool-desc">
+						<p><?php printf( __( '%1$s%2$s%3$s is an accessibility visualization toolkit provided by your friends at %4$s%5$s%6$s. It is a single JavaScript file that inserts a small button in the bottom corner of your document and helps visualize how your site performs with assistive technologies.', 'wa11y' ), '<a href="http://khan.github.io/tota11y/" target="_blank">', 'tota11y', '</a>', '<a href="http://khanacademy.org/" target="_blank">', 'Khan Academy', '</a>' ); ?> <strong><em><?php _e( 'Unless specified below, this tool will only load on the front-end of your site.', 'wa11y' ); ?></em></strong></p>
+						<h3 class="why-header"><?php printf( __( 'Why %s Is Awesome', 'wa11y' ), 'tota11y' ); ?></h3>
+						<p><?php printf( __( '%1$s consists of several plugins, each with their own functionality, that works to help you visualize accessibility violations (and successes) while also educating you on best practices. Beyond simply pointing out errors, many %2$s plugins also suggest ways to fix these violations - specifically tailored to your document.', 'wa11y' ), 'tota11y', 'tota11y' ); ?></p>
+						<h3 class="use-header"><?php printf( __( 'Best Uses For %s', 'wa11y' ), 'tota11y' ); ?></h3>
+						<p><?php /* @TODO add other tool */ printf( __( '%s is built to scan, and provide feedback on, an entire document so this tool is best used to evaluate pages on the front-end of your site. If you only want to evaluate a specific section of your document, like the content in your loop for example, then [INSERT TOOL HERE] is for you.', 'wa11y' ), 'tota11y' ); ?></p>
+					</div> <!-- .tool-desc -->
 				</div> <!-- .tool-header -->
 				<p class="tool-settings-warning"><?php printf( __( 'If no user roles are selected or user capability is provided, %s will load for all logged-in users.', 'wa11y' ), 'tota11y' ); ?></p>
 				<fieldset>
@@ -242,10 +297,9 @@ function wa11y_print_options_meta_boxes( $post, $metabox ) {
 						?><li><label class="tool-option-header" for="tota11y-user-capability"><?php printf( __( 'Only load %s for a specific user capability', 'wa11y' ), 'tota11y' ); ?>:</label> <input class="tool-setting-text" id="tota11y-user-capability" type="text" name="wa11y_settings[tools][tota11y][load_user_capability]" value="<?php echo isset( $wa11y_tota11y_settings[ 'load_user_capability' ] ) ? $wa11y_tota11y_settings[ 'load_user_capability' ] : null; ?>" /> <span class="tool-option-side-note">e.g. view_tota11y</span></span></li>
 
 						<li><label class="tool-option-header" for="tota11y-admin"><?php printf( __( 'Load %s in the admin', 'wa11y' ), 'tota11y' ); ?>:</label>
-							<input class="tool-option-checkbox" id="tota11y-admin-yes" type="radio" name="wa11y_settings[tools][tota11y][load_in_admin]" value="1"<?php checked( isset( $wa11y_tota11y_settings[ 'load_in_admin' ] ) && $wa11y_tota11y_settings[ 'load_in_admin' ] > 0 ); ?> />
-							<label class="tool-option-label" for="tota11y-admin-yes"><?php _e( 'Yes', 'wa11y' ); ?></label>
-							<input class="tool-option-checkbox" id="tota11y-admin-no" type="radio" name="wa11y_settings[tools][tota11y][load_in_admin]" value="0"<?php checked( ! ( isset( $wa11y_tota11y_settings[ 'load_in_admin' ] ) && $wa11y_tota11y_settings[ 'load_in_admin' ] > 0 ) ); ?> />
-							<label class="tool-option-label" for="tota11y-admin-no"><?php _e( 'No', 'wa11y' ); ?></label> <span class="tool-option-side-note"><?php printf( __( 'This will load the %s button on all pages in the admin to give you a glimpse of admin accessibility.', 'wa11y' ), 'tota11y' ); ?></span></li>
+							<input class="tool-option-checkbox" id="tota11y-admin" type="checkbox" name="wa11y_settings[tools][tota11y][load_in_admin]" value="1"<?php checked( isset( $wa11y_tota11y_settings[ 'load_in_admin' ] ) && $wa11y_tota11y_settings[ 'load_in_admin' ] > 0 ); ?> />
+							<span class="tool-option-side-note"><?php printf( __( 'This will load the %s button on all pages in the admin to give you a glimpse of admin accessibility.', 'wa11y' ), 'tota11y' ); ?></span>
+						</li>
 
 					</ul>
 				</fieldset>
@@ -259,11 +313,17 @@ function wa11y_print_options_meta_boxes( $post, $metabox ) {
 			// Get WAVE settings
 			$wa11y_wave_settings = isset( $wa11y_settings[ 'tools' ] ) && isset( $wa11y_settings[ 'tools' ][ 'wave' ] ) ? $wa11y_settings[ 'tools' ][ 'wave' ] : array();
 
-			?><div class="wa11y-tool-settings">
+			?><div class="wa11y-tool-settings wave">
 				<div class="tool-header wave has-logo">
 					<input class="tool-checkbox" id="wave" type="checkbox" name="wa11y_settings[enable_tools][]" value="wave"<?php checked( is_array( $wa11y_enable_tools_settings ) && in_array( 'wave', $wa11y_enable_tools_settings) ); ?> />
 					<label class="tool-label" for="wave"><?php printf( __( 'Enable %1$s %2$s(Web Accessibility Evaluation Tool)%3$s', 'wa11y' ), '<span class="wave-red">WAVE</span>', '<span class="thinner wave-gray">', '</span>' ); ?></label>
-					<p class="tool-desc"><?php printf( __( '%1$s%2$s%3$s is a free evaluation tool provided by %4$s%5$s (Web Accessibility In Mind)%6$s. It can be used to evaluate a live website for a wide range of accessibility issues.', 'wa11y' ), '<a href="http://wave.webaim.org/" target="_blank">', 'WAVE', '</a>', '<a href="http://webaim.org/" target="_blank">', 'WebAIM', '</a>' ); ?> <strong><em><?php printf( __( 'This tool is not embedded on your site but rather allows you to easily navigate to, or display, the %s tool in order to evaluate your site.', 'wa11y' ), 'WebAim WAVE' ); ?></em></strong></p>
+					<div class="tool-desc">
+						<p><?php printf( __( '%1$s%2$s%3$s is a free evaluation tool provided by %4$s%5$s (Web Accessibility In Mind)%6$s. It can be used to evaluate a live website for a wide range of accessibility issues.', 'wa11y' ), '<a href="http://wave.webaim.org/" target="_blank">', 'WAVE', '</a>', '<a href="http://webaim.org/" target="_blank">', 'WebAIM', '</a>' ); ?> <strong><em><?php printf( __( 'This tool is not embedded on your site but rather allows you to easily navigate to, or display, the %s tool in order to evaluate your site.', 'wa11y' ), 'WebAim WAVE' ); ?></em></strong></p>
+						<h3 class="why-header"><?php printf( __( 'Why %s Is Awesome', 'wa11y' ), 'WAVE' ); ?></h3>
+						<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras risus urna, ullamcorper in ullamcorper in, dapibus vel leo. Nam diam odio, aliquam quis accumsan a, viverra non sem. Pellentesque non fringilla sapien.</p>
+						<h3 class="use-header"><?php printf( __( 'Best Uses For %s', 'wa11y' ), 'WAVE' ); ?></h3>
+						<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras risus urna, ullamcorper in ullamcorper in, dapibus vel leo. Nam diam odio, aliquam quis accumsan a, viverra non sem. Pellentesque non fringilla sapien.</p>
+					</div> <!-- .tool-desc -->
 				</div> <!-- .tool-header -->
 				<p class="tool-settings-warning"><?php printf( __( 'If no user roles are selected or user capability is provided, %s will display for all logged-in users.', 'wa11y' ), 'WAVE' ); ?></p>
 				<fieldset>

@@ -34,12 +34,12 @@
 #wa11y-tota11y-settings .inside,
 #wa11y-wave-settings .inside {
     margin: 0;
-    padding: 20px 20px 0 20px;
+    padding: 0;
 }
 
 .wa11y-tool-settings .tool-header {
-    margin: 0 0 20px 0;
-    padding: 0;
+    margin: 0;
+    padding: 20px;
 }
 
 .wa11y-tool-settings .tool-header input.tool-checkbox {
@@ -62,15 +62,40 @@
     font-weight: normal;
 }
 
-.wa11y-tool-settings .tool-header p.tool-desc {
+.wa11y-tool-settings .tool-header .tool-desc {
     margin: 10px 0 0 0;
     padding: 0;
+}
+
+.wa11y-tool-settings .tool-header .tool-desc p {
+    margin: 0 0 1em 0;
+}
+
+.wa11y-tool-settings .tool-header .tool-desc .why-header,
+.wa11y-tool-settings .tool-header .tool-desc .use-header {
+    padding: 0 !important;
+    margin: 0 0 3px 0 !important;
+    color: #333 !important;
+}
+
+.wa11y-tool-settings .tool-header .tool-desc *:last-child {
+    margin-bottom: 0;
 }
 
 /* Headers with logos */
 .wa11y-tool-settings .tool-header.has-logo {
     position: relative;
-    padding: 0 80px 0 0;
+    padding: 20px 20px 20px 145px;
+}
+
+.wa11y-tool-settings .tool-header.has-logo:before {
+    content: '';
+    background: #eee;
+    width: 120px;
+    height: 100%;
+    position: absolute;
+    left: 0;
+    top: 0;
 }
 
 /* Customize the tota11y header */
@@ -78,13 +103,7 @@
     min-height: 35px;
 }
 .wa11y-tool-settings .tool-header.tota11y:before {
-    content: '';
-    width: 80px;
-    height: 35px;
-    position: absolute;
-    right: 0;
-    top: 5px;
-    background: url( '../images/tota11y-glasses.svg' ) 0 0 no-repeat;
+    background: url( '../images/tota11y-glasses-white.svg' ) 19px 24px no-repeat #252525;
     background-size: 80px auto;
 }
 .wa11y-tool-settings .tool-header.tota11y .tota11y-red {
@@ -111,17 +130,12 @@
 
 /* Customize the WAVE header */
 .wa11y-tool-settings .tool-header.wave {
-    min-height: 85px;
+    min-height: 81px;
 }
 .wa11y-tool-settings .tool-header.wave:before {
-    content: '';
-    width: 70px;
-    height: 85px;
-    position: absolute;
-    right: 0;
-    top: 0;
-    background: url( '../images/webaim-head.png' ) 0 0 no-repeat;
-    background-size: auto 85px;
+    background: url( '../images/wave-logo.png' ) 50% 20px no-repeat #f0f6ee;
+    background-size: 81px 81px;
+    border-right: 1px solid #d3e3ce;
 }
 
 .wa11y-tool-settings .tool-header.wave .wave-red {
@@ -131,33 +145,11 @@
     color: #363636;
 }
 
-@media screen and (min-width: 640px) {
-
-    .wa11y-tool-settings .tool-header.has-logo {
-        padding: 0 0 0 105px;
-    }
-
-    /* Customize the tota11y header */
-    .wa11y-tool-settings .tool-header.tota11y:before {
-        right: auto;
-        left: 0;
-        top: 10px;
-    }
-
-    /* Customize the WAVE header */
-    .wa11y-tool-settings .tool-header.wave:before {
-        right: auto;
-        left: 5px;
-        top: 0;
-    }
-
-}
-
 .wa11y-tool-settings .tool-settings-warning {
     display: block;
     background: #faf2f2; /*5%*/
-    padding: 12px 20px 12px 26px;
-    margin: 10px -20px 0 -20px;
+    padding: 12px 20px 12px 20px;
+    margin: 0;
     border: 0;
     border-top: 1px solid #f5e5e5; /*10%*/
     font-style: italic;
@@ -168,7 +160,7 @@
 .wa11y-tool-settings ul.tool-settings-list {
     display: block;
     list-style: none;
-    margin: 0 -20px 0 -20px;
+    margin: 0;
     padding: 0;
     border: 0;
     border-top: 1px solid #d4e8ef; /*17%*/
@@ -180,7 +172,7 @@
     background: #f2f8fa; /*5%*/
     list-style: none;
     margin: 0;
-    padding: 15px 20px 10px 26px;
+    padding: 12px 20px 7px 20px;
     border: 0;
     border-bottom: 1px solid #d4e8ef; /*17%*/
 }
