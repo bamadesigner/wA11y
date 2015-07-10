@@ -103,6 +103,9 @@ function wa11y_enqueue_admin_styles( $hook_suffix ) {
 					$load_tota11y = current_user_can( $wa11y_tota11y_settings[ 'load_user_capability' ] );
 				}
 
+				// Filter whether or not to load - passes the tota11y settings
+				$load_tota11y = apply_filters( 'wa11y_load_tota11y', $load_tota11y, $wa11y_tota11y_settings );
+
 				// We need to load tota11y
 				if ( $load_tota11y ) {
 
