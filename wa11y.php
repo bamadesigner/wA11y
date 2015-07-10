@@ -51,12 +51,6 @@ function wa11y_load_script_tools() {
 	if ( empty( $wa11y_enable_tools ) )
 		return;
 
-	// Register axe - goes in header
-	//wp_register_script( 'axe', plugins_url( '/includes/axe/axe.min.js' , __FILE__ ) );
-
-	// Initiate axe - goes in header
-	//wp_enqueue_script( 'initiate-axe', plugins_url( '/includes/axe/initiate-axe.js' , __FILE__ ), array( 'axe' ) );
-
 	// If tota11y is enabled...
     if ( in_array( 'tota11y', $wa11y_enable_tools ) ) {
 

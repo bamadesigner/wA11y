@@ -31,25 +31,37 @@ add_action( 'admin_enqueue_scripts', 'wa11y_enqueue_admin_styles' );
 function wa11y_enqueue_admin_styles( $hook_suffix ) {
 	global $wa11y_options_page;
 
+	// Get our settings
+	$wa11y_settings = wa11y_get_settings();
+
 	switch( $hook_suffix ) {
 
 		// Add styles to our options page
 		case $wa11y_options_page:
 
 			// Enqueue the styles for our options page
-			wp_enqueue_style( 'wa11y-admin-options', plugin_dir_url( __FILE__ ) . 'wa11y-admin-options-page.min.css', array(), WA11Y_VERSION );
+			wp_enqueue_style( 'wa11y-admin-options', plugin_dir_url( __FILE__ ) . 'css/wa11y-admin-options-page.min.css', array(), WA11Y_VERSION );
 
 			// Enqueue the script for our options page
-			//wp_enqueue_script( 'wa11y-admin-options', plugin_dir_url( __FILE__ ) . 'wa11y-admin-options-page.js', array( 'jquery' ), WA11Y_VERSION, false );
+			//wp_enqueue_script( 'wa11y-admin-options', plugin_dir_url( __FILE__ ) . 'js/wa11y-admin-options-page.js', array( 'jquery' ), WA11Y_VERSION, false );
+
+			break;
+
+		// Add styles to the "Edit Post" screen
+		case 'post.php':
+		case 'post-new.php':
+
+			// Register axe - goes in header
+			//wp_register_script( 'axe', plugins_url( '/includes/axe/axe.min.js' , dirname(__FILE__ ) ) );
+
+			// Initiate axe - goes in header
+			//wp_enqueue_script( 'initiate-axe', plugin_dir_url( __FILE__ ) . 'js/wa11y-admin-post-axe.js', array( 'axe' ) );
 
 			break;
 
 	}
 
 	// Load tools in the admin
-
-	// Get our settings
-	$wa11y_settings = wa11y_get_settings();
 
 	// Only need to worry about this stuff if we have enabled tools
 	if ( $wa11y_enable_tools = isset( $wa11y_settings[ 'enable_tools' ] ) ? $wa11y_settings[ 'enable_tools' ] : array() ) {
