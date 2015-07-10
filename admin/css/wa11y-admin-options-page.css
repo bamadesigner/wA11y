@@ -39,6 +39,7 @@
 
 .wa11y-tool-settings .tool-header {
     margin: 0 0 20px 0;
+    padding: 0;
 }
 
 .wa11y-tool-settings .tool-header input.tool-checkbox {
@@ -50,7 +51,7 @@
 }
 
 .wa11y-tool-settings .tool-header label.tool-label {
-    display: inline-block;
+    display: inline;
     font-size: 18px;
     font-weight: bold;
     line-height: 1em;
@@ -58,27 +59,67 @@
     color: #000;
 }
 
+.wa11y-tool-settings .tool-header p.tool-desc {
+    margin: 10px 0 0 0;
+    padding: 0;
+}
+
+/* Headers with logos */
 .wa11y-tool-settings .tool-header.has-logo {
-    padding-left: 105px;
+    position: relative;
+    padding: 0 80px 0 0;
 }
 
 /* Customize the tota11y header */
 .wa11y-tool-settings .tool-header.tota11y {
-    background: url( '../images/tota11y-glasses.svg' ) 0 10px no-repeat;
-    background-size: 80px auto;
     min-height: 35px;
+}
+.wa11y-tool-settings .tool-header.tota11y:before {
+    content: '';
+    width: 80px;
+    height: 35px;
+    position: absolute;
+    right: 0;
+    top: 5px;
+    background: url( '../images/tota11y-glasses.svg' ) 0 0 no-repeat;
+    background-size: 80px auto;
 }
 
 /* Customize the WAVE header */
 .wa11y-tool-settings .tool-header.wave {
-    background: url( '../images/webaim-head.png' ) 5px 0 no-repeat;
-    background-size: auto 85px;
     min-height: 85px;
 }
+.wa11y-tool-settings .tool-header.wave:before {
+    content: '';
+    width: 70px;
+    height: 85px;
+    position: absolute;
+    right: 0;
+    top: 0;
+    background: url( '../images/webaim-head.png' ) 0 0 no-repeat;
+    background-size: auto 85px;
+}
 
-.wa11y-tool-settings p.tool-desc {
-    margin: 10px 0 0 0;
-    padding: 0;
+@media screen and (min-width: 640px) {
+
+    .wa11y-tool-settings .tool-header.has-logo {
+        padding: 0 0 0 105px;
+    }
+
+    /* Customize the tota11y header */
+    .wa11y-tool-settings .tool-header.tota11y:before {
+        right: auto;
+        left: 0;
+        top: 10px;
+    }
+
+    /* Customize the WAVE header */
+    .wa11y-tool-settings .tool-header.wave:before {
+        right: auto;
+        left: 5px;
+        top: 0;
+    }
+
 }
 
 .wa11y-tool-settings .tool-settings-warning {
