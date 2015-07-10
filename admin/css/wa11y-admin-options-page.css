@@ -34,12 +34,15 @@
 #wa11y-tota11y-settings .inside,
 #wa11y-wave-settings .inside {
     margin: 0;
-    padding: 20px 20px 25px 20px;
+    padding: 20px 20px 0 20px;
 }
 
 .wa11y-tool-settings input.tool-checkbox {
     display: inline-block;
     margin: 0 8px 0 0;
+}
+.wa11y-tool-settings input.tool-checkbox:before {
+    color: #016288;
 }
 
 .wa11y-tool-settings label.tool-label {
@@ -47,36 +50,65 @@
     font-size: 18px;
     font-weight: bold;
     line-height: 1em;
+    color: #016288;
 }
 
 .wa11y-tool-settings p.tool-desc {
-    margin: 10px 0 0 0;
+    margin: 10px 0 20px 0;
     padding: 0;
+}
+
+.wa11y-tool-settings .tool-settings-warning {
+    display: block;
+    background: #f7ebeb;
+    padding: 12px 20px 12px 26px;
+    margin: 10px -20px 0 -20px;
+    border: 0;
+    border-top: 1px solid #ebcccc;
+    font-style: italic;
+    color: #770000;
+    font-weight: bold;
 }
 
 .wa11y-tool-settings ul.tool-settings-list {
     display: block;
     list-style: none;
-    margin: 20px 0 0 0;
-    padding: 0 0 0 26px;
+    margin: 0 -20px 0 -20px;
+    padding: 0;
+    border: 0;
+    border-top: 1px solid #a6cedf;
+    border-bottom: 1px solid #a6cedf;
 }
 
 .wa11y-tool-settings ul.tool-settings-list li {
     display: block;
+    background: #ebf4f8;
     list-style: none;
-    margin: 0 0 12px 0;
-    padding: 0;
-}
-
-.wa11y-tool-settings ul.tool-settings-list .tool-option-checkbox {
-    margin: 0 5px 0 10px;
+    margin: 0;
+    padding: 15px 20px 10px 26px;
+    border: 0;
+    border-bottom: 1px solid #ddd;
 }
 
 .wa11y-tool-settings label.tool-option-header {
     display: inline-block;
-    margin: 0 10px 0 0;
+    margin: 0 10px 5px 0;
     font-size: 14px;
     font-weight: bold;
+}
+
+.wa11y-tool-settings .tool-setting-text {
+    margin: 0 0 5px 0;
+}
+
+.wa11y-tool-settings ul.tool-settings-list .tool-option-checkbox {
+    display: inline-block;
+    margin: 0 5px 5px 10px;
+}
+
+.wa11y-tool-settings ul.tool-settings-list .tool-option-label {
+    display: inline-block;
+    margin: 0 0 5px 0;
 }
 
 .wa11y-tool-settings label.tool-option-header + .tool-option-checkbox {
@@ -84,12 +116,6 @@
 }
 
 .wa11y-tool-settings .tool-option-side-note {
-    margin: 0 0 0 10px;
-    font-style: italic;
-}
-
-.wa11y-tool-settings .tool-settings-list-desc {
-    padding: 0 0 0 26px;
-    margin: 10px 0 0 0;
+    margin: 0 0 5px 10px;
     font-style: italic;
 }
