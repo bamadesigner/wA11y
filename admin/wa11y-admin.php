@@ -276,7 +276,7 @@ function wa11y_add_options_meta_boxes() {
 	add_meta_box( 'wa11y-tota11y-settings', 'tota11y', 'wa11y_print_options_meta_boxes', $wa11y_options_page, 'normal', 'core', $wa11y_settings );
 
 	// WAVE Settings
-	add_meta_box( 'wa11y-wave-settings', sprintf( __( '%s (Web Accessibility Evaluation Tool)', 'wa11y' ), 'WAVE' ), 'wa11y_print_options_meta_boxes', $wa11y_options_page, 'normal', 'core', $wa11y_settings );
+	add_meta_box( 'wa11y-wave-settings', sprintf( __( '%s (Web Accessibility eValuation Tool)', 'wa11y' ), 'WAVE' ), 'wa11y_print_options_meta_boxes', $wa11y_options_page, 'normal', 'core', $wa11y_settings );
 
 }
 
@@ -375,7 +375,7 @@ function wa11y_print_options_meta_boxes( $post, $metabox ) {
 			?><div class="wa11y-tool-settings has-logo wave">
 				<div class="tool-header">
 					<input class="tool-checkbox" id="wave" type="checkbox" name="wa11y_settings[enable_tools][]" value="wave"<?php checked( is_array( $wa11y_enable_tools_settings ) && in_array( 'wave', $wa11y_enable_tools_settings) ); ?> />
-					<label class="tool-label" for="wave"><?php printf( __( 'Enable %1$s %2$s(Web Accessibility Evaluation Tool)%3$s', 'wa11y' ), '<span class="wave-red">WAVE</span>', '<span class="thinner wave-gray">', '</span>' ); ?></label>
+					<label class="tool-label" for="wave"><?php printf( __( 'Enable %1$s %2$s(Web Accessibility eValuation Tool)%3$s', 'wa11y' ), '<span class="wave-red">WAVE</span>', '<span class="thinner wave-gray">', '</span>' ); ?></label>
 					<div class="tool-desc">
 						<p><?php printf( __( '%1$s%2$s%3$s is a free evaluation tool provided by %4$s%5$s (Web Accessibility In Mind)%6$s. It can be used to evaluate a live website for a wide range of accessibility issues. When this tool is enabled, a \'View %7$s evaluation\' button will be placed in your WordPress admin bar to help you quickly evaluate the page you\'re viewing.', 'wa11y' ), '<a href="http://wave.webaim.org/" target="_blank">', 'WAVE', '</a>', '<a href="http://webaim.org/" target="_blank">', 'WebAIM', '</a>', 'WAVE' ); ?></p>
 						<h3 class="why-header"><?php printf( __( 'Why %s Is Awesome', 'wa11y' ), 'WAVE' ); ?></h3>
