@@ -267,12 +267,12 @@ function wa11y_print_options_meta_boxes( $post, $metabox ) {
 			// Get tota11y settings
 			$wa11y_tota11y_settings = isset( $wa11y_settings[ 'tools' ] ) && isset( $wa11y_settings[ 'tools' ][ 'tota11y' ] ) ? $wa11y_settings[ 'tools' ][ 'tota11y' ] : array();
 
-			?><div class="wa11y-tool-settings tota11y">
-				<div class="tool-header tota11y has-logo">
+			?><div class="wa11y-tool-settings has-logo tota11y">
+				<div class="tool-header">
 					<input class="tool-checkbox" id="tota11y" type="checkbox" name="wa11y_settings[enable_tools][]" value="tota11y"<?php checked( is_array( $wa11y_enable_tools_settings ) && in_array( 'tota11y', $wa11y_enable_tools_settings) ); ?> />
 					<label class="tool-label" for="tota11y"><?php printf( __( 'Enable %s', 'wa11y' ), '<span class="tota11y-red">t</span><span class="tota11y-orange">o</span><span class="tota11y-yellow">t</span><span class="tota11y-green">a</span><span class="tota11y-blue">1</span><span class="tota11y-indigo">1</span><span class="tota11y-violet">y</span>' ); ?></label>
 					<div class="tool-desc">
-						<p><?php printf( __( '%1$s%2$s%3$s is an accessibility visualization toolkit provided by your friends at %4$s%5$s%6$s. It is a single JavaScript file that inserts a small button in the bottom corner of your document and helps visualize how your site performs with assistive technologies.', 'wa11y' ), '<a href="http://khan.github.io/tota11y/" target="_blank">', 'tota11y', '</a>', '<a href="http://khanacademy.org/" target="_blank">', 'Khan Academy', '</a>' ); ?> <strong><em><?php _e( 'Unless specified below, this tool will only load on the front-end of your site.', 'wa11y' ); ?></em></strong></p>
+						<p><?php printf( __( '%1$s%2$s%3$s is an accessibility visualization toolkit provided by your friends at %4$s%5$s%6$s. It is a single JavaScript file that inserts a small button in the bottom corner of your document and helps visualize how your site performs with assistive technologies.', 'wa11y' ), '<a href="http://khan.github.io/tota11y/" target="_blank">', 'tota11y', '</a>', '<a href="http://khanacademy.org/" target="_blank">', 'Khan Academy', '</a>' ); ?></p>
 						<h3 class="why-header"><?php printf( __( 'Why %s Is Awesome', 'wa11y' ), 'tota11y' ); ?></h3>
 						<p><?php printf( __( '%1$s consists of several plugins, each with their own functionality, that works to help you visualize accessibility violations (and successes) while also educating you on best practices. Beyond simply pointing out errors, many %2$s plugins also suggest ways to fix these violations - specifically tailored to your document.', 'wa11y' ), 'tota11y', 'tota11y' ); ?></p>
 						<h3 class="use-header"><?php printf( __( 'Best Uses For %s', 'wa11y' ), 'tota11y' ); ?></h3>
@@ -313,8 +313,8 @@ function wa11y_print_options_meta_boxes( $post, $metabox ) {
 			// Get WAVE settings
 			$wa11y_wave_settings = isset( $wa11y_settings[ 'tools' ] ) && isset( $wa11y_settings[ 'tools' ][ 'wave' ] ) ? $wa11y_settings[ 'tools' ][ 'wave' ] : array();
 
-			?><div class="wa11y-tool-settings wave">
-				<div class="tool-header wave has-logo">
+			?><div class="wa11y-tool-settings has-logo wave">
+				<div class="tool-header">
 					<input class="tool-checkbox" id="wave" type="checkbox" name="wa11y_settings[enable_tools][]" value="wave"<?php checked( is_array( $wa11y_enable_tools_settings ) && in_array( 'wave', $wa11y_enable_tools_settings) ); ?> />
 					<label class="tool-label" for="wave"><?php printf( __( 'Enable %1$s %2$s(Web Accessibility Evaluation Tool)%3$s', 'wa11y' ), '<span class="wave-red">WAVE</span>', '<span class="thinner wave-gray">', '</span>' ); ?></label>
 					<div class="tool-desc">
