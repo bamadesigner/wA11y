@@ -154,7 +154,7 @@ function wa11y_add_to_admin_bar( $wp_admin_bar ) {
 		    if ( ! empty( $wave_url ) ) {
 			    $wa11y_nodes[] = array(
 				    'id'    => 'wa11y-wave',
-				    'title' => sprintf( __( '%s Evaluation', 'wa11y' ), 'WAVE' ),
+				    'title' => sprintf( __( 'View %s Evaluation', 'wa11y' ), 'WAVE' ),
 				    'href'  => 'http://wave.webaim.org/report#/' . urlencode( $wave_url ),
 				    'meta'  => array( 'target' => '_blank' ),
 			    );
