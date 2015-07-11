@@ -56,6 +56,9 @@ function wa11y_enqueue_admin_styles( $hook_suffix ) {
 			// Enqueue our styles for the edit post screen
 			wp_enqueue_style( 'wa11y-admin-edit-post', plugin_dir_url( __FILE__ ) . 'css/wa11y-admin-edit-post.min.css', array(), WA11Y_VERSION );
 
+			// Enqueue our script for the edit post screen
+			//wp_enqueue_script( 'wa11y-admin-edit-post', plugin_dir_url( __FILE__ ) . 'js/wa11y-admin-edit-post.js', array( 'jquery' ), WA11Y_VERSION, true );
+
 			// Register axe - goes in header
 			//wp_register_script( 'axe', plugins_url( '/includes/axe/axe.min.js' , dirname(__FILE__ ) ) );
 
@@ -389,10 +392,8 @@ function wa11y_print_options_meta_boxes( $post, $metabox ) {
 						?><li><label class="tool-option-header" for="wave-user-capability"><?php printf( __( 'Only show %s for a specific user capability', 'wa11y' ), 'WAVE' ); ?>:</label> <input class="tool-setting-text" id="wave-user-capability" type="text" name="wa11y_settings[tools][wave][load_user_capability]" value="<?php echo isset( $wa11y_wave_settings[ 'load_user_capability' ] ) ? $wa11y_wave_settings[ 'load_user_capability' ] : null; ?>" /> <span class="tool-option-side-note">e.g. view_wave</span></span></li>
 
 						<li><label class="tool-option-header" for="wave-admin"><?php printf( __( 'Show %s in the admin', 'wa11y' ), 'WAVE' ); ?>:</label>
-							<input class="tool-option-checkbox" id="wave-admin-yes" type="radio" name="wa11y_settings[tools][wave][load_in_admin]" value="1"<?php checked( isset( $wa11y_wave_settings[ 'load_in_admin' ] ) && $wa11y_wave_settings[ 'load_in_admin' ] > 0 ); ?> />
-							<label class="tool-option-label" for="wave-admin-yes"><?php _e( 'Yes', 'wa11y' ); ?></label>
-							<input class="tool-option-checkbox" id="wave-admin-no" type="radio" name="wa11y_settings[tools][wave][load_in_admin]" value="0"<?php checked( ! ( isset( $wa11y_wave_settings[ 'load_in_admin' ] ) && $wa11y_wave_settings[ 'load_in_admin' ] > 0 ) ); ?> />
-							<label class="tool-option-label" for="wave-admin-no"><?php _e( 'No', 'wa11y' ); ?></label> <span class="tool-option-side-note"><?php printf( __( '%s will only display in the admin on screens where you are editing a post or a page.', 'wa11y' ), 'WAVE' ); ?></span></li>
+							<input class="tool-option-checkbox" id="wave-admin" type="checkbox" name="wa11y_settings[tools][wave][load_in_admin]" value="1"<?php checked( isset( $wa11y_wave_settings[ 'load_in_admin' ] ) && $wa11y_wave_settings[ 'load_in_admin' ] > 0 ); ?> />
+							<span class="tool-option-side-note"><?php printf( __( '%s will only display in the admin on screens where you are editing a post or a page.', 'wa11y' ), 'WAVE' ); ?></span></li>
 					</ul>
 				</fieldset>
 			</div><?php
