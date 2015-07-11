@@ -148,8 +148,8 @@ function wa11y_add_post_meta_boxes( $post_type, $post ) {
 	if ( empty( $wa11y_enable_tools ) )
 		return;
 
-	// If WAVE is enabled...
-	if ( in_array( 'wave', $wa11y_enable_tools ) ) {
+	// If WAVE is enabled and not SSL...
+	if ( ! is_ssl() && in_array( 'wave', $wa11y_enable_tools ) ) {
 
 		// Get WAVE settings
 		$wa11y_wave_settings = isset( $wa11y_settings[ 'tools' ] ) && isset( $wa11y_settings[ 'tools' ][ 'wave' ] ) ? $wa11y_settings[ 'tools' ][ 'wave' ] : array();
@@ -213,7 +213,14 @@ function wa11y_print_post_meta_boxes( $post, $metabox ) {
 
 		case 'wa11y-wave-evaluation':
 
-			?><iframe id="wa11y-wave-evaluation-iframe" src="http://wave.webaim.org/report#/<?php echo urlencode( get_permalink( $post->ID ) ); ?>"></iframe><?php
+			// Build WAVE evaluation URL
+			$wave_url = 'http://wave.webaim.org/report#/'. urlencode( get_permalink( $post->ID ) );
+
+			// Filter the WAVE url - includes $post object
+			$wave_url = apply_filters( 'wa11y_wave_url', $wave_url, $post );
+
+			?><a class="wa11y-wave-open-evaluation" href="<?php echo $wave_url; ?>" target="_blank"><?php printf( __( 'Open %s evaluation in new window', 'wa11y' ), 'WAVE' ); ?></a>
+			<iframe id="wa11y-wave-evaluation-iframe" src="<?php echo $wave_url; ?>"></iframe><?php
 
 			break;
 
@@ -362,6 +369,9 @@ function wa11y_print_options_meta_boxes( $post, $metabox ) {
 			// Get WAVE settings
 			$wa11y_wave_settings = isset( $wa11y_settings[ 'tools' ] ) && isset( $wa11y_settings[ 'tools' ][ 'wave' ] ) ? $wa11y_settings[ 'tools' ][ 'wave' ] : array();
 
+			// Have to disable the admin WAVE evaluation if SSL
+			$disable_admin_wave = is_ssl();
+
 			?><div class="wa11y-tool-settings has-logo wave">
 				<div class="tool-header">
 					<input class="tool-checkbox" id="wave" type="checkbox" name="wa11y_settings[enable_tools][]" value="wave"<?php checked( is_array( $wa11y_enable_tools_settings ) && in_array( 'wave', $wa11y_enable_tools_settings) ); ?> />
@@ -391,9 +401,16 @@ function wa11y_print_options_meta_boxes( $post, $metabox ) {
 
 						?><li><label class="tool-option-header" for="wave-user-capability"><?php printf( __( 'Only show %s for a specific user capability', 'wa11y' ), 'WAVE' ); ?>:</label> <input class="tool-setting-text" id="wave-user-capability" type="text" name="wa11y_settings[tools][wave][load_user_capability]" value="<?php echo isset( $wa11y_wave_settings[ 'load_user_capability' ] ) ? $wa11y_wave_settings[ 'load_user_capability' ] : null; ?>" /> <span class="tool-option-side-note">e.g. view_wave</span></span></li>
 
-						<li><label class="tool-option-header" for="wave-admin"><?php printf( __( 'Show %s in the admin', 'wa11y' ), 'WAVE' ); ?>:</label>
-							<input class="tool-option-checkbox" id="wave-admin" type="checkbox" name="wa11y_settings[tools][wave][load_in_admin]" value="1"<?php checked( isset( $wa11y_wave_settings[ 'load_in_admin' ] ) && $wa11y_wave_settings[ 'load_in_admin' ] > 0 ); ?> />
-							<span class="tool-option-side-note"><?php printf( __( '%s will only display in the admin on screens where you are editing a post or a page.', 'wa11y' ), 'WAVE' ); ?></span></li>
+						<li<?php echo $disable_admin_wave ? ' class="disabled"' : null; ?>><label class="tool-option-header" for="wave-admin"><?php printf( __( 'Show %s evaluation in the admin', 'wa11y' ), 'WAVE' ); ?>:</label>
+							<input class="tool-option-checkbox" id="wave-admin" type="checkbox" name="wa11y_settings[tools][wave][load_in_admin]" value="1"<?php checked( ! $disable_admin_wave && isset( $wa11y_wave_settings[ 'load_in_admin' ] ) && $wa11y_wave_settings[ 'load_in_admin' ] > 0 ); disabled( $disable_admin_wave ); ?> /><?php
+
+							if ( $disable_admin_wave ) {
+								?><span class="tool-option-disabled-message"><?php printf( __( 'At this time, the %1$s evaluation cannot be embedded on a site using SSL because the %2$s site is not using SSL.', 'wa11y' ), 'WAVE', 'WAVE' ); ?></span><?php
+							} else {
+								?><span class="tool-option-side-note"><?php printf( __( 'The %s evaluation will only display on screens where you are editing a post or a page.', 'wa11y' ), 'WAVE' ); ?></span><?php
+							}
+
+						?></li>
 					</ul>
 				</fieldset>
 			</div><?php

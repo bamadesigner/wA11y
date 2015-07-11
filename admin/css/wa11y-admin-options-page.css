@@ -171,6 +171,19 @@
     border-bottom: 1px solid #d4e8ef; /*17%*/
 }
 
+.wa11y-tool-settings ul.tool-settings-list li.disabled {
+    background: #f1f1f1;
+}
+.wa11y-tool-settings ul.tool-settings-list li.disabled .tool-option-header {
+    opacity: 0.5;
+}
+.wa11y-tool-settings ul.tool-settings-list li.disabled .tool-option-disabled-message {
+    display: block;
+    opacity: 1;
+    font-style: italic;
+    margin: 0 0 5px 0;
+}
+
 .wa11y-tool-settings label.tool-option-header {
     display: inline-block;
     margin: 0 10px 5px 0;
