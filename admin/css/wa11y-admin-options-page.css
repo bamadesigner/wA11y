@@ -161,7 +161,7 @@
     border-bottom: 1px solid #d4e8ef; /*17%*/
 }
 
-.wa11y-tool-settings ul.tool-settings-list li {
+.wa11y-tool-settings ul.tool-settings-list > li {
     display: block;
     background: #f2f8fa; /*5%*/
     list-style: none;
@@ -171,28 +171,34 @@
     border-bottom: 1px solid #d4e8ef; /*17%*/
 }
 
-.wa11y-tool-settings ul.tool-settings-list li.disabled {
+.wa11y-tool-settings ul.tool-settings-list > li.disabled {
     background: #f1f1f1;
 }
-.wa11y-tool-settings ul.tool-settings-list li.disabled .tool-option-header {
+.wa11y-tool-settings ul.tool-settings-list > li.disabled .tool-option-header {
     opacity: 0.5;
 }
-.wa11y-tool-settings ul.tool-settings-list li.disabled .tool-option-disabled-message {
+.wa11y-tool-settings ul.tool-settings-list > li.disabled .tool-option-disabled-message {
     display: block;
     opacity: 1;
     font-style: italic;
     margin: 0 0 5px 0;
 }
 
-.wa11y-tool-settings label.tool-option-header {
+.wa11y-tool-settings ul.tool-settings-list label.tool-option-header {
     display: inline-block;
     margin: 0 10px 5px 0;
     font-size: 14px;
     font-weight: bold;
 }
 
-.wa11y-tool-settings .tool-setting-text {
+.wa11y-tool-settings ul.tool-settings-list .tool-setting-text {
     margin: 0 10px 5px 0;
+}
+
+.wa11y-tool-settings ul.tool-settings-list select.chosen,
+.wa11y-tool-settings ul.tool-settings-list .chosen-container {
+    width: 300px;
+    margin: 0 0 5px 0;
 }
 
 .wa11y-tool-settings ul.tool-settings-list .tool-option-checkbox {
@@ -205,7 +211,7 @@
     margin: 0 0 5px 0;
 }
 
-.wa11y-tool-settings label.tool-option-header + .tool-option-checkbox {
+.wa11y-tool-settings ul.tool-settings-list label.tool-option-header + .tool-option-checkbox {
     margin-left: 0;
 }
 
@@ -213,7 +219,7 @@
     margin-left: -5px;
 }
 
-.wa11y-tool-settings .tool-option-side-note {
+.wa11y-tool-settings ul.tool-settings-list .tool-option-side-note {
     display: inline-block;
     margin: 0 0 5px 0;
     font-style: italic;

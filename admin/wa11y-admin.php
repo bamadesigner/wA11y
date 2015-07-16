@@ -40,12 +40,15 @@ function wa11y_enqueue_admin_styles( $hook_suffix ) {
 		// Add styles to our options page
 		case $wa11y_options_page:
 
-			// Enqueue our styles for our options page
-			wp_enqueue_style( 'wa11y-admin-options', plugin_dir_url( __FILE__ ) . 'css/wa11y-admin-options-page.min.css', array(), WA11Y_VERSION );
+			// Register chosen styles and script for our options page
+			wp_register_style( 'wa11y-admin-chosen', plugin_dir_url( __FILE__ ) . 'chosen/wa11y-admin-chosen.min.css', array(), WA11Y_VERSION );
+			wp_register_script( 'wa11y-admin-chosen', plugin_dir_url( __FILE__ ) . 'chosen/chosen.jquery.min.js', array( 'jquery' ), WA11Y_VERSION );
 
-			// Enqueue our script for our options page
-			// @TODO remove if never created
-			//wp_enqueue_script( 'wa11y-admin-options', plugin_dir_url( __FILE__ ) . 'js/wa11y-admin-options-page.js', array( 'jquery' ), WA11Y_VERSION, false );
+			// Enqueue the styles for our options page
+			wp_enqueue_style( 'wa11y-admin-options', plugin_dir_url( __FILE__ ) . 'css/wa11y-admin-options-page.min.css', array( 'wa11y-admin-chosen' ), WA11Y_VERSION );
+
+			// Enqueue the script for our options page
+			wp_enqueue_script( 'wa11y-admin-options', plugin_dir_url( __FILE__ ) . 'js/wa11y-admin-options-page.js', array( 'jquery', 'wa11y-admin-chosen' ), WA11Y_VERSION );
 
 			break;
 
@@ -340,14 +343,17 @@ function wa11y_print_options_meta_boxes( $post, $metabox ) {
 					<ul id="wa11y-tota11y-settings-list" class="tool-settings-list"><?php
 
 						if ( ! empty( $user_roles ) ) {
-							?><li><label class="tool-option-header"><?php printf( __( 'Only load %s for specific user roles', 'wa11y' ), 'tota11y' ); ?>:</label> <?php
+							?><li>
 
-								foreach( $user_roles as $user_role_key => $user_role ) {
-									?><input class="tool-option-checkbox" id="tota11y-user-role-<?php echo $user_role_key; ?>" type="checkbox" name="wa11y_settings[tools][tota11y][load_user_roles][]" value="<?php echo $user_role_key; ?>"<?php checked( isset( $wa11y_tota11y_settings[ 'load_user_roles' ] ) && in_array( $user_role_key, $wa11y_tota11y_settings[ 'load_user_roles' ] ) ); ?> />
-									<label class="tool-option-label" for="tota11y-user-role-<?php echo $user_role_key; ?>"><?php echo $user_role[ 'name' ]; ?></label><?php
-								}
+								<label class="tool-option-header"><?php printf( __( 'Only load %s for specific user roles', 'wa11y' ), 'tota11y' ); ?>:</label>
+								<select name="wa11y_settings[tools][tota11y][load_user_roles][]" class="chosen" multiple="multiple">
+									<option value=""></option><?php
+									foreach( $user_roles as $user_role_key => $user_role ) {
+										?><option value="<?php echo $user_role_key; ?>"<?php selected( is_array( $wa11y_tota11y_settings[ 'load_user_roles' ] ) && in_array( $user_role_key, $wa11y_tota11y_settings[ 'load_user_roles' ] ) ); ?>><?php echo $user_role[ 'name' ]; ?></option><?php
+									}
+								?></select>
 
-							?></li><?php
+							</li><?php
 						}
 
 						?><li><label class="tool-option-header" for="tota11y-user-capability"><?php printf( __( 'Only load %s for a specific user capability', 'wa11y' ), 'tota11y' ); ?>:</label> <input class="tool-setting-text" id="tota11y-user-capability" type="text" name="wa11y_settings[tools][tota11y][load_user_capability]" value="<?php echo isset( $wa11y_tota11y_settings[ 'load_user_capability' ] ) ? $wa11y_tota11y_settings[ 'load_user_capability' ] : null; ?>" /> <span class="tool-option-side-note">e.g. view_tota11y</span></span></li>
@@ -388,15 +394,19 @@ function wa11y_print_options_meta_boxes( $post, $metabox ) {
 				<fieldset>
 					<ul id="wa11y-wave-settings-list" class="tool-settings-list"><?php
 
+						// If we have user roles
 						if ( ! empty( $user_roles ) ) {
-							?><li><label class="tool-option-header"><?php printf( __( 'Only show %s for specific user roles', 'wa11y' ), 'WAVE' ); ?>:</label> <?php
+							?><li>
 
-							foreach( $user_roles as $user_role_key => $user_role ) {
-								?><input class="tool-option-checkbox" id="wave-user-role-<?php echo $user_role_key; ?>" type="checkbox" name="wa11y_settings[tools][wave][load_user_roles][]" value="<?php echo $user_role_key; ?>"<?php checked( isset( $wa11y_wave_settings[ 'load_user_roles' ] ) && in_array( $user_role_key, $wa11y_wave_settings[ 'load_user_roles' ] ) ); ?> />
-								<label class="tool-option-label" for="wave-user-role-<?php echo $user_role_key; ?>"><?php echo $user_role[ 'name' ]; ?></label><?php
-							}
+								<label class="tool-option-header"><?php printf( __( 'Only show %s for specific user roles', 'wa11y' ), 'WAVE' ); ?>:</label>
+								<select name="wa11y_settings[tools][wave][load_user_roles][]" class="chosen" multiple="multiple">
+									<option value=""></option><?php
+									foreach( $user_roles as $user_role_key => $user_role ) {
+										?><option value="<?php echo $user_role_key; ?>"<?php selected( is_array( $wa11y_wave_settings[ 'load_user_roles' ] ) && in_array( $user_role_key, $wa11y_wave_settings[ 'load_user_roles' ] ) ); ?>><?php echo $user_role[ 'name' ]; ?></option><?php
+									}
+								?></select>
 
-							?></li><?php
+							</li><?php
 						}
 
 						?><li><label class="tool-option-header" for="wave-user-capability"><?php printf( __( 'Only show %s for a specific user capability', 'wa11y' ), 'WAVE' ); ?>:</label> <input class="tool-setting-text" id="wave-user-capability" type="text" name="wa11y_settings[tools][wave][load_user_capability]" value="<?php echo isset( $wa11y_wave_settings[ 'load_user_capability' ] ) ? $wa11y_wave_settings[ 'load_user_capability' ] : null; ?>" /> <span class="tool-option-side-note">e.g. view_wave</span></span></li>
