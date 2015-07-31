@@ -99,43 +99,43 @@
 }
 
 /* Customize the tota11y section */
-.wa11y-tool-settings.tota11y:before {
+.wa11y-tool-settings.tota11y-tool-settings:before {
     background: url( '../images/tota11y-glasses-white.svg' ) 19px 24px no-repeat #252525;
     background-size: 80px auto;
 }
-.wa11y-tool-settings.tota11y .tota11y-red {
+.wa11y-tool-settings.tota11y-tool-settings .tota11y-red {
     color: #db0f0f;
 }
-.wa11y-tool-settings.tota11y .tota11y-orange {
+.wa11y-tool-settings.tota11y-tool-settings .tota11y-orange {
     color: #ffb710;
 }
-.wa11y-tool-settings.tota11y .tota11y-yellow {
+.wa11y-tool-settings.tota11y-tool-settings .tota11y-yellow {
     color: #f5d800;
 }
-.wa11y-tool-settings.tota11y .tota11y-green {
+.wa11y-tool-settings.tota11y-tool-settings .tota11y-green {
     color: #56d516;
 }
-.wa11y-tool-settings.tota11y .tota11y-blue {
+.wa11y-tool-settings.tota11y-tool-settings .tota11y-blue {
     color: #139fb4;
 }
-.wa11y-tool-settings.tota11y .tota11y-indigo {
+.wa11y-tool-settings.tota11y-tool-settings .tota11y-indigo {
     color: #1251af;
 }
-.wa11y-tool-settings.tota11y .tota11y-violet {
+.wa11y-tool-settings.tota11y-tool-settings .tota11y-violet {
     color: #5c12af;
 }
 
 /* Customize the WAVE header */
-.wa11y-tool-settings.wave:before {
+.wa11y-tool-settings.wave-tool-settings:before {
     background: url( '../images/wave-logo.png' ) 50% 20px no-repeat #f0f6ee;
     background-size: 81px 81px;
     border-right: 1px solid #d3e3ce;
 }
 
-.wa11y-tool-settings.wave .wave-red {
+.wa11y-tool-settings.wave-tool-settings .wave-red {
     color: #BF1722;
 }
-.wa11y-tool-settings.wave .wave-gray {
+.wa11y-tool-settings.wave-tool-settings .wave-gray {
     color: #363636;
 }
 

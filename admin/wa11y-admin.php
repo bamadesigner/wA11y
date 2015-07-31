@@ -326,7 +326,7 @@ function wa11y_print_options_meta_boxes( $post, $metabox ) {
 			// Get tota11y settings
 			$wa11y_tota11y_settings = isset( $wa11y_settings[ 'tools' ] ) && isset( $wa11y_settings[ 'tools' ][ 'tota11y' ] ) ? $wa11y_settings[ 'tools' ][ 'tota11y' ] : array();
 
-			?><div class="wa11y-tool-settings has-logo tota11y">
+			?><div class="wa11y-tool-settings has-logo tota11y-tool-settings">
 				<div class="tool-header">
 					<input class="tool-checkbox" id="tota11y" type="checkbox" name="wa11y_settings[enable_tools][]" value="tota11y"<?php checked( is_array( $wa11y_enable_tools_settings ) && in_array( 'tota11y', $wa11y_enable_tools_settings) ); ?> />
 					<label class="tool-label" for="tota11y"><?php printf( __( 'Enable %s', 'wa11y' ), '<span class="tota11y-red">t</span><span class="tota11y-orange">o</span><span class="tota11y-yellow">t</span><span class="tota11y-green">a</span><span class="tota11y-blue">1</span><span class="tota11y-indigo">1</span><span class="tota11y-violet">y</span>' ); ?></label>
@@ -378,7 +378,7 @@ function wa11y_print_options_meta_boxes( $post, $metabox ) {
 			// Have to disable the admin WAVE evaluation if SSL
 			$disable_admin_wave = is_ssl();
 
-			?><div class="wa11y-tool-settings has-logo wave">
+			?><div class="wa11y-tool-settings has-logo wave-tool-settings">
 				<div class="tool-header">
 					<input class="tool-checkbox" id="wave" type="checkbox" name="wa11y_settings[enable_tools][]" value="wave"<?php checked( is_array( $wa11y_enable_tools_settings ) && in_array( 'wave', $wa11y_enable_tools_settings) ); ?> />
 					<label class="tool-label" for="wave"><?php printf( __( 'Enable %1$s %2$s(Web Accessibility Evaluation Tool)%3$s', 'wa11y' ), '<span class="wave-red">WAVE</span>', '<span class="thinner wave-gray">', '</span>' ); ?></label>
