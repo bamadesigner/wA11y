@@ -30,11 +30,33 @@
     margin: 10px 0 0 0;
 }
 
+/* Setup the settings boxes */
+.wa11y-tool-settings {
+    position: relative;
+    padding: 0 0 0 120px;
+}
+
 /* Setup all the .inside */
 #wa11y-tota11y-settings .inside,
 #wa11y-wave-settings .inside {
     margin: 0;
     padding: 0;
+}
+
+.wa11y-tool-settings .tool-sidebar {
+    background: #eee;
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 120px;
+    height: 100%;
+    font-size: 16px;
+    line-height: 1;
+    text-align: center;
+    color: #333;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
 }
 
 .wa11y-tool-settings .tool-header {
@@ -82,26 +104,12 @@
     margin-bottom: 0;
 }
 
-/* Headers with logos */
-.wa11y-tool-settings.has-logo {
-    position: relative;
-    padding: 0 0 0 120px;
-}
-
-.wa11y-tool-settings.has-logo:before {
-    content: '';
-    background: #eee;
-    width: 120px;
-    height: 100%;
-    position: absolute;
-    left: 0;
-    top: 0;
-}
-
 /* Customize the tota11y section */
-.wa11y-tool-settings.tota11y-tool-settings:before {
+.wa11y-tool-settings.tota11y-tool-settings .tool-sidebar {
     background: url( '../images/tota11y-glasses-white.svg' ) 19px 24px no-repeat #252525;
     background-size: 80px auto;
+    color: #fff;
+    padding: 80px 0 0 0;
 }
 .wa11y-tool-settings.tota11y-tool-settings .tota11y-red {
     color: #db0f0f;
@@ -126,10 +134,11 @@
 }
 
 /* Customize the WAVE header */
-.wa11y-tool-settings.wave-tool-settings:before {
+.wa11y-tool-settings.wave-tool-settings .tool-sidebar {
     background: url( '../images/wave-logo.png' ) 50% 20px no-repeat #f0f6ee;
     background-size: 81px 81px;
     border-right: 1px solid #d3e3ce;
+    padding: 115px 0 0 0;
 }
 
 .wa11y-tool-settings.wave-tool-settings .wave-red {

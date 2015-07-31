@@ -19,7 +19,8 @@ if ( ! defined( 'WPINC' ) ) {
 }
 
 // If you define them, will they be used?
-define( 'WA11Y_VERSION', 1.0 );
+define( 'WA11Y_VERSION', '1.0' );
+define( 'WA11Y_TOTA11Y_VERSION', '0.0.10' );
 
 // Add admin functionality in admin only
 if( is_admin() ) {
