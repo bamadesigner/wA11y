@@ -155,8 +155,8 @@ function wa11y_add_post_meta_boxes( $post_type, $post ) {
 	// If WAVE is enabled and not SSL...
 	if ( ! is_ssl() && in_array( 'wave', $wa11y_enable_tools ) ) {
 
-		// Only add WAVE for public post types
-		if ( in_array( $post_type, get_post_types( array( 'public' => true ) ) ) ) {
+		// Only add WAVE for published posts and public post types
+		if ( 'publish' == $post->post_status && in_array( $post_type, get_post_types( array( 'public' => true ) ) ) ) {
 
 			// Get WAVE settings
 			$wa11y_wave_settings = isset( $wa11y_settings[ 'tools' ] ) && isset( $wa11y_settings[ 'tools' ][ 'wave' ] ) ? $wa11y_settings[ 'tools' ][ 'wave' ] : array();
