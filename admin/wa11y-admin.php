@@ -148,49 +148,55 @@ function wa11y_add_post_meta_boxes( $post_type, $post ) {
 
 	// Only need to worry about this stuff if we have enabled tools
 	$wa11y_enable_tools = isset( $wa11y_settings[ 'enable_tools' ] ) ? $wa11y_settings[ 'enable_tools' ] : array();
-	if ( empty( $wa11y_enable_tools ) )
+	if ( empty( $wa11y_enable_tools ) ) {
 		return;
+	}
 
 	// If WAVE is enabled and not SSL...
 	if ( ! is_ssl() && in_array( 'wave', $wa11y_enable_tools ) ) {
 
-		// Get WAVE settings
-		$wa11y_wave_settings = isset( $wa11y_settings[ 'tools' ] ) && isset( $wa11y_settings[ 'tools' ][ 'wave' ] ) ? $wa11y_settings[ 'tools' ][ 'wave' ] : array();
+		// Only add WAVE for public post types
+		if ( in_array( $post_type, get_post_types( array( 'public' => true ) ) ) ) {
 
-		// Will be true if we should load WAVE meta box - false by default
-		$load_wave = false;
+			// Get WAVE settings
+			$wa11y_wave_settings = isset( $wa11y_settings[ 'tools' ] ) && isset( $wa11y_settings[ 'tools' ][ 'wave' ] ) ? $wa11y_settings[ 'tools' ][ 'wave' ] : array();
 
-		// If user roles are set, turn off it not a user role
-	    if ( isset( $wa11y_wave_settings[ 'load_user_roles' ] ) && is_array( $wa11y_wave_settings[ 'load_user_roles' ] ) ) {
+			// Will be true if we should load WAVE meta box - false by default
+			$load_wave = false;
 
-			// Get current user
-            if ( ( $current_user = wp_get_current_user() )
-                 && ( $current_user_roles = isset( $current_user->roles ) ? $current_user->roles : false )
-                 && is_array( $current_user_roles ) ) {
+			// If user roles are set, turn off it not a user role
+			if ( isset( $wa11y_wave_settings[ 'load_user_roles' ] ) && is_array( $wa11y_wave_settings[ 'load_user_roles' ] ) ) {
 
-                // Find out if they share values
-                $user_roles_intersect = array_intersect( $wa11y_wave_settings[ 'load_user_roles' ], $current_user_roles );
+				// Get current user
+				if ( ( $current_user = wp_get_current_user() )
+					&& ( $current_user_roles = isset( $current_user->roles ) ? $current_user->roles : false )
+					&& is_array( $current_user_roles ) ) {
 
-				// If they intersect, turn on
-                if ( ! empty( $user_roles_intersect ) ) {
-                    $load_wave = true;
-                }
+					// Find out if they share values
+					$user_roles_intersect = array_intersect( $wa11y_wave_settings[ 'load_user_roles' ], $current_user_roles );
 
-            }
+					// If they intersect, turn on
+					if ( ! empty( $user_roles_intersect ) ) {
+						$load_wave = true;
+					}
 
-        }
+				}
 
-        // If user capability is set, turn off if not capable
-        if ( ! empty( $wa11y_wave_settings[ 'load_user_capability' ] ) ) {
-            $load_wave = current_user_can( $wa11y_wave_settings[ 'load_user_capability' ] );
-        }
+			}
 
-		// Filter whether or not to load WAVE - passes the WAVE settings
-		$load_wave = apply_filters( 'wa11y_load_wave', $load_wave, $wa11y_wave_settings );
+			// If user capability is set, turn off if not capable
+			if ( ! empty( $wa11y_wave_settings[ 'load_user_capability' ] ) ) {
+				$load_wave = current_user_can( $wa11y_wave_settings[ 'load_user_capability' ] );
+			}
 
-		// Add WAVE Evaluation meta box
-		if ( $load_wave ) {
-			add_meta_box( 'wa11y-wave-evaluation', sprintf( __( '%1$s - %2$s Evaluation', 'wa11y' ), 'Wa11y', 'WAVE' ), 'wa11y_print_post_meta_boxes', $post_type, 'normal', 'core', $wa11y_settings );
+			// Filter whether or not to load WAVE - passes the WAVE settings
+			$load_wave = apply_filters( 'wa11y_load_wave', $load_wave, $wa11y_wave_settings );
+
+			// Add WAVE Evaluation meta box
+			if ( $load_wave ) {
+				add_meta_box( 'wa11y-wave-evaluation', sprintf( __( '%1$s - %2$s Evaluation', 'wa11y' ), 'Wa11y', 'WAVE' ), 'wa11y_print_post_meta_boxes', $post_type, 'normal', 'core', $wa11y_settings );
+			}
+
 		}
 
 	}
