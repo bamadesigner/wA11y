@@ -33,7 +33,6 @@
 /* Setup the settings boxes */
 .wa11y-tool-settings {
     position: relative;
-    padding: 0 0 0 120px;
 }
 
 /* Setup all the .inside */
@@ -44,25 +43,16 @@
     padding: 0;
 }
 
-.wa11y-tool-settings .tool-sidebar {
+.wa11y-tool-settings .tool-header {
     background: #eee;
-    position: absolute;
-    left: 0;
-    top: 0;
-    width: 120px;
-    height: 100%;
-    font-size: 16px;
-    line-height: 1;
-    text-align: center;
-    color: #333;
-    -moz-box-sizing: border-box;
-    -webkit-box-sizing: border-box;
-    box-sizing: border-box;
+    margin: 0;
+    padding: 20px 20px 20px 120px;
+    border-bottom-width: 1px;
+    border-bottom-style: solid;
 }
 
-.wa11y-tool-settings .tool-header {
-    margin: 0;
-    padding: 20px;
+.wa11y-tool-settings .tool-header *:last-child {
+    margin-bottom: 0;
 }
 
 .wa11y-tool-settings .tool-header input.tool-checkbox {
@@ -86,42 +76,32 @@
 }
 
 .wa11y-tool-settings .tool-header .tool-desc {
-    margin: 10px 0 0 0;
-    padding: 0;
-}
-
-.wa11y-tool-settings .tool-header .tool-desc p {
-    margin: 0 0 1em 0;
-}
-
-.wa11y-tool-settings .tool-header .tool-desc .why-header,
-.wa11y-tool-settings .tool-header .tool-desc .use-header {
-    padding: 0 !important;
-    margin: 0 0 3px 0 !important;
-    color: #333 !important;
-}
-
-.wa11y-tool-settings .tool-header .tool-desc *:last-child {
-    margin-bottom: 0;
+    font-size: 14px;
+    line-height: 1.6;
+    margin: 8px 0 0 0;
 }
 
 /* Customize the aXe section */
-.wa11y-tool-settings.axe-tool-settings .tool-sidebar {
-    background: url( '../images/axe-logo.png' ) center 18px no-repeat #f2f8fa;
-    background-size: 110px auto;
-    color: #0b3d5c;
-    padding: 145px 0 0 0;
-    font-weight: bold;
-    border-right: 2px solid #d4e8ef;
+.wa11y-tool-settings.axe-tool-settings .tool-header {
+    background: url( '../images/axe-logo.png' ) 28px 16px no-repeat #f2f8fa;
+    background-size: auto 80px;
+    /*color: #0b3d5c;*/
+    border-bottom-color: #d4e8ef;
 }
 
 /* Customize the tota11y section */
-.wa11y-tool-settings.tota11y-tool-settings .tool-sidebar {
-    background: url( '../images/tota11y-glasses-white.svg' ) 19px 24px no-repeat #252525;
+.wa11y-tool-settings.tota11y-tool-settings .tool-header {
+    background: url( '../images/tota11y-circle-glasses.png' ) 20px 20px no-repeat #252525;
     background-size: 80px auto;
     color: #fff;
-    padding: 80px 0 0 0;
 }
+.wa11y-tool-settings.tota11y-tool-settings .tool-header label.tool-label {
+    color: #fff;
+}
+.wa11y-tool-settings.tota11y-tool-settings .tool-header a {
+    color: #fff;
+}
+
 .wa11y-tool-settings.tota11y-tool-settings .tota11y-red {
     color: #db0f0f;
 }
@@ -145,11 +125,10 @@
 }
 
 /* Customize the WAVE header */
-.wa11y-tool-settings.wave-tool-settings .tool-sidebar {
-    background: url( '../images/wave-logo.png' ) 50% 20px no-repeat #f0f6ee;
+.wa11y-tool-settings.wave-tool-settings .tool-header {
+    background: url( '../images/wave-logo.png' ) 18px 18px no-repeat #f0f6ee;
     background-size: 81px 81px;
-    border-right: 2px solid #d3e3ce;
-    padding: 115px 0 0 0;
+    border-bottom-color: #d3e3ce;
 }
 
 .wa11y-tool-settings.wave-tool-settings .wave-red {
@@ -157,6 +136,26 @@
 }
 .wa11y-tool-settings.wave-tool-settings .wave-gray {
     color: #363636;
+}
+
+.wa11y-tool-settings .tool-body {
+    margin: 0;
+    padding: 20px;
+}
+
+.wa11y-tool-settings .tool-body p {
+    margin: 0 0 1em 0;
+}
+
+.wa11y-tool-settings .tool-body .why-header,
+.wa11y-tool-settings .tool-body .use-header {
+    padding: 0 !important;
+    margin: 0 0 3px 0 !important;
+    color: #333 !important;
+}
+
+.wa11y-tool-settings .tool-body *:last-child {
+    margin-bottom: 0;
 }
 
 .wa11y-tool-settings .tool-settings-warning {
