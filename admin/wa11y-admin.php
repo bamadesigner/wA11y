@@ -342,7 +342,13 @@ function wa11y_print_options_meta_boxes( $post, $metabox ) {
 				<div class="tool-header">
 					<input class="tool-checkbox" id="axe" type="checkbox" name="wa11y_settings[enable_tools][]" value="axe"<?php checked( is_array( $wa11y_enable_tools_settings ) && in_array( 'axe', $wa11y_enable_tools_settings) ); ?> />
 					<label class="tool-label" for="axe"><?php printf( __( 'Enable %s (The Accessibility Engine)', 'wa11y' ), 'aXe' ); ?></label>
-					<div class="tool-desc"></div> <!-- .tool-desc -->
+					<div class="tool-desc">
+						<p><?php printf( __( '%1$s%2$s (The Accessibility Engine)%3$s is a lightweight, open source library from %4$s%5$s%6$s that executes automated accessibility testing inside your testing framework or browser of choice.', 'wa11y' ), '<a href="http://www.deque.com/products/axe/" target="_blank">', 'aXe', '</a>', '<a href="http://www.deque.com/" target="_blank">', 'Deque', '</a>' ); ?></p>
+						<h3 class="why-header"><?php printf( __( 'Why %s Is Awesome', 'wa11y' ), 'aXe' ); ?></h3>
+						<p>@TODO Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras risus urna, ullamcorper in ullamcorper in, dapibus vel leo. Nam diam odio, aliquam quis accumsan a, viverra non sem. Pellentesque non fringilla sapien.</p>
+						<h3 class="use-header"><?php printf( __( 'Best Uses For %s', 'wa11y' ), 'aXe' ); ?></h3>
+						<p>@TODO Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras risus urna, ullamcorper in ullamcorper in, dapibus vel leo. Nam diam odio, aliquam quis accumsan a, viverra non sem. Pellentesque non fringilla sapien.</p>
+					</div> <!-- .tool-desc -->
 				</div> <!-- .tool-header -->
 				<p class="tool-settings-warning"><?php printf( __( 'If no user roles are selected or user capability is provided, %s will load for all logged-in users.', 'wa11y' ), 'aXe' ); ?></p>
 				<fieldset>
@@ -364,7 +370,7 @@ function wa11y_print_options_meta_boxes( $post, $metabox ) {
 
 						<li><label class="tool-option-header" for="axe-admin"><?php printf( __( 'Load %s in the admin', 'wa11y' ), 'aXe' ); ?>:</label>
 							<input class="tool-option-checkbox" id="axe-admin" type="checkbox" name="wa11y_settings[tools][axe][load_in_admin]" value="1"<?php checked( isset( $wa11y_axe_settings[ 'load_in_admin' ] ) && $wa11y_axe_settings[ 'load_in_admin' ] > 0 ); ?> />
-							<span class="tool-option-side-note"><?php printf( __( 'This will load the %s button on all pages in the admin to give you a glimpse of admin accessibility.', 'wa11y' ), 'aXe' ); ?></span>
+							<span class="tool-option-side-note"><?php printf( __( '@TODO What will this do?', 'wa11y' ), 'aXe' ); ?></span>
 						</li>
 
 					</ul>
@@ -391,7 +397,7 @@ function wa11y_print_options_meta_boxes( $post, $metabox ) {
 						<h3 class="why-header"><?php printf( __( 'Why %s Is Awesome', 'wa11y' ), 'tota11y' ); ?></h3>
 						<p><?php printf( __( '%1$s consists of several plugins, each with their own functionality, that works to help you visualize accessibility violations (and successes) while also educating you on best practices. Beyond simply pointing out errors, many %2$s plugins also suggest ways to fix these violations - specifically tailored to your document.', 'wa11y' ), 'tota11y', 'tota11y' ); ?></p>
 						<h3 class="use-header"><?php printf( __( 'Best Uses For %s', 'wa11y' ), 'tota11y' ); ?></h3>
-						<p><?php /* @TODO add other tool */ printf( __( '%s is built to scan, and provide feedback on, an entire document so this tool is best used to evaluate pages on the front-end of your site. If you only want to evaluate a specific section of your document, like the content in your loop for example, then [INSERT TOOL HERE] is for you.', 'wa11y' ), 'tota11y' ); ?></p>
+						<p><?php printf( __( '%1$s is built to scan, and provide feedback on, an entire document so this tool is best used to evaluate pages on the front-end of your site. <strong>%2$s can scan any page that you can load</strong> so the page does not have to be published. If you only want to evaluate a specific section of your document, like the content in your loop for example, then [@TODO INSERT TOOL HERE] is the tool for you.', 'wa11y' ), 'tota11y', 'tota11y' ); ?></p>
 					</div> <!-- .tool-desc -->
 				</div> <!-- .tool-header -->
 				<p class="tool-settings-warning"><?php printf( __( 'If no user roles are selected or user capability is provided, %s will load for all logged-in users.', 'wa11y' ), 'tota11y' ); ?></p>
@@ -442,9 +448,9 @@ function wa11y_print_options_meta_boxes( $post, $metabox ) {
 					<div class="tool-desc">
 						<p><?php printf( __( '%1$s%2$s%3$s is a free evaluation tool provided by %4$s%5$s (Web Accessibility In Mind)%6$s. It can be used to evaluate a live website for a wide range of accessibility issues. When this tool is enabled, a \'View %7$s evaluation\' button will be placed in your WordPress admin bar to help you quickly evaluate the page you\'re viewing.', 'wa11y' ), '<a href="http://wave.webaim.org/" target="_blank">', 'WAVE', '</a>', '<a href="http://webaim.org/" target="_blank">', 'WebAIM', '</a>', 'WAVE' ); ?></p>
 						<h3 class="why-header"><?php printf( __( 'Why %s Is Awesome', 'wa11y' ), 'WAVE' ); ?></h3>
-						<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras risus urna, ullamcorper in ullamcorper in, dapibus vel leo. Nam diam odio, aliquam quis accumsan a, viverra non sem. Pellentesque non fringilla sapien.</p>
+						<p>@TODO Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras risus urna, ullamcorper in ullamcorper in, dapibus vel leo. Nam diam odio, aliquam quis accumsan a, viverra non sem. Pellentesque non fringilla sapien.</p>
 						<h3 class="use-header"><?php printf( __( 'Best Uses For %s', 'wa11y' ), 'WAVE' ); ?></h3>
-						<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras risus urna, ullamcorper in ullamcorper in, dapibus vel leo. Nam diam odio, aliquam quis accumsan a, viverra non sem. Pellentesque non fringilla sapien.</p>
+						<p><?php printf( __( '%1$s is built to scan, and provide feedback on, an entire document so this tool is best used to evaluate pages on the front-end of your site. The difference between %2$s and %3$s is that %4$s can only evaluate publicly-accessible pages so it\'s not ideal for staging environments or content that is password-protected.', 'wa11y' ), 'WAVE', 'WAVE', 'tota11y', 'WAVE' ); ?></p>
 					</div> <!-- .tool-desc -->
 				</div> <!-- .tool-header -->
 				<p class="tool-settings-warning"><?php printf( __( 'If no user roles are selected or user capability is provided, %s will display for all logged-in users.', 'wa11y' ), 'WAVE' ); ?></p>

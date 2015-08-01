@@ -48,7 +48,7 @@ function wa11y_get_settings() {
 
 	return $wa11y_settings = apply_filters( 'wa11y_settings', get_option( 'wa11y_settings', array(
 		'tools' => array(
-			'axe' => array(
+			'axe' => array( // @TODO are all axe settings used?
 				'load_user_roles'       => array( 'administrator' ),
 				'load_user_capability'  => null,
 				'load_in_admin'         => 0,
