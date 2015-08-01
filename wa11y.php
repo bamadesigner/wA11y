@@ -13,6 +13,10 @@
  * Domain Path:       /languages
  */
 
+// @TODO check all the scripts to see if they're being used
+// @TODO uglify all the scripts
+// @TODO check descriptions in settings boxes
+
 // If this file is called directly, abort.
 if ( ! defined( 'WPINC' ) ) {
 	die;
@@ -20,6 +24,7 @@ if ( ! defined( 'WPINC' ) ) {
 
 // If you define them, will they be used?
 define( 'WA11Y_VERSION', '1.0' );
+define( 'WA11Y_AXE_VERSION', '1.0.1' );
 define( 'WA11Y_TOTA11Y_VERSION', '0.0.10' );
 
 // Add admin functionality in admin only
@@ -43,6 +48,11 @@ function wa11y_get_settings() {
 
 	return $wa11y_settings = apply_filters( 'wa11y_settings', get_option( 'wa11y_settings', array(
 		'tools' => array(
+			'axe' => array(
+				'load_user_roles'       => array( 'administrator' ),
+				'load_user_capability'  => null,
+				'load_in_admin'         => 0,
+			),
 			'tota11y' => array(
 				'load_user_roles'       => array( 'administrator' ),
 				'load_user_capability'  => null,

@@ -281,6 +281,9 @@ function wa11y_add_options_meta_boxes() {
 	// Save Changes
 	add_meta_box( 'wa11y-save-changes', __( 'Save Changes', 'wa11y' ), 'wa11y_print_options_meta_boxes', $wa11y_options_page, 'side', 'core', $wa11y_settings );
 
+	// aXe Settings
+	add_meta_box( 'wa11y-axe-settings', 'aXe', 'wa11y_print_options_meta_boxes', $wa11y_options_page, 'normal', 'core', $wa11y_settings );
+
 	// tota11y Settings
 	add_meta_box( 'wa11y-tota11y-settings', 'tota11y', 'wa11y_print_options_meta_boxes', $wa11y_options_page, 'normal', 'core', $wa11y_settings );
 
@@ -324,6 +327,50 @@ function wa11y_print_options_meta_boxes( $post, $metabox ) {
 		// Save Changes
 		case 'wa11y-save-changes':
 			echo submit_button( __( 'Save Your Changes', 'wa11y' ), 'primary', 'save_wa11y_settings', false, array( 'id' => 'save-wa11y-settings-mb' ) );
+			break;
+
+		// aXe Settings
+		case 'wa11y-axe-settings':
+
+			// Get aXe settings
+			$wa11y_axe_settings = isset( $wa11y_settings[ 'tools' ] ) && isset( $wa11y_settings[ 'tools' ][ 'axe' ] ) ? $wa11y_settings[ 'tools' ][ 'axe' ] : array();
+
+			?><div class="wa11y-tool-settings axe-tool-settings">
+				<div class="tool-sidebar">
+					<span class="tool-version">v<?php echo WA11Y_AXE_VERSION; ?></span>
+				</div>
+				<div class="tool-header">
+					<input class="tool-checkbox" id="axe" type="checkbox" name="wa11y_settings[enable_tools][]" value="axe"<?php checked( is_array( $wa11y_enable_tools_settings ) && in_array( 'axe', $wa11y_enable_tools_settings) ); ?> />
+					<label class="tool-label" for="axe"><?php printf( __( 'Enable %s (The Accessibility Engine)', 'wa11y' ), 'aXe' ); ?></label>
+					<div class="tool-desc"></div> <!-- .tool-desc -->
+				</div> <!-- .tool-header -->
+				<p class="tool-settings-warning"><?php printf( __( 'If no user roles are selected or user capability is provided, %s will load for all logged-in users.', 'wa11y' ), 'aXe' ); ?></p>
+				<fieldset>
+					<ul id="wa11y-axe-settings-list" class="tool-settings-list"><?php
+
+						if ( ! empty( $user_roles ) ) {
+							?><li>
+								<label class="tool-option-header"><?php printf( __( 'Only load %s for specific user roles', 'wa11y' ), 'aXe' ); ?>:</label>
+								<select name="wa11y_settings[tools][axe][load_user_roles][]" class="chosen" multiple="multiple">
+									<option value=""></option><?php
+									foreach( $user_roles as $user_role_key => $user_role ) {
+										?><option value="<?php echo $user_role_key; ?>"<?php selected( is_array( $wa11y_axe_settings[ 'load_user_roles' ] ) && in_array( $user_role_key, $wa11y_axe_settings[ 'load_user_roles' ] ) ); ?>><?php echo $user_role[ 'name' ]; ?></option><?php
+									}
+									?></select>
+							</li><?php
+						}
+
+						?><li><label class="tool-option-header" for="axe-user-capability"><?php printf( __( 'Only load %s for a specific user capability', 'wa11y' ), 'aXe' ); ?>:</label> <input class="tool-setting-text" id="axe-user-capability" type="text" name="wa11y_settings[tools][axe][load_user_capability]" value="<?php echo isset( $wa11y_axe_settings[ 'load_user_capability' ] ) ? $wa11y_axe_settings[ 'load_user_capability' ] : null; ?>" /> <span class="tool-option-side-note">e.g. view_axe</span></span></li>
+
+						<li><label class="tool-option-header" for="axe-admin"><?php printf( __( 'Load %s in the admin', 'wa11y' ), 'aXe' ); ?>:</label>
+							<input class="tool-option-checkbox" id="axe-admin" type="checkbox" name="wa11y_settings[tools][axe][load_in_admin]" value="1"<?php checked( isset( $wa11y_axe_settings[ 'load_in_admin' ] ) && $wa11y_axe_settings[ 'load_in_admin' ] > 0 ); ?> />
+							<span class="tool-option-side-note"><?php printf( __( 'This will load the %s button on all pages in the admin to give you a glimpse of admin accessibility.', 'wa11y' ), 'aXe' ); ?></span>
+						</li>
+
+					</ul>
+				</fieldset>
+			</div> <!-- .wa11y-tool-settings --><?php
+
 			break;
 
 		// tota11y Settings
