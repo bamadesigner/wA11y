@@ -75,54 +75,10 @@ function wa11y_enqueue_admin_styles( $hook_suffix ) {
 	if ( $wa11y_enable_tools = isset( $wa11y_settings[ 'enable_tools' ] ) ? $wa11y_settings[ 'enable_tools' ] : array() ) {
 
 		// If tota11y is enabled...
-		if ( in_array( 'tota11y', $wa11y_enable_tools ) ) {
+		if ( can_wa11y_load_tota11y() ) {
 
-			// Get tota11y settings
-			$wa11y_tota11y_settings = isset( $wa11y_settings[ 'tools' ] ) && isset( $wa11y_settings[ 'tools' ][ 'tota11y' ] ) ? $wa11y_settings[ 'tools' ][ 'tota11y' ] : array();
-
-			// Should we load tota11y in the admin?
-			if ( isset( $wa11y_tota11y_settings[ 'load_in_admin' ] ) && $wa11y_tota11y_settings[ 'load_in_admin' ] > 0 ) {
-
-				// Will be true by default
-				$load_tota11y = true;
-
-				// If user roles are set, turn off it not a user role
-				if ( isset( $wa11y_tota11y_settings[ 'load_user_roles' ] ) && is_array( $wa11y_tota11y_settings[ 'load_user_roles' ] ) ) {
-
-					// Get current user
-					if ( ( $current_user = wp_get_current_user() )
-						&& ( $current_user_roles = isset( $current_user->roles ) ? $current_user->roles : false )
-						&& is_array( $current_user_roles ) ) {
-
-						// Find out if they share values
-						$user_roles_intersect = array_intersect( $wa11y_tota11y_settings[ 'load_user_roles' ], $current_user_roles );
-
-						// If they do not intersect, turn off
-						if ( empty( $user_roles_intersect ) ) {
-							$load_tota11y = false;
-						}
-
-					}
-
-				}
-
-				// If user capability is set, turn off if not capable
-				if ( ! empty( $wa11y_tota11y_settings[ 'load_user_capability' ] ) ) {
-					$load_tota11y = current_user_can( $wa11y_tota11y_settings[ 'load_user_capability' ] );
-				}
-
-				// Filter whether or not to load tota11y - passes the tota11y settings
-				$load_tota11y = apply_filters( 'wa11y_load_tota11y', $load_tota11y, $wa11y_tota11y_settings );
-
-				// We need to load tota11y
-				if ( $load_tota11y ) {
-
-					// This file belongs in the header
-					wp_enqueue_script( 'tota11y', plugins_url( '/includes/tota11y/tota11y.min.js', dirname( __FILE__ ) ) );
-
-				}
-
-			}
+			// This file belongs in the header
+			wp_enqueue_script( 'tota11y', plugins_url( '/includes/tota11y/tota11y.min.js', dirname( __FILE__ ) ) );
 
 		}
 

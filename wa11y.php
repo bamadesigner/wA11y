@@ -151,51 +151,12 @@ function wa11y_load_script_tools() {
 		return;
 
 	// If tota11y is enabled...
-    if ( in_array( 'tota11y', $wa11y_enable_tools ) ) {
+	if ( can_wa11y_load_tota11y() ) {
 
-	    // Get tota11y settings
-	    $wa11y_tota11y_settings = isset( $wa11y_settings[ 'tools' ] ) && isset( $wa11y_settings[ 'tools' ][ 'tota11y' ] ) ? $wa11y_settings[ 'tools' ][ 'tota11y' ] : array();
+		// This file belongs in the header
+		wp_enqueue_script( 'tota11y', plugins_url( '/includes/tota11y/tota11y.min.js', __FILE__ ) );
 
-	    // Will be true if we should load tota11y - by default, load if logged in
-	    $load_tota11y = is_user_logged_in();
-
-	    // If user roles are set, turn off it not a user role
-	    if ( isset( $wa11y_tota11y_settings[ 'load_user_roles' ] ) && is_array( $wa11y_tota11y_settings[ 'load_user_roles' ] ) ) {
-
-		    // Get current user
-		    if ( ( $current_user = wp_get_current_user() )
-		        && ( $current_user_roles = isset( $current_user->roles ) ? $current_user->roles : false )
-		        && is_array( $current_user_roles ) ) {
-
-			    // Find out if they share values
-			    $user_roles_intersect = array_intersect( $wa11y_tota11y_settings[ 'load_user_roles' ], $current_user_roles );
-
-			    // If they do not intersect, turn off
-			    if ( empty( $user_roles_intersect ) ) {
-				    $load_tota11y = false;
-				}
-
-		    }
-
-	    }
-
-	    // If user capability is set, turn off if not capable
-	    if ( ! empty( $wa11y_tota11y_settings[ 'load_user_capability' ] ) ) {
-		    $load_tota11y = current_user_can( $wa11y_tota11y_settings[ 'load_user_capability' ] );
-	    }
-
-	    // Filter whether or not to load tota11y - passes the tota11y settings
-	    $load_tota11y = apply_filters( 'wa11y_load_tota11y', $load_tota11y, $wa11y_tota11y_settings );
-
-	    // We need to load tota11y
-	    if ( $load_tota11y ) {
-
-		    // This file belongs in the header
-		    wp_enqueue_script( 'tota11y', plugins_url( '/includes/tota11y/tota11y.min.js', __FILE__ ) );
-
-	    }
-
-    }
+	}
 
 }
 
@@ -308,6 +269,62 @@ function can_wa11y_load_wave() {
 	$load_wave = apply_filters( 'wa11y_load_wave', $load_wave, $wa11y_wave_settings );
 
 	return $load_wave;
+
+}
+
+/**
+ * Checks whether or not tota11y is set to load.
+ *
+ * @since   1.0
+ * @return	boolean - true if we're set to load tota11y, otherwise false
+ */
+function can_wa11y_load_tota11y() {
+
+	// Get our saved settings
+	$wa11y_settings = wa11y_get_settings();
+
+	// Only need to worry about this stuff if we have enabled tools
+	$wa11y_enable_tools = isset( $wa11y_settings[ 'enable_tools' ] ) ? $wa11y_settings[ 'enable_tools' ] : array();
+	if ( empty( $wa11y_enable_tools ) ) {
+		return false;
+	}
+
+	// If tota11y isn't enabled...
+	if ( ! in_array( 'tota11y', $wa11y_enable_tools ) ) {
+		return false;
+	}
+
+	// Get tota11y settings
+	$wa11y_tota11y_settings = isset( $wa11y_settings[ 'tools' ] ) && isset( $wa11y_settings[ 'tools' ][ 'tota11y' ] ) ? $wa11y_settings[ 'tools' ][ 'tota11y' ] : array();
+
+	// Is the user logged in?
+	$is_user_logged_in = is_user_logged_in();
+
+	// By default, only load tota11y if the user is logged in
+	$load_tota11y = $is_user_logged_in;
+
+	// Are we supposed to load tota11y in the admin?
+	if ( is_admin() ) {
+		$load_tota11y = isset( $wa11y_tota11y_settings[ 'load_in_admin' ] ) && $wa11y_tota11y_settings[ 'load_in_admin' ] > 0;
+	}
+
+	// No need to keep running tests if not passing tests so far and especially if they aren't logged in
+	if ( $load_tota11y && $is_user_logged_in ) {
+
+		// If a set user role, then load tota11y
+		$load_tota11y = wa11y_user_in_user_roles( $wa11y_tota11y_settings[ 'load_user_roles' ] );
+
+		// If user capability is set, turn off if not capable
+		if ( ! empty( $wa11y_tota11y_settings[ 'load_user_capability' ] ) ) {
+			$load_tota11y = current_user_can( $wa11y_tota11y_settings[ 'load_user_capability' ] );
+		}
+
+	}
+
+	// Filter whether or not to load tota11y - passes the tota11y settings
+	$load_tota11y = apply_filters( 'wa11y_load_tota11y', $load_tota11y, $wa11y_tota11y_settings );
+
+	return $load_tota11y;
 
 }
 
