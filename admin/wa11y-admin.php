@@ -59,11 +59,15 @@ function wa11y_enqueue_admin_styles( $hook_suffix ) {
 			wp_enqueue_style( 'wa11y-admin-edit-post', plugin_dir_url( __FILE__ ) . 'css/wa11y-admin-edit-post.min.css', array(), WA11Y_VERSION );
 
 			// Register axe - goes in header
-			// @TODO Still need to tie in with settings.
-			wp_register_script( 'axe', plugins_url( '/includes/axe/axe.min.js' , dirname(__FILE__ ) ) );
+			if ( can_wa11y_load_axe() ) {
 
-			// Enqueue our script for the edit post screen
-			wp_enqueue_script( 'wa11y-admin-edit-post', plugin_dir_url( __FILE__ ) . 'js/wa11y-admin-edit-post.min.js', array( 'jquery', 'axe' ), false, true ); //WA11Y_VERSION
+				// Register aXe sript
+				wp_register_script( 'axe', plugins_url( '/includes/axe/axe.min.js', dirname( __FILE__ ) ) );
+
+				// Enqueue our script for the edit post screen
+				wp_enqueue_script( 'wa11y-admin-edit-post-axe', plugin_dir_url( __FILE__ ) . 'js/wa11y-admin-edit-post-axe.min.js', array( 'jquery', 'axe' ), false, true ); //WA11Y_VERSION
+
+			}
 
 			break;
 
