@@ -137,7 +137,7 @@ function wa11y_add_post_meta_boxes( $post_type, $post ) {
 	if ( can_wa11y_load_axe() ) {
 
 		// Add aXe Evaluation meta box
-		add_meta_box( 'wa11y-axe-evaluation', sprintf( __( '%1$s - %2$s Evaluation', 'wa11y' ), 'Wa11y', 'aXe' ), 'wa11y_print_post_meta_boxes', $post_type, 'normal', 'high', $wa11y_settings );
+		add_meta_box( 'wa11y-axe-evaluation-mb', sprintf( __( '%1$s - %2$s Accessibility Evaluation', 'wa11y' ), 'Wa11y', 'aXe' ), 'wa11y_print_post_meta_boxes', $post_type, 'normal', 'high', $wa11y_settings );
 
 	}
 
@@ -148,7 +148,7 @@ function wa11y_add_post_meta_boxes( $post_type, $post ) {
 		if ( can_wa11y_load_wave() ) {
 
 			// Add WAVE Evaluation meta box
-			add_meta_box( 'wa11y-wave-evaluation', sprintf( __( '%1$s - %2$s Evaluation', 'wa11y' ), 'Wa11y', 'WAVE' ), 'wa11y_print_post_meta_boxes', $post_type, 'normal', 'core', $wa11y_settings );
+			add_meta_box( 'wa11y-wave-evaluation-mb', sprintf( __( '%1$s - %2$s Accessibility Evaluation', 'wa11y' ), 'Wa11y', 'WAVE' ), 'wa11y_print_post_meta_boxes', $post_type, 'normal', 'high', $wa11y_settings );
 
 		}
 
@@ -170,11 +170,13 @@ function wa11y_print_post_meta_boxes( $post, $metabox ) {
 
 	switch( $metabox[ 'id' ] ) {
 
-		case 'wa11y-axe-evaluation':
-			echo 'aXe';
+		case 'wa11y-axe-evaluation-mb':
+
+			?><div id="wa11y-axe-evaluation-mb-results"></div><?php
+
 			break;
 
-		case 'wa11y-wave-evaluation':
+		case 'wa11y-wave-evaluation-mb':
 
 			// Build WAVE evaluation URL
 			$wave_url = 'http://wave.webaim.org/report#/'. urlencode( get_permalink( $post->ID ) );
@@ -183,7 +185,7 @@ function wa11y_print_post_meta_boxes( $post, $metabox ) {
 			$wave_url = apply_filters( 'wa11y_wave_url', $wave_url, $post );
 
 			?><a class="wa11y-wave-open-evaluation" href="<?php echo $wave_url; ?>" target="_blank"><?php printf( __( 'Open %s evaluation in new window', 'wa11y' ), 'WAVE' ); ?></a>
-			<iframe id="wa11y-wave-evaluation-iframe" src="<?php echo $wave_url; ?>"></iframe><?php
+			<iframe id="wa11y-wave-evaluation-mb-iframe" src="<?php echo $wave_url; ?>"></iframe><?php
 
 			break;
 
@@ -230,19 +232,19 @@ function wa11y_add_options_meta_boxes() {
 	$wa11y_settings = wa11y_get_settings();
 
 	// About this Plugin
-	add_meta_box( 'wa11y-about', sprintf( __( 'About %s', 'wa11y' ), 'Wa11y' ), 'wa11y_print_options_meta_boxes', $wa11y_options_page, 'side', 'core', $wa11y_settings );
+	add_meta_box( 'wa11y-about-mb', sprintf( __( 'About %s', 'wa11y' ), 'Wa11y' ), 'wa11y_print_options_meta_boxes', $wa11y_options_page, 'side', 'core', $wa11y_settings );
 
 	// Save Changes
-	add_meta_box( 'wa11y-save-changes', __( 'Save Changes', 'wa11y' ), 'wa11y_print_options_meta_boxes', $wa11y_options_page, 'side', 'core', $wa11y_settings );
+	add_meta_box( 'wa11y-save-changes-mb', __( 'Save Changes', 'wa11y' ), 'wa11y_print_options_meta_boxes', $wa11y_options_page, 'side', 'core', $wa11y_settings );
 
 	// aXe Settings
-	add_meta_box( 'wa11y-axe-settings', 'aXe', 'wa11y_print_options_meta_boxes', $wa11y_options_page, 'normal', 'core', $wa11y_settings );
+	add_meta_box( 'wa11y-axe-settings-mb', 'aXe', 'wa11y_print_options_meta_boxes', $wa11y_options_page, 'normal', 'core', $wa11y_settings );
 
 	// tota11y Settings
-	add_meta_box( 'wa11y-tota11y-settings', 'tota11y', 'wa11y_print_options_meta_boxes', $wa11y_options_page, 'normal', 'core', $wa11y_settings );
+	add_meta_box( 'wa11y-tota11y-settings-mb', 'tota11y', 'wa11y_print_options_meta_boxes', $wa11y_options_page, 'normal', 'core', $wa11y_settings );
 
 	// WAVE Settings
-	add_meta_box( 'wa11y-wave-settings', sprintf( __( '%s (Web Accessibility Evaluation Tool)', 'wa11y' ), 'WAVE' ), 'wa11y_print_options_meta_boxes', $wa11y_options_page, 'normal', 'core', $wa11y_settings );
+	add_meta_box( 'wa11y-wave-settings-mb', sprintf( __( '%s (Web Accessibility Evaluation Tool)', 'wa11y' ), 'WAVE' ), 'wa11y_print_options_meta_boxes', $wa11y_options_page, 'normal', 'core', $wa11y_settings );
 
 }
 
@@ -267,7 +269,7 @@ function wa11y_print_options_meta_boxes( $post, $metabox ) {
 	switch( $metabox[ 'id' ] ) {
 
 		// About Wa11y
-		case 'wa11y-about':
+		case 'wa11y-about-mb':
 
 			// Print the plugin name (with link to site)
 			?><p>@TODO: ADD DESCRIPTION Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras risus urna, ullamcorper in ullamcorper in, dapibus vel leo. Nam diam odio, aliquam quis accumsan a, viverra non sem. Pellentesque non fringilla sapien.</p><?php
@@ -279,12 +281,12 @@ function wa11y_print_options_meta_boxes( $post, $metabox ) {
 			break;
 
 		// Save Changes
-		case 'wa11y-save-changes':
+		case 'wa11y-save-changes-mb':
 			echo submit_button( __( 'Save Your Changes', 'wa11y' ), 'primary', 'save_wa11y_settings', false, array( 'id' => 'save-wa11y-settings-mb' ) );
 			break;
 
 		// aXe Settings
-		case 'wa11y-axe-settings':
+		case 'wa11y-axe-settings-mb':
 
 			// Get aXe settings
 			$wa11y_axe_settings = isset( $wa11y_settings[ 'tools' ] ) && isset( $wa11y_settings[ 'tools' ][ 'axe' ] ) ? $wa11y_settings[ 'tools' ][ 'axe' ] : array();
@@ -331,7 +333,7 @@ function wa11y_print_options_meta_boxes( $post, $metabox ) {
 			break;
 
 		// tota11y Settings
-		case 'wa11y-tota11y-settings':
+		case 'wa11y-tota11y-settings-mb':
 
 			// Get tota11y settings
 			$wa11y_tota11y_settings = isset( $wa11y_settings[ 'tools' ] ) && isset( $wa11y_settings[ 'tools' ][ 'tota11y' ] ) ? $wa11y_settings[ 'tools' ][ 'tota11y' ] : array();
@@ -380,7 +382,7 @@ function wa11y_print_options_meta_boxes( $post, $metabox ) {
 			break;
 
 		// WAVE Settings
-		case 'wa11y-wave-settings':
+		case 'wa11y-wave-settings-mb':
 
 			// Get WAVE settings
 			$wa11y_wave_settings = isset( $wa11y_settings[ 'tools' ] ) && isset( $wa11y_settings[ 'tools' ][ 'wave' ] ) ? $wa11y_settings[ 'tools' ][ 'wave' ] : array();

@@ -36,9 +36,9 @@
 }
 
 /* Setup all the .inside */
-#wa11y-axe-settings .inside,
-#wa11y-tota11y-settings .inside,
-#wa11y-wave-settings .inside {
+#wa11y-axe-settings-mb .inside,
+#wa11y-tota11y-settings-mb .inside,
+#wa11y-wave-settings-mb .inside {
     margin: 0;
     padding: 0;
 }
