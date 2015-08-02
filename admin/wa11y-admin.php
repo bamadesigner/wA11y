@@ -65,7 +65,7 @@ function wa11y_enqueue_admin_styles( $hook_suffix ) {
 				wp_register_script( 'axe', plugins_url( '/includes/axe/axe.min.js', dirname( __FILE__ ) ) );
 
 				// Enqueue our script for the edit post screen
-				wp_enqueue_script( 'wa11y-admin-edit-post-axe', plugin_dir_url( __FILE__ ) . 'js/wa11y-admin-edit-post-axe.min.js', array( 'jquery', 'axe' ), false, true ); //WA11Y_VERSION
+				wp_enqueue_script( 'wa11y-admin-edit-post-axe', plugin_dir_url( __FILE__ ) . 'js/wa11y-admin-edit-post-axe.min.js', array( 'jquery', 'axe' ), WA11Y_VERSION, true );
 
 			}
 
@@ -82,7 +82,7 @@ function wa11y_enqueue_admin_styles( $hook_suffix ) {
 		if ( can_wa11y_load_tota11y() ) {
 
 			// This file belongs in the header
-			wp_enqueue_script( 'tota11y', plugins_url( '/includes/tota11y/tota11y.min.js', dirname( __FILE__ ) ) );
+			wp_enqueue_script( 'tota11y', plugins_url( '/includes/tota11y/tota11y.min.js', dirname( __FILE__ ) ), array(), WA11Y_VERSION );
 
 		}
 

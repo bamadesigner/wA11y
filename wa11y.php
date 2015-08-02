@@ -154,7 +154,7 @@ function wa11y_load_script_tools() {
 	if ( can_wa11y_load_tota11y() ) {
 
 		// This file belongs in the header
-		wp_enqueue_script( 'tota11y', plugins_url( '/includes/tota11y/tota11y.min.js', __FILE__ ) );
+		wp_enqueue_script( 'tota11y', plugins_url( '/includes/tota11y/tota11y.min.js', __FILE__ ), array(), WA11Y_VERSION );
 
 	}
 
