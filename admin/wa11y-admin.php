@@ -48,25 +48,22 @@ function wa11y_enqueue_admin_styles( $hook_suffix ) {
 			wp_enqueue_style( 'wa11y-admin-options', plugin_dir_url( __FILE__ ) . 'css/wa11y-admin-options-page.min.css', array( 'wa11y-admin-chosen' ), WA11Y_VERSION );
 
 			// Enqueue the script for our options page
-			wp_enqueue_script( 'wa11y-admin-options', plugin_dir_url( __FILE__ ) . 'js/wa11y-admin-options-page.js', array( 'jquery', 'wa11y-admin-chosen' ), WA11Y_VERSION );
+			wp_enqueue_script( 'wa11y-admin-options', plugin_dir_url( __FILE__ ) . 'js/wa11y-admin-options-page.min.js', array( 'jquery', 'wa11y-admin-chosen' ), WA11Y_VERSION );
 
 			break;
 
 		// Add styles to the "Edit Post" screen
 		case 'post.php':
-		case 'post-new.php':
 
 			// Enqueue our styles for the edit post screen
 			wp_enqueue_style( 'wa11y-admin-edit-post', plugin_dir_url( __FILE__ ) . 'css/wa11y-admin-edit-post.min.css', array(), WA11Y_VERSION );
 
-			// Enqueue our script for the edit post screen
-			//wp_enqueue_script( 'wa11y-admin-edit-post', plugin_dir_url( __FILE__ ) . 'js/wa11y-admin-edit-post.js', array( 'jquery' ), WA11Y_VERSION, true );
-
 			// Register axe - goes in header
-			//wp_register_script( 'axe', plugins_url( '/includes/axe/axe.min.js' , dirname(__FILE__ ) ) );
+			// @TODO Still need to tie in with settings.
+			wp_register_script( 'axe', plugins_url( '/includes/axe/axe.min.js' , dirname(__FILE__ ) ) );
 
-			// Initiate axe - goes in header
-			//wp_enqueue_script( 'initiate-axe', plugin_dir_url( __FILE__ ) . 'js/wa11y-admin-post-axe.js', array( 'axe' ) );
+			// Enqueue our script for the edit post screen
+			wp_enqueue_script( 'wa11y-admin-edit-post', plugin_dir_url( __FILE__ ) . 'js/wa11y-admin-edit-post.min.js', array( 'jquery', 'axe' ), false, true ); //WA11Y_VERSION
 
 			break;
 
@@ -134,6 +131,25 @@ function wa11y_enqueue_admin_styles( $hook_suffix ) {
 }
 
 /**
+ * Adds media buttons to the "Edit Post" screen.
+ *
+ * @since   1.0
+ * @param	string - the HTML ID for the post editor
+ */
+add_action( 'media_buttons', 'wa11y_add_post_media_buttons', 100 );
+function wa11y_add_post_media_buttons( $editor_id ) {
+
+	// Add the aXe "Check Accessibility" button
+	// @TODO Still need to tie in with settings.
+	printf( '<a href="#"%s class="button wa11y-axe-check-editor" data-editor="%s" title="%s">%s</a>',
+		' id="wa11y-axe-check-media-button"',
+		esc_attr( $editor_id ),
+		esc_attr__( 'Check Accessibility', 'wa11y' ),
+		'<span class="dashicons-before dashicons-universal-access-alt"></span> ' . __( 'Check Accessibility', 'wa11y' )
+	);
+}
+
+/**
  * Adds meta boxes to the "Edit Post" screen.
  *
  * @since   1.0
@@ -161,40 +177,46 @@ function wa11y_add_post_meta_boxes( $post_type, $post ) {
 			// Get WAVE settings
 			$wa11y_wave_settings = isset( $wa11y_settings[ 'tools' ] ) && isset( $wa11y_settings[ 'tools' ][ 'wave' ] ) ? $wa11y_settings[ 'tools' ][ 'wave' ] : array();
 
-			// Will be true if we should load WAVE meta box - false by default
-			$load_wave = false;
+			// Should we load WAVE in the admin?
+			if ( isset( $wa11y_wave_settings[ 'load_in_admin' ] ) && $wa11y_wave_settings[ 'load_in_admin' ] > 0 ) {
 
-			// If user roles are set, turn off it not a user role
-			if ( isset( $wa11y_wave_settings[ 'load_user_roles' ] ) && is_array( $wa11y_wave_settings[ 'load_user_roles' ] ) ) {
+				// Will be true if we should load WAVE meta box - false by default
+				$load_wave = false;
 
-				// Get current user
-				if ( ( $current_user = wp_get_current_user() )
-					&& ( $current_user_roles = isset( $current_user->roles ) ? $current_user->roles : false )
-					&& is_array( $current_user_roles ) ) {
+				// If user roles are set, turn off it not a user role
+				if ( isset( $wa11y_wave_settings[ 'load_user_roles' ] ) && is_array( $wa11y_wave_settings[ 'load_user_roles' ] ) ) {
 
-					// Find out if they share values
-					$user_roles_intersect = array_intersect( $wa11y_wave_settings[ 'load_user_roles' ], $current_user_roles );
+					// Get current user
+					if ( ( $current_user = wp_get_current_user() )
+						&& ( $current_user_roles = isset( $current_user->roles ) ? $current_user->roles : false )
+						&& is_array( $current_user_roles )
+					) {
 
-					// If they intersect, turn on
-					if ( ! empty( $user_roles_intersect ) ) {
-						$load_wave = true;
+						// Find out if they share values
+						$user_roles_intersect = array_intersect( $wa11y_wave_settings[ 'load_user_roles' ], $current_user_roles );
+
+						// If they intersect, turn on
+						if ( ! empty( $user_roles_intersect ) ) {
+							$load_wave = true;
+						}
+
 					}
 
 				}
 
-			}
+				// If user capability is set, turn off if not capable
+				if ( ! empty( $wa11y_wave_settings[ 'load_user_capability' ] ) ) {
+					$load_wave = current_user_can( $wa11y_wave_settings[ 'load_user_capability' ] );
+				}
 
-			// If user capability is set, turn off if not capable
-			if ( ! empty( $wa11y_wave_settings[ 'load_user_capability' ] ) ) {
-				$load_wave = current_user_can( $wa11y_wave_settings[ 'load_user_capability' ] );
-			}
+				// Filter whether or not to load WAVE - passes the WAVE settings
+				$load_wave = apply_filters( 'wa11y_load_wave', $load_wave, $wa11y_wave_settings );
 
-			// Filter whether or not to load WAVE - passes the WAVE settings
-			$load_wave = apply_filters( 'wa11y_load_wave', $load_wave, $wa11y_wave_settings );
+				// Add WAVE Evaluation meta box
+				if ( $load_wave ) {
+					add_meta_box( 'wa11y-wave-evaluation', sprintf( __( '%1$s - %2$s Evaluation', 'wa11y' ), 'Wa11y', 'WAVE' ), 'wa11y_print_post_meta_boxes', $post_type, 'normal', 'core', $wa11y_settings );
+				}
 
-			// Add WAVE Evaluation meta box
-			if ( $load_wave ) {
-				add_meta_box( 'wa11y-wave-evaluation', sprintf( __( '%1$s - %2$s Evaluation', 'wa11y' ), 'Wa11y', 'WAVE' ), 'wa11y_print_post_meta_boxes', $post_type, 'normal', 'core', $wa11y_settings );
 			}
 
 		}
