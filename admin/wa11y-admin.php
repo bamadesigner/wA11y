@@ -133,6 +133,11 @@ function wa11y_add_post_meta_boxes( $post_type, $post ) {
 		return;
 	}
 
+	// Only add these boxes for public post types
+	if ( ! in_array( $post_type, get_post_types( array( 'public' => true ) ) ) ) {
+		return;
+	}
+
 	// If we can load aXe...
 	if ( can_wa11y_load_axe() ) {
 
@@ -141,8 +146,8 @@ function wa11y_add_post_meta_boxes( $post_type, $post ) {
 
 	}
 
-	// Only add the WAVE evaluation if not SSL and only for published posts and public post types
-	if ( ! is_ssl() && 'publish' == $post->post_status && in_array( $post_type, get_post_types( array( 'public' => true ) ) ) ) {
+	// Only add the WAVE evaluation if not SSL and only for published posts
+	if ( ! is_ssl() && 'publish' == $post->post_status ) {
 
 		// If we can load WAVE...
 		if ( can_wa11y_load_wave() ) {
