@@ -361,3 +361,17 @@ function wa11y_user_in_user_roles( $user_roles ) {
 	return false;
 
 }
+
+add_action( 'wp_ajax_wa11y_get_axe_evaluation_results_html', 'wa11y_get_axe_evaluation_results_html' );
+function wa11y_get_axe_evaluation_results_html() {
+
+	// Make sure we have results
+	if ( $results = isset( $_POST[ 'wa11y_axe_evaluation_results' ] ) ? $_POST[ 'wa11y_axe_evaluation_results' ] : array() ) {
+
+		echo json_encode( $results );
+
+	}
+
+	wp_die();
+
+}
