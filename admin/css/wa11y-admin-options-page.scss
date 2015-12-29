@@ -1,0 +1,310 @@
+// Customize the save buttons
+#save-wa11y-settings-side,
+#save-wa11y-settings-bottom {
+    display: block;
+    background-color: #0074a2 !important;
+    width: 100%;
+    height: auto;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    background-repeat: no-repeat;
+    padding: 8px 12px !important;
+    border: 0;
+    margin: 0;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+    color: #fff !important;
+    text-align: center;
+    font-weight: bold;
+    text-decoration: none;
+    cursor: pointer;
+    font-size: 1.1em;
+    line-height: 1.3em;
+    box-shadow: none !important;
+    vertical-align: middle;
+}
+
+// Setup all the .inside
+#wa11y-axe-settings-mb,
+#wa11y-tota11y-settings-mb,
+#wa11y-wave-settings-mb {
+
+    .inside {
+        margin: 0;
+        padding: 0;
+    }
+
+}
+
+#wa11y-promote-mb {
+
+    p {
+        margin: 10px 0;
+    }
+
+    a {
+        text-decoration: none;
+    }
+
+    .promote-text {
+        text-decoration: underline;
+    }
+
+    .dashicons {
+        text-decoration: none;
+    }
+
+    .donate img {
+        margin: 0 4px 2px 0;
+        vertical-align: middle;
+    }
+
+}
+
+// Setup the settings boxes
+.wa11y-tool-settings {
+    position: relative;
+
+    .tool-header {
+        background: #eee;
+        margin: 0;
+        padding: 20px 20px 20px 120px;
+        border-bottom-width: 1px;
+        border-bottom-style: solid;
+
+        *:last-child {
+            margin-bottom: 0;
+        }
+
+        input.tool-checkbox {
+            display: inline-block;
+            margin: 0 8px 0 0;
+
+            &:before {
+                color: #016288;
+            }
+
+        }
+
+        label.tool-label {
+            display: inline;
+            font-size: 18px;
+            font-weight: bold;
+            line-height: 1em;
+            color: #016288;
+            color: #000;
+
+            .thinner {
+                font-weight: normal;
+            }
+
+        }
+
+        .tool-desc {
+            font-size: 14px;
+            line-height: 1.6;
+            margin: 8px 0 0 0;
+        }
+
+    }
+
+    .tool-body {
+        margin: 0;
+        padding: 20px;
+
+        p {
+            margin: 0 0 1em 0;
+        }
+
+        .why-header,
+        .use-header {
+            padding: 0 !important;
+            margin: 0 0 3px 0 !important;
+            color: #333 !important;
+        }
+
+        *:last-child {
+            margin-bottom: 0;
+        }
+
+    }
+
+    // Customize the aXe section
+    &.axe-tool-settings {
+
+        .tool-header {
+            background: url( '../images/axe-logo.png' ) 28px 16px no-repeat #f2f8fa;
+            background-size: auto 80px;
+            /*color: #0b3d5c;*/
+            border-bottom-color: #d4e8ef;
+        }
+
+    }
+
+    // Customize the tota11y section
+    &.tota11y-tool-settings {
+
+        .tool-header {
+            background: url( '../images/tota11y-circle-glasses.png' ) 20px 20px no-repeat #252525;
+            background-size: 80px auto;
+            color: #fff;
+
+            label.tool-label {
+                color: #fff;
+            }
+
+            a {
+                color: #fff;
+            }
+
+        }
+
+        .tota11y-red {
+            color: #db0f0f;
+        }
+
+        .tota11y-orange {
+            color: #ffb710;
+        }
+
+        .tota11y-yellow {
+            color: #f5d800;
+        }
+
+        .tota11y-green {
+            color: #56d516;
+        }
+        .tota11y-blue {
+            color: #139fb4;
+        }
+        .tota11y-indigo {
+            color: #1251af;
+        }
+        .tota11y-violet {
+            color: #5c12af;
+        }
+
+    }
+
+    // Customize the WAVE section
+    &.wave-tool-settings {
+
+        // Customize the WAVE header
+        .tool-header {
+            background: url( '../images/wave-logo.png' ) 18px 18px no-repeat #f0f6ee;
+            background-size: 81px 81px;
+            border-bottom-color: #d3e3ce;
+        }
+
+        .wave-red {
+            color: #BF1722;
+        }
+        .wave-gray {
+            color: #363636;
+        }
+
+    }
+
+}
+
+
+
+
+
+
+.wa11y-tool-settings .tool-settings-warning {
+    display: block;
+    background: #faf2f2; /*5%*/
+    padding: 12px 20px 12px 20px;
+    margin: 0;
+    border: 0;
+    border-top: 1px solid #f5e5e5; /*10%*/
+    font-style: italic;
+    color: #770000;
+    font-weight: bold;
+}
+
+.wa11y-tool-settings ul.tool-settings-list {
+    display: block;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    border-top: 1px solid #d4e8ef; /*17%*/
+    border-bottom: 1px solid #d4e8ef; /*17%*/
+
+    & > li {
+        display: block;
+        background: #f8f8f8;
+        list-style: none;
+        margin: 0;
+        padding: 12px 20px 7px 20px;
+        border: 0;
+        border-bottom: 1px solid #e8e6e6;
+
+        &:last-child {
+            border-bottom: 0;
+        }
+
+        &.disabled {
+            background: #f1f1f1;
+
+            .tool-option-header {
+                opacity: 0.5;
+            }
+
+            .tool-option-disabled-message {
+                display: block;
+                opacity: 1;
+                font-style: italic;
+                margin: 0 0 5px 0;
+            }
+
+        }
+
+    }
+
+    label.tool-option-header {
+        display: inline-block;
+        margin: 0 10px 5px 0;
+        font-size: 14px;
+        font-weight: bold;
+    }
+
+    .tool-setting-text {
+        margin: 0 10px 5px 0;
+    }
+
+    select.chosen,
+    .chosen-container {
+        width: 300px;
+        margin: 0 0 5px 0;
+    }
+
+    .tool-option-checkbox {
+        display: inline-block;
+        margin: 0 10px 5px 10px;
+    }
+
+    .tool-option-label {
+        display: inline-block;
+        margin: 0 0 5px 0;
+    }
+
+    label.tool-option-header + .tool-option-checkbox {
+        margin-left: 0;
+    }
+
+    .tool-option-checkbox + .tool-option-label {
+        margin-left: -5px;
+    }
+
+    .tool-option-side-note {
+        display: inline-block;
+        margin: 0 0 5px 0;
+        font-style: italic;
+    }
+
+}
