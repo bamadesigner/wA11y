@@ -1,4 +1,4 @@
-# Wally - The Web Accessibility Toolbox
+# Wa11y - The Web Accessibility Toolbox
 
 Wa11y is a WordPress plugin/toolbox of resources to help you improve the accessibility of your WordPress website.
 
