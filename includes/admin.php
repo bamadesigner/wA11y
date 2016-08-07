@@ -239,7 +239,7 @@ class Wa11y_Admin {
 		?>
 		<div id="wa11y-options" class="wrap options">
 
-			<h2><span aria-hidden="true">Wa11y</span><span class="screen-reader-text">Wally</span> - <?php _e( 'The Web Accessibility Toolbox', 'wa11y' ); ?></h2>
+			<h1><span aria-hidden="true">Wa11y</span><span class="screen-reader-text">Wally</span> - <?php _e( 'The Web Accessibility Toolbox', 'wa11y' ); ?></h1>
 
 			<form method="post" action="options.php">
 				<?php
