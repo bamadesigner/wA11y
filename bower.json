@@ -1,0 +1,17 @@
+{
+  "name": "Wa11y",
+  "description": "Wa11y is a toolbox of resources to help you improve the accessibility of your WordPress website.",
+  "authors": [
+    "Rachel Carden"
+  ],
+  "license": "GPL",
+  "homepage": "https://github.com/bamadesigner/wa11y",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}

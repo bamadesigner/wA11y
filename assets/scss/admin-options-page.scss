@@ -26,8 +26,32 @@
     vertical-align: middle;
 }
 
+#wa11y-promote-mb {
+
+    p {
+        margin: 10px 0;
+    }
+
+    a {
+        text-decoration: none;
+    }
+
+    .promote-text {
+        text-decoration: underline;
+    }
+
+    .dashicons {
+        text-decoration: none;
+    }
+
+    .donate img {
+        margin: 0 4px 2px 0;
+        vertical-align: middle;
+    }
+
+}
+
 // Setup all the .inside
-#wa11y-axe-settings-mb,
 #wa11y-tota11y-settings-mb,
 #wa11y-wave-settings-mb {
 
@@ -131,23 +155,11 @@
 
     }
 
-    // Customize the aXe section
-    &.axe-tool-settings {
-
-        .tool-header {
-            background: url( '../images/axe-logo.png' ) 28px 16px no-repeat #f2f8fa;
-            background-size: auto 80px;
-            /*color: #0b3d5c;*/
-            border-bottom-color: #d4e8ef;
-        }
-
-    }
-
     // Customize the tota11y section
     &.tota11y-tool-settings {
 
         .tool-header {
-            background: url( '../images/tota11y-circle-glasses.png' ) 20px 20px no-repeat #252525;
+            background: url( '../../assets/images/tota11y-circle-glasses.png' ) 20px 20px no-repeat #252525;
             background-size: 80px auto;
             color: #fff;
 
@@ -193,7 +205,7 @@
 
         // Customize the WAVE header
         .tool-header {
-            background: url( '../images/wave-logo.png' ) 18px 18px no-repeat #f0f6ee;
+            background: url( '../../assets/images/wave-logo.png' ) 18px 18px no-repeat #f0f6ee;
             background-size: 81px 81px;
             border-bottom-color: #d3e3ce;
         }
