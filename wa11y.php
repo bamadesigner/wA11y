@@ -13,6 +13,7 @@
  * Domain Path:       /languages
  */
 
+// @TODO might have to replance "chosen" functionality because it might not be accessible
 // @TODO provide a resources meta box for the options page
 
 // If this file is called directly, abort.

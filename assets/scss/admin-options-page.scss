@@ -261,10 +261,10 @@
         }
 
         &.disabled {
-            background: #f1f1f1;
+	        background: rgba( 234, 159, 70, 0.15 );
 
             .tool-option-header {
-                opacity: 0.5;
+	            text-decoration: line-through;
             }
 
             .tool-option-disabled-message {

@@ -259,7 +259,7 @@ class Wa11y_Admin {
 	public function print_options_page() {
 
 		?>
-		<div id="wa11y-options" class="wrap options">
+		<div id="wa11y-options" class="wrap options" role="form">
 
 			<h1><span aria-hidden="true">Wa11y</span><span class="screen-reader-text">Wally</span> - <?php _e( 'The Web Accessibility Toolbox', 'wa11y' ); ?></h1>
 
@@ -422,8 +422,8 @@ class Wa11y_Admin {
 
 								?>
 								<li>
-									<label class="tool-option-header"><?php printf( __( 'Only load %s for specific user roles', 'wa11y' ), 'tota11y' ); ?>:</label>
-									<select name="wa11y_settings[tools][tota11y][load_user_roles][]" class="chosen" multiple="multiple">
+									<label class="tool-option-header" for="tota11y-user-roles"><?php printf( __( 'Only load %s for specific user roles', 'wa11y' ), 'tota11y' ); ?>:</label>
+									<select id="tota11y-user-roles" name="wa11y_settings[tools][tota11y][load_user_roles][]" class="chosen" multiple="multiple">
 										<option value=""></option>
 										<?php foreach( $user_roles as $user_role_key => $user_role ) : ?>
 											<option value="<?php echo $user_role_key; ?>"<?php selected( is_array( $load_user_roles ) && in_array( $user_role_key, $load_user_roles ) ); ?>><?php echo $user_role[ 'name' ]; ?></option>
