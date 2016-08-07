@@ -117,8 +117,11 @@
             font-size: 18px;
             font-weight: bold;
             line-height: 1em;
-            color: #016288;
             color: #000;
+
+	        .lighter {
+		        opacity: 0.8;
+	        }
 
             .thinner {
                 font-weight: normal;
