@@ -13,8 +13,6 @@
  * Domain Path:       /languages
  */
 
-// @TODO allow users to turn "adding items to toolbar" on and off
-// @TODO check descriptions in settings boxes
 // @TODO provide a resources meta box for the options page
 
 // If this file is called directly, abort.
@@ -122,7 +120,7 @@ class Wa11y {
 		add_action( 'upgrader_process_complete', array( $this, 'upgrader_process_complete' ), 1, 2 );
 
 		// Add items to the toolbar
-		add_action( 'admin_bar_menu', array( $this, 'wa11y_add_to_toolbar' ), 100 );
+		add_action( 'admin_bar_menu', array( $this, 'add_to_toolbar' ), 100 );
 
 		// Load front-end styles/scripts
 		add_action( 'wp_enqueue_scripts', array( $this, 'enqueue_styles_scripts' ) );
@@ -285,8 +283,7 @@ class Wa11y {
 	 * @filter  'wa11y_wave_url' - string containing the WAVE evaluation URL. Passes the $post object if it exists.
 	 * @param 	WP_Admin_Bar - $wp_admin_bar - WP_Admin_Bar instance, passed by reference
 	 */
-	public function wa11y_add_to_toolbar( $wp_admin_bar ) {
-		global $post;
+	public function add_to_toolbar( $wp_admin_bar ) {
 
 		// Only need to worry about this stuff if we have enabled tools
 		$enabled_tools = $this->get_enabled_tools();
@@ -308,10 +305,10 @@ class Wa11y {
 					if ( ! is_admin() && $this->can_load_wave() ) {
 
 						// Build the WAVE url
-						$wave_url = ( ! ( isset( $_SERVER[ 'HTTPS' ] ) && $_SERVER[ 'HTTPS' ] == 'on' ) ? 'http://' : 'https://' ) . $_SERVER[ 'SERVER_NAME' ] . ( isset( $_SERVER[ 'REQUEST_URI' ] ) ? $_SERVER[ 'REQUEST_URI' ] : null );
+						$wave_url = get_permalink();
 
 						// Filter the WAVE url - includes $post object if it exists
-						$wave_url = apply_filters( 'wa11y_wave_url', $wave_url, ( isset( $post ) ? $post : false ) );
+						$wave_url = apply_filters( 'wa11y_wave_url', $wave_url, get_post() );
 
 						// Add WAVE node if we have a URL
 						if ( ! empty( $wave_url ) ) {
