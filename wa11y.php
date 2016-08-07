@@ -214,7 +214,7 @@ class Wa11y {
 				'wave' => array(
 					'load_user_roles'       => array( 'administrator' ),
 					'load_user_capability'  => null,
-					'load_in_admin'         => 0,
+					'load_admin_edit'       => 0,
 				)
 			)
 		);
@@ -276,8 +276,6 @@ class Wa11y {
 
 	/**
 	 * Add items to the toolbar.
-	 *
-	 * @TODO allow users to turn this on and off.
 	 *
 	 * @since   1.0.0
 	 * @filter  'wa11y_wave_url' - string containing the WAVE evaluation URL. Passes the $post object if it exists.
@@ -458,21 +456,6 @@ class Wa11y {
 		// Only for published posts
 		if ( 'publish' != get_post_status() ) {
 			$load_wave = false;
-		}
-
-		// If we're still passing tests, are we supposed to load WAVE in the admin?
-		if ( $load_wave && is_admin() ) {
-
-			// Can't load WAVE in admin if SSL because WAVE isnt SSL
-			if ( is_ssl() ) {
-				$load_wave = false;
-			}
-
-			// See if enabled via settings
-			else {
-				$load_wave = isset( $settings['load_in_admin'] ) && $settings['load_in_admin'] > 0;
-			}
-
 		}
 
 		// If we're still passing tests, keep checking

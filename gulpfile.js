@@ -10,7 +10,7 @@ var watch = require('gulp-watch');
 // Define the source paths for each file type
 var src = {
     scss: 	'assets/scss/*',
-    js:		['assets/js/*','!*.min.js']
+    js:		['assets/js/admin-options-page.js']
 };
 
 // Setup chosen
@@ -72,7 +72,7 @@ gulp.task('js', function() {
 // I've got my eyes on you(r file changes)
 gulp.task('watch', function() {
 	gulp.watch(src.scss, ['sass']);
-	//gulp.watch(src.js, ['js']);
+	gulp.watch(src.js, ['js']);
 });
 
 // Let's get this party started

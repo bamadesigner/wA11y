@@ -15,8 +15,8 @@ The mission for the Wa11y plugin is to provide a plethora of tools to help you e
 [WAVE](http://wave.webaim.org/) is a free evaluation tool provided by [WebAIM (Web Accessibility In Mind)](http://webaim.org/). It can be used to evaluate a live website for a wide range of accessibility issues.
 
 ## WordPress Hooks
-
-Hooks are methods provided by WordPress that allow you to "hook into" WordPress and call your own functions or filter data. There are two types of hooks: actions and filters. You can learn more about hooks [in the WordPress Plugin Handbook](https://developer.wordpress.org/plugins/hooks/).
+ 
+Wa11y provides hooks which allow you to "hook into" the plugin and call your own functions or filter data. There are two types of hooks: actions and filters. You can learn more about hooks [in the WordPress Plugin Handbook](https://developer.wordpress.org/plugins/hooks/).
 
 ### Filters
 

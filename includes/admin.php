@@ -180,8 +180,16 @@ class Wa11y_Admin {
 		// If we can load WAVE...
 		if ( wa11y()->can_load_wave() ) {
 
-			// Add WAVE Evaluation meta box
-			add_meta_box( 'wa11y-wave-evaluation-mb', 'Wa11y - WAVE ' . __( 'Accessibility Evaluation', 'wa11y' ), array( $this, 'print_post_meta_boxes' ), $post_type, 'normal', 'high' );
+			// Get WAVE settings
+			$settings = wa11y()->get_settings( 'wave' );
+
+			// Make sure its OK to load the evaluation
+			if ( ! empty( $settings['load_admin_edit'] ) && true == $settings['load_admin_edit'] ) {
+
+				// Add WAVE Evaluation meta box
+				add_meta_box( 'wa11y-wave-evaluation-mb', 'Wa11y - WAVE ' . __( 'Accessibility Evaluation', 'wa11y' ), array( $this, 'print_post_meta_boxes' ), $post_type, 'normal', 'high' );
+
+			}
 
 		}
 
@@ -200,16 +208,30 @@ class Wa11y_Admin {
 
 			case 'wa11y-wave-evaluation-mb':
 
-				// Build WAVE evaluation URL
-				$wave_url = 'http://wave.webaim.org/report#/'. urlencode( get_permalink( $post->ID ) );
+				// If SSL, we can't load the iframe because WAVE isn't SSL so add a message
+				if ( is_ssl() ) {
 
-				// Filter the WAVE url - includes $post object
-				$wave_url = apply_filters( 'wa11y_wave_url', $wave_url, $post );
+					// Build anchor element to settings page
+					$settings_page_anchor = '<a href="' . add_query_arg( array( 'page' => 'wa11y' ), admin_url( 'options-general.php' ) ) . '" title="' . esc_attr__( "Visit the Wa11y settings page", 'wa11y' ) . '" target="_blank">';
 
-				// Print the WAVE evaluation iframe ?>
-				<a class="wa11y-wave-open-evaluation" href="<?php echo $wave_url; ?>" target="_blank"><?php printf( __( 'Open %s evaluation in new window', 'wa11y' ), 'WAVE' ); ?></a>
-				<iframe id="wa11y-wave-evaluation-mb-iframe" src="<?php echo $wave_url; ?>"></iframe>
-				<?php
+					?>
+					<p id="wa11y-wave-eval-no-SSL"><strong><?php printf( __( 'At this time, the %1$s evaluation iframe cannot be embedded on a site using SSL because the %2$s site does not use SSL.', 'wa11y' ), 'WAVE', 'WAVE' ); ?></strong> <?php printf( __( 'If you would like to remove this message, please uncheck the "Display %1$s evaluation when editing content" setting on %2$sthe %3$s settings page%4$s.', 'wa11y' ), 'WAVE', $settings_page_anchor, 'Wa11y', '</a>' ); ?></p>
+					<?php
+
+				} else {
+
+					// Build WAVE evaluation URL
+					$wave_url = 'http://wave.webaim.org/report#/' . urlencode( get_permalink( $post->ID ) );
+
+					// Filter the WAVE url - includes $post object
+					$wave_url = apply_filters( 'wa11y_wave_url', $wave_url, $post );
+
+					// Print the WAVE evaluation iframe ?>
+					<a class="wa11y-wave-open-evaluation" href="<?php echo $wave_url; ?>" target="_blank"><?php printf( __( 'Open %s evaluation in new window', 'wa11y' ), 'WAVE' ); ?></a>
+					<iframe id="wa11y-wave-evaluation-mb-iframe" src="<?php echo $wave_url; ?>"></iframe>
+					<?php
+
+				}
 
 				break;
 
@@ -491,7 +513,7 @@ class Wa11y_Admin {
 								<?php
 
 								if ( $disable_admin_wave ) { ?>
-									<span class="tool-option-disabled-message"><?php printf( __( 'At this time, the %1$s evaluation cannot be embedded on a site using SSL because the %2$s site is not using SSL.', 'wa11y' ), 'WAVE', 'WAVE' ); ?></span>
+									<span class="tool-option-disabled-message"><?php printf( __( 'At this time, the %1$s evaluation iframe cannot be embedded on a site using SSL because the %2$s site does not use SSL.', 'wa11y' ), 'WAVE', 'WAVE' ); ?></span>
 								<?php } else { ?>
 									<span class="tool-option-side-note"><?php printf( __( 'The %s evaluation will only display on screens where you are editing a post or a page.', 'wa11y' ), 'WAVE' ); ?></span>
 								<?php }
@@ -520,7 +542,7 @@ class Wa11y_Admin {
 	public function add_plugin_action_links( $actions, $plugin_file, $plugin_data, $context ) {
 
 		// Add link to our settings page
-		$actions[ 'settings' ] = '<a href="' . add_query_arg( array( 'page' => 'wa11y' ), admin_url( 'options-general.php' ) ) . '" title="' . esc_attr__( "Visit this plugin's settings page", 'wa11y' ) . '">' . __( 'Settings' , 'wa11y' ) . '</a>';
+		$actions[ 'settings' ] = '<a href="' . add_query_arg( array( 'page' => 'wa11y' ), admin_url( 'options-general.php' ) ) . '" title="' . esc_attr__( "Visit the Wa11y settings page", 'wa11y' ) . '">' . __( 'Settings' , 'wa11y' ) . '</a>';
 
 		return $actions;
 	}
