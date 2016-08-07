@@ -481,8 +481,13 @@ class Wa11y_Admin {
 
 							<li><label class="tool-option-header" for="wave-user-capability"><?php printf( __( 'Only show %s for a specific user capability', 'wa11y' ), 'WAVE' ); ?>:</label> <input class="tool-setting-text" id="wave-user-capability" type="text" name="wa11y_settings[tools][wave][load_user_capability]" value="<?php echo isset( $wave_settings[ 'load_user_capability' ] ) ? $wave_settings[ 'load_user_capability' ] : null; ?>" /> <span class="tool-option-side-note">e.g. view_wave</span></span></li>
 
-							<li<?php echo $disable_admin_wave ? ' class="disabled"' : null; ?>><label class="tool-option-header" for="wave-admin"><?php printf( __( 'Show %s evaluation in the admin', 'wa11y' ), 'WAVE' ); ?>:</label>
-								<input class="tool-option-checkbox" id="wave-admin" type="checkbox" name="wa11y_settings[tools][wave][load_in_admin]" value="1"<?php checked( ! $disable_admin_wave && isset( $wave_settings[ 'load_in_admin' ] ) && $wave_settings[ 'load_in_admin' ] > 0 ); disabled( $disable_admin_wave ); ?> />
+							<li><label class="tool-option-header" for="wave-toolbar"><?php printf( __( 'Add link to WAVE evalution to the WordPress toolbar', 'wa11y' ), 'WAVE' ); ?>:</label>
+								<input class="tool-option-checkbox" id="wave-toolbar" type="checkbox" name="wa11y_settings[tools][wave][load_in_toolbar]" value="1"<?php checked( isset( $wave_settings[ 'load_in_toolbar' ] ) && $wave_settings[ 'load_in_toolbar' ] > 0 ); ?> />
+								<span class="tool-option-side-note"><?php printf( __( "In the front-end, this will allow you to quickly evaluate any page that you're viewing. In the admin, the link will only display on screens where you are editing a post or a page.", 'wa11y' ), 'WAVE' ); ?></span>
+							</li>
+
+							<li<?php echo $disable_admin_wave ? ' class="disabled"' : null; ?>><label class="tool-option-header" for="wave-admin"><?php printf( __( 'Display %s evaluation when editing content', 'wa11y' ), 'WAVE' ); ?>:</label>
+								<input class="tool-option-checkbox" id="wave-admin" type="checkbox" name="wa11y_settings[tools][wave][load_admin_edit]" value="1"<?php checked( ! $disable_admin_wave && isset( $wave_settings[ 'load_admin_edit' ] ) && $wave_settings[ 'load_admin_edit' ] > 0 ); disabled( $disable_admin_wave ); ?> />
 								<?php
 
 								if ( $disable_admin_wave ) { ?>

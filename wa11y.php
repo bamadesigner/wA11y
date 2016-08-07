@@ -301,23 +301,31 @@ class Wa11y {
 
 				case 'wave':
 
-					// Can we load WAVE? - only add to the admin bar on the front end
-					if ( ! is_admin() && $this->can_load_wave() ) {
+					// Can we load WAVE?
+					if ( $this->can_load_wave() ) {
 
-						// Build the WAVE url
-						$wave_url = get_permalink();
+						// Get WAVE settings
+						$settings = wa11y()->get_settings( 'wave' );
 
-						// Filter the WAVE url - includes $post object if it exists
-						$wave_url = apply_filters( 'wa11y_wave_url', $wave_url, get_post() );
+						// Make sure its OK to add to the toolbar
+						if ( ! empty( $settings['load_in_toolbar'] ) && true == $settings['load_in_toolbar'] ) {
 
-						// Add WAVE node if we have a URL
-						if ( ! empty( $wave_url ) ) {
-							$wa11y_nodes[] = array(
-								'id'    => 'wa11y-wave',
-								'title' => sprintf( __( 'View %s evaluation', 'wa11y' ), 'WAVE' ),
-								'href'  => 'http://wave.webaim.org/report#/' . urlencode( $wave_url ),
-								'meta'  => array( 'target' => '_blank' ),
-							);
+							// Build the WAVE url
+							$wave_url = get_permalink();
+
+							// Filter the WAVE url - includes $post object if it exists
+							$wave_url = apply_filters( 'wa11y_wave_url', $wave_url, get_post() );
+
+							// Add WAVE node if we have a URL
+							if ( ! empty( $wave_url ) ) {
+								$wa11y_nodes[] = array(
+									'id'    => 'wa11y-wave',
+									'title' => sprintf( __( 'View %s evaluation', 'wa11y' ), 'WAVE' ),
+									'href'  => 'http://wave.webaim.org/report#/' . urlencode( $wave_url ),
+									'meta'  => array( 'target' => '_blank' ),
+								);
+							}
+
 						}
 
 					}
