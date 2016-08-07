@@ -405,7 +405,7 @@ class Wa11y {
 
 			// If a set user role, then load tota11y
 			if ( ! empty( $settings[ 'load_user_roles' ] ) ) {
-				$load_tota11y = $this->user_in_user_roles( $settings['load_user_roles'] );
+				$load_tota11y = $this->is_user_in_user_roles( $settings['load_user_roles'] );
 			}
 
 			// If user capability is set, turn off if not capable
@@ -472,7 +472,7 @@ class Wa11y {
 
 			// If a set user role, then load WAVE
 			if ( ! empty( $settings[ 'load_user_roles' ] ) ) {
-				$load_wave = $this->user_in_user_roles( $settings['load_user_roles'] );
+				$load_wave = $this->is_user_in_user_roles( $settings['load_user_roles'] );
 			}
 
 			// If user capability is set, turn off if not capable
@@ -494,7 +494,7 @@ class Wa11y {
 	 * @param	array - an array of user roles to test against
 	 * @return	boolean - true if user is one of passed user roles, false otherwise
 	 */
-	public function user_in_user_roles( $user_roles ) {
+	public function is_user_in_user_roles( $user_roles ) {
 
 		// Make sure we have user roles
 		if ( empty( $user_roles ) ) {
