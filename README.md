@@ -29,7 +29,8 @@ Here is a list of the filters available for this plugin:
 
 If you would like to contribute to this plugin, it will require a few steps to get the code inititate on your local or testing environment.
 
-**You will need to have bower and npm installed.**
+**You will need to have bower and npm installed.
+If you would like to submit changes to the plugin, please work on a different branch and then create a pull request towards the master branch.**
 
 1. Clone this repo
 2. Open the directory in the command line.
@@ -37,5 +38,3 @@ If you would like to contribute to this plugin, it will require a few steps to g
 4. Run `bower install` 
 5. Run `gulp` to take care of/compile all of your assets
     * You can also run `gulp watch` to watch your assets for changes/updates
-    
-** If you would like to submit changes to the plugin, please work on a different branch and then create a pull request towards the master branch.**
