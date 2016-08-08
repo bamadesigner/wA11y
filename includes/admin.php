@@ -485,7 +485,7 @@ class Wa11y_Admin {
 					<div class="tool-body">
 
 						<h3 class="tool-subheader"><?php printf( __( 'Why %s Is Awesome', 'wa11y' ), 'WAVE' ); ?></h3>
-						<p><?php _e( 'WAVE provides a simple, straight forward evaluation of any public webpage and allows you to filter the evaluation by standard: Full, Section 508, and WCAG 2.0 A and AA. If your page does contain errors, the report provides documentation to explain the issue and how to fix it. WAVE also provides a color contrast checker.', 'wa11y' ); ?></p>
+						<p><?php printf( __( '%1$s provides a simple, straight forward evaluation of any public webpage and allows you to filter the evaluation by standard: Full, Section 508, and WCAG 2.0 A and AA. If your page does contain errors, the report provides documentation to explain the issue and how to fix it. %2$s also provides a color contrast checker.', 'wa11y' ), 'WAVE', 'WAVE' ); ?></p>
 
 						<h3 class="tool-subheader"><?php printf( __( 'Best Uses For %s', 'wa11y' ), 'WAVE' ); ?></h3>
 						<p><?php printf( __( '%1$s is built to scan, and provide feedback on, an entire document so this tool is best used to evaluate pages on the front-end of your site. A big difference between %2$s and %3$s is that %4$s can only evaluate publicly-accessible pages so it\'s not ideal for local/staging environments or content that is password-protected.', 'wa11y' ), 'WAVE', 'WAVE', 'tota11y', 'WAVE' ); ?></p>
