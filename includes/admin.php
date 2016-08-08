@@ -401,10 +401,24 @@ class Wa11y_Admin {
 					</div> <!-- .tool-header -->
 
 					<div class="tool-body">
-						<h3 class="why-header"><?php printf( __( 'Why %s Is Awesome', 'wa11y' ), 'tota11y' ); ?></h3>
+
+						<h3 class="tool-subheader"><?php printf( __( 'Why %s Is Awesome', 'wa11y' ), 'tota11y' ); ?></h3>
 						<p><?php printf( __( '%1$s consists of several plugins, each with their own functionality, that works to help you visualize accessibility violations (and successes) while also educating you on best practices. Beyond simply pointing out errors, many %2$s plugins also suggest ways to fix these violations - specifically tailored to your document.', 'wa11y' ), 'tota11y', 'tota11y' ); ?></p>
-						<h3 class="use-header"><?php printf( __( 'Best Uses For %s', 'wa11y' ), 'tota11y' ); ?></h3>
+
+						<h3 class="tool-subheader"><?php printf( __( 'Best Uses For %s', 'wa11y' ), 'tota11y' ); ?></h3>
 						<p><?php printf( __( '%1$s is built to scan, and provide feedback on, an entire document so this tool is best used to evaluate pages on the front-end of your site. <strong>%2$s can scan any page that you can load</strong> so the page does not have to be published.', 'wa11y' ), 'tota11y', 'tota11y' ); ?></p>
+
+						<h3 class="tool-subheader"><?php _e( 'Other Resources', 'wa11y' ); ?></h3>
+						<p><?php
+
+							// Translate the link anchor title
+							$extension_anchor_title = __( 'View the available tota11y Chrome extensions', 'wa11y' );
+
+							// Print the message
+							printf( __( 'There are several %1$s%2$s extensions%3$s available.', 'wa11y' ), '<a href="https://chrome.google.com/webstore/search/tota11y?hl=en" target="_blank" title="' . $extension_anchor_title . '">', 'Chrome', '</a>' );
+
+						?></p>
+
 					</div> <!-- .tool-body -->
 
 					<p class="tool-settings-warning"><?php printf( __( 'If no user roles are selected or user capability is provided, %s will load for all logged-in users.', 'wa11y' ), 'tota11y' ); ?></p>
@@ -469,10 +483,25 @@ class Wa11y_Admin {
 					</div> <!-- .tool-header -->
 
 					<div class="tool-body">
-						<h3 class="why-header"><?php printf( __( 'Why %s Is Awesome', 'wa11y' ), 'WAVE' ); ?></h3>
+
+						<h3 class="tool-subheader"><?php printf( __( 'Why %s Is Awesome', 'wa11y' ), 'WAVE' ); ?></h3>
 						<p><?php _e( 'WAVE provides a simple, straight forward evaluation of any public webpage and allows you to filter the evaluation by standard: Full, Section 508, and WCAG 2.0 A and AA. If your page does contain errors, the report provides documentation to explain the issue and how to fix it. WAVE also provides a color contrast checker.', 'wa11y' ); ?></p>
-						<h3 class="use-header"><?php printf( __( 'Best Uses For %s', 'wa11y' ), 'WAVE' ); ?></h3>
-						<p><?php printf( __( '%1$s is built to scan, and provide feedback on, an entire document so this tool is best used to evaluate pages on the front-end of your site. A big difference between %2$s and %3$s is that %4$s can only evaluate publicly-accessible pages so it\'s not ideal for local/staging environments or content that is password-protected. <a href="http://wave.webaim.org/api/" target="_blank">WAVE also offers an API</a> for those who need more in-depth usage.', 'wa11y' ), 'WAVE', 'WAVE', 'tota11y', 'WAVE' ); ?></p>
+
+						<h3 class="tool-subheader"><?php printf( __( 'Best Uses For %s', 'wa11y' ), 'WAVE' ); ?></h3>
+						<p><?php printf( __( '%1$s is built to scan, and provide feedback on, an entire document so this tool is best used to evaluate pages on the front-end of your site. A big difference between %2$s and %3$s is that %4$s can only evaluate publicly-accessible pages so it\'s not ideal for local/staging environments or content that is password-protected.', 'wa11y' ), 'WAVE', 'WAVE', 'tota11y', 'WAVE' ); ?></p>
+
+						<h3 class="tool-subheader"><?php _e( 'Other Resources', 'wa11y' ); ?></h3>
+						<p><?php
+
+							// Translate the link anchor title
+							$extension_anchor_title = __( 'Learn more about the WAVE Chrome extension', 'wa11y' );
+							$api_anchor_title = __( 'Learn more about the WAVE API', 'wa11y' );
+
+							// Print the message
+							printf( __( '%1$s also offers %2$sa Chrome extension%3$s and %4$san API%5$s for those who need more in-depth usage.', 'wa11y' ), 'WAVE', '<a href="http://wave.webaim.org/extension/" target="_blank" title="' . $extension_anchor_title . '">', '</a>', '<a href="http://wave.webaim.org/api/" target="_blank" title="' . $api_anchor_title . '">', '</a>' );
+
+						?></p>
+
 					</div> <!-- .tool-body -->
 
 					<p class="tool-settings-warning"><?php printf( __( 'If no user roles are selected or user capability is provided, %s will display for all logged-in users.', 'wa11y' ), 'WAVE' ); ?></p>
