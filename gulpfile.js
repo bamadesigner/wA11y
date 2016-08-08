@@ -9,36 +9,8 @@ var watch = require('gulp-watch');
 
 // Define the source paths for each file type
 var src = {
-    scss: 	'assets/scss/*',
-    js:		['assets/js/admin-options-page.js']
+    scss: 	'assets/scss/*'
 };
-
-// Setup chosen
-gulp.task( 'chosen', function() {
-
-	// Move the images we need
-	gulp.src(['bower_components/chosen/chosen-sprite.png','bower_components/chosen/chosen-sprite@2x.png'])
-		.pipe(gulp.dest('assets/chosen'));
-
-	// Compress the CSS
-	gulp.src('bower_components/chosen/chosen.css')
-		.pipe(clean_css())
-		.pipe(rename({
-			suffix: '.min'
-		}))
-		.pipe(gulp.dest('assets/chosen'));
-
-	// Minify the JS
-	gulp.src('bower_components/chosen/chosen.jquery.js')
-		.pipe(uglify({
-			mangle: false
-		}))
-		.pipe(rename({
-			suffix: '.min'
-        }))
-    	.pipe(gulp.dest('assets/chosen'));
-
-});
 
 // Sass is pretty awesome, right?
 gulp.task('sass', function() {
@@ -58,7 +30,7 @@ gulp.task('sass', function() {
 });
 
 // Minify the JS
-gulp.task('js', function() {
+/*gulp.task('js', function() {
     gulp.src(src.js)
         .pipe(uglify({
             mangle: false
@@ -67,13 +39,12 @@ gulp.task('js', function() {
 			suffix: '.min'
 		}))
         .pipe(gulp.dest('assets/js'))
-});
+});*/
 
 // I've got my eyes on you(r file changes)
 gulp.task('watch', function() {
 	gulp.watch(src.scss, ['sass']);
-	gulp.watch(src.js, ['js']);
 });
 
 // Let's get this party started
-gulp.task('default', ['sass','js','chosen','watch']);
+gulp.task('default', ['sass','watch']);

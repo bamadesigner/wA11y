@@ -41,6 +41,24 @@ class Wa11y_Admin {
 	}
 
 	/**
+	 * Method to keep our instance from being cloned.
+	 *
+	 * @since    1.0.0
+	 * @access    private
+	 * @return    void
+	 */
+	private function __clone() {}
+
+	/**
+	 * Method to keep our instance from being unserialized.
+	 *
+	 * @since    1.0.0
+	 * @access    private
+	 * @return    void
+	 */
+	private function __wakeup() {}
+
+	/**
 	 * Start your engines.
 	 *
 	 * @access  protected
@@ -66,26 +84,6 @@ class Wa11y_Admin {
 		// Add plugin action links
 		add_filter( 'plugin_action_links_wa11y/wa11y.php', array( $this, 'add_plugin_action_links' ), 10, 4 );
 
-	}
-
-	/**
-	 * Method to keep our instance from being cloned.
-	 *
-	 * @since    1.0.0
-	 * @access    private
-	 * @return    void
-	 */
-	private function __clone() {
-	}
-
-	/**
-	 * Method to keep our instance from being unserialized.
-	 *
-	 * @since    1.0.0
-	 * @access    private
-	 * @return    void
-	 */
-	private function __wakeup() {
 	}
 
 	/**
@@ -122,15 +120,8 @@ class Wa11y_Admin {
 			// Add styles to our options page
 			case $this->options_page:
 
-				// Register chosen styles and script for our options page
-				wp_register_style( 'wa11y-admin-chosen', plugin_dir_url( dirname( __FILE__ ) ) . 'assets/chosen/chosen.min.css', array(), WA11Y_VERSION );
-				wp_register_script( 'wa11y-admin-chosen', plugin_dir_url( dirname( __FILE__ ) ) . 'assets/chosen/chosen.jquery.min.js', array( 'jquery' ), WA11Y_VERSION );
-
 				// Enqueue the styles for our options page
-				wp_enqueue_style( 'wa11y-admin-options', plugin_dir_url( dirname( __FILE__ ) ) . 'assets/css/admin-options-page.min.css', array( 'wa11y-admin-chosen' ), WA11Y_VERSION );
-
-				// Enqueue the script for our options page
-				wp_enqueue_script( 'wa11y-admin-options', plugin_dir_url( dirname( __FILE__ ) ) . 'assets/js/admin-options-page.min.js', array( 'jquery', 'wa11y-admin-chosen' ), WA11Y_VERSION );
+				wp_enqueue_style( 'wa11y-admin-options', plugin_dir_url( dirname( __FILE__ ) ) . 'assets/css/admin-options-page.min.css', array(), WA11Y_VERSION );
 
 				break;
 
@@ -437,8 +428,7 @@ class Wa11y_Admin {
 								?>
 								<li>
 									<label class="tool-option-header" for="tota11y-user-roles"><?php printf( __( 'Only load %s for specific user roles', 'wa11y' ), 'tota11y' ); ?>:</label>
-									<select id="tota11y-user-roles" name="wa11y_settings[tools][tota11y][load_user_roles][]" class="chosen" multiple="multiple">
-										<option value=""></option>
+									<select class="tool-option-select" id="tota11y-user-roles" name="wa11y_settings[tools][tota11y][load_user_roles][]" multiple="multiple">
 										<?php foreach( $user_roles as $user_role_key => $user_role ) : ?>
 											<option value="<?php echo $user_role_key; ?>"<?php selected( is_array( $load_user_roles ) && in_array( $user_role_key, $load_user_roles ) ); ?>><?php echo $user_role[ 'name' ]; ?></option>
 										<?php endforeach; ?>
@@ -521,8 +511,7 @@ class Wa11y_Admin {
 								?>
 								<li>
 									<label class="tool-option-header"><?php printf( __( 'Only show %s for specific user roles', 'wa11y' ), 'WAVE' ); ?>:</label>
-									<select name="wa11y_settings[tools][wave][load_user_roles][]" class="chosen" multiple="multiple">
-										<option value=""></option>
+									<select class="tool-option-select" name="wa11y_settings[tools][wave][load_user_roles][]" multiple="multiple">
 										<?php foreach( $user_roles as $user_role_key => $user_role ) : ?>
 											<option value="<?php echo $user_role_key; ?>"<?php selected( is_array( $load_user_roles ) && in_array( $user_role_key, $load_user_roles ) ); ?>><?php echo $user_role[ 'name' ]; ?></option><?php
 										endforeach; ?>

@@ -13,7 +13,6 @@
  * Domain Path:       /languages
  */
 
-// @TODO might have to replance "chosen" functionality because it might not be accessible
 // @TODO provide a resources meta box for the options page
 
 // If this file is called directly, abort.
@@ -101,6 +100,24 @@ class Wa11y {
 	}
 
 	/**
+	 * Method to keep our instance from being cloned.
+	 *
+	 * @since	1.0.0
+	 * @access	private
+	 * @return	void
+	 */
+	private function __clone() {}
+
+	/**
+	 * Method to keep our instance from being unserialized.
+	 *
+	 * @since	1.0.0
+	 * @access	private
+	 * @return	void
+	 */
+	private function __wakeup() {}
+
+	/**
 	 * Start your engines.
 	 *
 	 * @access  protected
@@ -127,24 +144,6 @@ class Wa11y {
 		add_action( 'wp_enqueue_scripts', array( $this, 'enqueue_styles_scripts' ) );
 
 	}
-
-	/**
-	 * Method to keep our instance from being cloned.
-	 *
-	 * @since	1.0.0
-	 * @access	private
-	 * @return	void
-	 */
-	private function __clone() {}
-
-	/**
-	 * Method to keep our instance from being unserialized.
-	 *
-	 * @since	1.0.0
-	 * @access	private
-	 * @return	void
-	 */
-	private function __wakeup() {}
 
 	/**
 	 * Runs when the plugin is installed.
