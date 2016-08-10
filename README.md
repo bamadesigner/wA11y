@@ -2,7 +2,7 @@
 
 Wa11y is a WordPress plugin that provides a toolbox of resources to help you improve the accessibility of your WordPress website.
 
-**If you're simply wanting to use the plugin, I would recommend you [download Wa11y from the WordPress plugin repo](https://wordpress.org/plugins/wa11y).**
+**If you're simply wanting to use the plugin, I recommend you [download Wa11y from the WordPress plugin repo](https://wordpress.org/plugins/wa11y).**
 
 ## What Does "Wa11y" Mean?
 
