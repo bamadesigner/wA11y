@@ -10,7 +10,7 @@ Wa11y is a WordPress plugin/toolbox of resources to help you improve the accessi
  
 "W" + "a11y" is my abbreviation for "web accessibility".
 
-## What is accessibility?
+## What Is Web Accessibility?
 
 Web accessibility refers to  the inclusive practice of  removing barriers that prevent interaction with, or access to, websites by people with disabilities.
 
@@ -33,7 +33,7 @@ The foundation for good accessibility is great markup which also means that good
 
 For more information about accessibility, including official standards and checklists, [check out our resources](#other-accessibility-resources). 
 
-## Tools Included in Wa11y
+## Tools Included In Wa11y
 
 The mission for the Wa11y plugin is to provide a plethora of tools to help you evaluate and improve the accessibility of your website.
 
@@ -47,7 +47,7 @@ The mission for the Wa11y plugin is to provide a plethora of tools to help you e
 
 [WAVE](http://wave.webaim.org/) is a free evaluation tool provided by [WebAIM (Web Accessibility In Mind)](http://webaim.org/). It can be used to evaluate a live website for a wide range of accessibility issues.
 
-## WordPress Hooks for Wa11y
+## WordPress Hooks For Wa11y
  
 Wa11y provides hooks which allow you to "hook into" the plugin and call your own functions or filter data. There are two types of hooks: actions and filters. You can learn more about hooks [in the WordPress Plugin Handbook](https://developer.wordpress.org/plugins/hooks/).
 
