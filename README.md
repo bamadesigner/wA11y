@@ -8,7 +8,7 @@ Wa11y is a WordPress plugin/toolbox of resources to help you improve the accessi
 
 "A11y" is the commonly used abbreviation for accessibility, since there are eleven letters between the "a" and the "y".
  
-"W" + "a11y" is my abbreviation for "web accessibility".
+"W" + "a11y" is my abbreviation for "web accessibility". **[#wa11y](https://twitter.com/search?q=%23wa11y)**
 
 ## What Is Web Accessibility?
 
