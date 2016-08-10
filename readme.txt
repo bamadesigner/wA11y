@@ -12,7 +12,7 @@ Wa11y provides a toolbox of resources to help you improve the accessibility of y
 
 == Description ==
 
-Wa11y is a WordPress plugin/toolbox of resources to help you improve the accessibility of your WordPress website.
+Wa11y is a WordPress plugin that provides a toolbox of resources to help you improve the accessibility of your WordPress website.
 
 **If you would like to contribute to the plugin, or report issues, please go through [the Wa11y Github repo](https://github.com/bamadesigner/wa11y).**
 
