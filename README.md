@@ -74,6 +74,8 @@ Here is a list of the filters available for this plugin:
 
 There are a multitude of resources available to help you better understand and evaluate accessibility. Please feel free to recommend more to add to the list.
 
+** A11y PRO TIP: Take advantage of in-browser testing tools, like [WAVE](http://wave.webaim.org/) and [HTML_CodeSniffer](http://squizlabs.github.io/HTML_CodeSniffer/), to evaluate WordPress theme demos before you purchase.**
+
 ### Web Accessibility Standards
 
 #### WCAG 2.0 - Web Content  Accessibility  Guidelines

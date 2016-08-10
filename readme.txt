@@ -79,6 +79,8 @@ Here is a list of the filters available for this plugin:
 
 == Resources ==
 
+** A11y PRO TIP: Take advantage of in-browser testing tools, like [WAVE](http://wave.webaim.org/) and [HTML_CodeSniffer](http://squizlabs.github.io/HTML_CodeSniffer/), to evaluate WordPress theme demos before you purchase.**
+
 = A Few Basic Accessibility Principles =
 
 * All non-text content needs  a text equivalent to help convey information to those with sensory disabilities.
