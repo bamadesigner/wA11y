@@ -203,7 +203,7 @@ class Wa11y_Admin {
 				if ( is_ssl() ) {
 
 					// Build anchor element to settings page
-					$settings_page_anchor = '<a href="' . add_query_arg( array( 'page' => 'wa11y' ), admin_url( 'options-general.php' ) ) . '" title="' . esc_attr__( "Visit the Wa11y settings page", 'wa11y' ) . '" target="_blank">';
+					$settings_page_anchor = '<a href="' . add_query_arg( array( 'page' => 'wa11y' ), admin_url( 'options-general.php' ) ) . '" title="' . sprintf( esc_attr__( 'Visit the %s settings page', 'wa11y' ), 'Wa11y' ) . '" target="_blank">';
 
 					?>
 					<p id="wa11y-wave-eval-no-SSL"><strong><?php printf( __( 'At this time, the %1$s evaluation iframe cannot be embedded on a site using SSL because the %2$s site does not use SSL.', 'wa11y' ), 'WAVE', 'WAVE' ); ?></strong> <?php printf( __( 'If you would like to remove this message, please uncheck the "Display %1$s evaluation when editing content" setting on %2$sthe %3$s settings page%4$s.', 'wa11y' ), 'WAVE', $settings_page_anchor, 'Wa11y', '</a>' ); ?></p>
@@ -352,7 +352,7 @@ class Wa11y_Admin {
 			case 'wa11y-about-mb':
 
 				// Print the plugin name (with link to site)
-				?><p><?php _e( 'Wa11y is a toolbox of resources to help you improve the accessibility of your WordPress website.', 'wa11y' ); ?></p><?php
+				?><p><?php printf( __( '%s is a toolbox of resources to help you improve the accessibility of your WordPress website.', 'wa11y' ), 'Wa11y' ); ?></p><?php
 
 				// Print the plugin version and author (with link to site)
 				?><p>
@@ -403,7 +403,7 @@ class Wa11y_Admin {
 						<p><?php
 
 							// Translate the link anchor title
-							$extension_anchor_title = __( 'View the available tota11y Chrome extensions', 'wa11y' );
+							$extension_anchor_title = sprintf( __( 'View the available %1$s %2$s extensions', 'wa11y' ), 'tota11y', 'Chrome' );
 
 							// Print the message
 							printf( __( 'There are several %1$s%2$s extensions%3$s available.', 'wa11y' ), '<a href="https://chrome.google.com/webstore/search/tota11y?hl=en" target="_blank" title="' . $extension_anchor_title . '">', 'Chrome', '</a>' );
@@ -484,11 +484,11 @@ class Wa11y_Admin {
 						<p><?php
 
 							// Translate the link anchor title
-							$extension_anchor_title = __( 'Learn more about the WAVE Chrome extension', 'wa11y' );
-							$api_anchor_title = __( 'Learn more about the WAVE API', 'wa11y' );
+							$extension_anchor_title = sprintf( __( 'Learn more about the %1$s %2$s extension', 'wa11y' ), 'WAVE', 'Chrome' );
+							$api_anchor_title = sprintf( __( 'Learn more about the %s API', 'wa11y' ), 'WAVE' );
 
 							// Print the message
-							printf( __( '%1$s also offers %2$sa Chrome extension%3$s and %4$san API%5$s for those who need more in-depth usage.', 'wa11y' ), 'WAVE', '<a href="http://wave.webaim.org/extension/" target="_blank" title="' . $extension_anchor_title . '">', '</a>', '<a href="http://wave.webaim.org/api/" target="_blank" title="' . $api_anchor_title . '">', '</a>' );
+							printf( __( '%1$s also offers %2$sa %3$s extension%4$s and %5$san API%6$s for those who need more in-depth usage.', 'wa11y' ), 'WAVE', '<a href="http://wave.webaim.org/extension/" target="_blank" title="' . $extension_anchor_title . '">', 'Chrome', '</a>', '<a href="http://wave.webaim.org/api/" target="_blank" title="' . $api_anchor_title . '">', '</a>' );
 
 						?></p>
 
@@ -521,7 +521,7 @@ class Wa11y_Admin {
 
 							<li><label class="tool-option-header" for="wave-user-capability"><?php printf( __( 'Only show %s for a specific user capability', 'wa11y' ), 'WAVE' ); ?>:</label> <input class="tool-setting-text" id="wave-user-capability" type="text" name="wa11y_settings[tools][wave][load_user_capability]" value="<?php echo isset( $wave_settings[ 'load_user_capability' ] ) ? $wave_settings[ 'load_user_capability' ] : null; ?>" /> <span class="tool-option-side-note">e.g. view_wave</span></span></li>
 
-							<li><label class="tool-option-header" for="wave-toolbar"><?php printf( __( 'Add link to WAVE evalution to the WordPress toolbar', 'wa11y' ), 'WAVE' ); ?>:</label>
+							<li><label class="tool-option-header" for="wave-toolbar"><?php printf( __( 'Add link to %s evalution to the WordPress toolbar', 'wa11y' ), 'WAVE' ); ?>:</label>
 								<input class="tool-option-checkbox" id="wave-toolbar" type="checkbox" name="wa11y_settings[tools][wave][load_in_toolbar]" value="1"<?php checked( isset( $wave_settings[ 'load_in_toolbar' ] ) && $wave_settings[ 'load_in_toolbar' ] > 0 ); ?> />
 								<span class="tool-option-side-note"><?php printf( __( "In the front-end, this will allow you to quickly evaluate any page that you're viewing. In the admin, the link will only display on screens where you are editing a post or a page.", 'wa11y' ), 'WAVE' ); ?></span>
 							</li>
@@ -560,7 +560,7 @@ class Wa11y_Admin {
 	public function add_plugin_action_links( $actions, $plugin_file, $plugin_data, $context ) {
 
 		// Add link to our settings page
-		$actions[ 'settings' ] = '<a href="' . add_query_arg( array( 'page' => 'wa11y' ), admin_url( 'options-general.php' ) ) . '" title="' . esc_attr__( "Visit the Wa11y settings page", 'wa11y' ) . '">' . __( 'Settings' , 'wa11y' ) . '</a>';
+		$actions[ 'settings' ] = '<a href="' . add_query_arg( array( 'page' => 'wa11y' ), admin_url( 'options-general.php' ) ) . '" title="' . sprintf( esc_attr__( 'Visit the %s settings page', 'wa11y' ), 'Wa11y' ) . '">' . __( 'Settings' , 'wa11y' ) . '</a>';
 
 		return $actions;
 	}
