@@ -2,7 +2,13 @@
 
 Wa11y is a WordPress plugin/toolbox of resources to help you improve the accessibility of your WordPress website.
 
-**If you're simply wanting to use the plugin, I would recommend [downloading Wa11y from the WordPress plugin repo](https://wordpress.org/plugins/wa11y).**
+**If you're simply wanting to use the plugin, I would recommend you [download Wa11y from the WordPress plugin repo](https://wordpress.org/plugins/wa11y).**
+
+## What Does "Wa11y" Mean?
+
+"A11y" is the commonly used abbreviation for accessibility, since there are eleven letters between the "a" and the "y".
+ 
+"W" + "a11y" is my abbreviation for "web accessibility".
 
 ## What is accessibility?
 
@@ -10,7 +16,7 @@ Web accessibility refers to  the inclusive practice of  removing barriers th
 
 Data shows 1 in 5 people have a disability. If your site is inaccessible, **you could be excluding 20%  of your potential users,  customers, students,  and more.**
 
-The foundation for good accessibility is great markup which means that good accessibility can also improve your SEO.
+The foundation for good accessibility is great markup which also means that good accessibility can improve your SEO.
 
 ## A Few Basic Accessibility Principles
 
@@ -18,15 +24,20 @@ The foundation for good accessibility is great markup which means that good acce
     * For example, images and videos need text equivalents to convey information and context to those who have trouble with vision and/or hearing.
 * Color usage should have  sufficient contrast and should not be used as the sole method for conveying information or direction.
     * For example, if your website has directions in red, and a user cannot see red, then that direction is inaccessible.
+    * Links, or actions on your website, should always be signified with something other than simply a different color. For example, an underline is the most common trait.
 * Pages should have  proper heading structure  in order to be readable without a stylesheet for those who do not navigate visually.
 * All site functionality  should be available  using the keyboard  for persons who do  not use a mouse.
+    * Tab order is important.
+* Adding ARIA attributes are helpful to provide screen reader users with more context and greater interactivity with content.
 * Responsive web design is important to ensure your site can be viewed on assistive devices of various sizes.
 
-For more information about accessibility, including official standards and checklists, [check out the provided resources](#resources). 
+For more information about accessibility, including official standards and checklists, [check out our resources](#other-accessibility-resources). 
 
-## Tools
+## Tools Included in Wa11y
 
-The mission for the Wa11y plugin is to provide a plethora of tools to help you evaluate and improve the accessibility of your website. If you would like to see any new tools added to the plugin, please create an issue in this repo and label it an "enhancement".
+The mission for the Wa11y plugin is to provide a plethora of tools to help you evaluate and improve the accessibility of your website.
+
+**If you would like to see any new tools added to the plugin, please create an issue in this repo and label it an "enhancement".**
 
 ### Tota11y
 
@@ -36,7 +47,7 @@ The mission for the Wa11y plugin is to provide a plethora of tools to help you e
 
 [WAVE](http://wave.webaim.org/) is a free evaluation tool provided by [WebAIM (Web Accessibility In Mind)](http://webaim.org/). It can be used to evaluate a live website for a wide range of accessibility issues.
 
-## WordPress Hooks
+## WordPress Hooks for Wa11y
  
 Wa11y provides hooks which allow you to "hook into" the plugin and call your own functions or filter data. There are two types of hooks: actions and filters. You can learn more about hooks [in the WordPress Plugin Handbook](https://developer.wordpress.org/plugins/hooks/).
 
@@ -59,22 +70,7 @@ Here is a list of the filters available for this plugin:
     * Allows you to pass a boolean to define whether or not the WAVE tool should be loaded
     * Passes 2 arguments: the default setting and the plugin's settings
 
-## Development
-
-If you would like to contribute to this plugin, it will require a few steps to get the code inititated and compiled on your local or testing environment.
-
-**You will need to have bower and npm installed.**
-
-**If you would like to submit changes to the plugin, please work on a different branch and then create a pull request towards the master branch.**
-
-1. Clone this repo
-2. Open the directory in the command line.
-3. Run `npm install` 
-4. Run `bower install` 
-5. Run `gulp` to compile all of the assets
-    * You can also run `gulp watch` to watch your assets for changes/updates
-
-## Resources
+## Other Accessibility Resources
 
 There are a multitude of resources available to help you better understand and evaluate accessibility. Please feel free to recommend more to add to the list.
 
@@ -96,12 +92,27 @@ Standards were issued in 2000.
 
 * [Section 508 Checklist](http://webaim.org/standards/508/checklist)
 
-### Tools
+### Other Accessibility Tools
 
 * [Color Contrast Checker](http://webaim.org/resources/contrastchecker)
 
-### Articles
+### Articles About Accessibility
 
 * [Which Tool Is Best?](http://webaim.org/articles/tools)
 * [Web Accessibility Evaluation Tools](https://www.w3.org/WAI/ER/tools)
 * [Getting Started With ARIA](http://a11yproject.com/posts/getting-started-aria)
+
+## Wa11y Development
+
+If you would like to contribute to this plugin, it will require a few steps to get the code inititated and compiled on your local or testing environment.
+
+**You will need to have bower and npm installed.**
+
+**If you would like to submit changes to the plugin, please work on a different branch and then create a pull request towards the master branch.**
+
+1. Clone this repo
+2. Open the directory in the command line.
+3. Run `npm install` 
+4. Run `bower install` 
+5. Run `gulp` to compile all of the assets
+    * You can also run `gulp watch` to watch your assets for changes/updates
