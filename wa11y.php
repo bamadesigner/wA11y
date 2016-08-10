@@ -2,7 +2,7 @@
 
 /**
  * Plugin Name:       Wa11y - The Web Accessibility Toolbox
- * Plugin URI:        @TODO
+ * Plugin URI:        https://wordpress.org/plugins/wa11y
  * Description:       A toolbox of resources to help you improve the accessibility of your WordPress website.
  * Version:           1.0.0
  * Author:            Rachel Carden
@@ -22,7 +22,7 @@ if ( ! defined( 'WPINC' ) ) {
 
 // If you define them, will they be used?
 define( 'WA11Y_VERSION', '1.0.0' );
-define( 'WA11Y_PLUGIN_URL', '@TODO' );
+define( 'WA11Y_PLUGIN_URL', 'https://wordpress.org/plugins/wa11y' );
 define( 'WA11Y_PLUGIN_FILE', 'wa11y/wa11y.php' );
 define( 'WA11Y_TOTA11Y_VERSION', '0.1.3' );
 
@@ -391,7 +391,7 @@ class Wa11y {
 		$enabled_tools = $this->get_enabled_tools();
 
 		// If tota11y isn't enabled...
-		if ( ! in_array( 'tota11y', $enabled_tools ) ) {
+		if ( empty( $enabled_tools ) || ! in_array( 'tota11y', $enabled_tools ) ) {
 			return $this->can_load_tools['tota11y'] = false;
 		}
 

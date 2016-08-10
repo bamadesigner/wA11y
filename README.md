@@ -2,6 +2,8 @@
 
 Wa11y is a WordPress plugin/toolbox of resources to help you improve the accessibility of your WordPress website.
 
+**If you're simply wanting to use the plugin, I would recommend [downloading Wa11y from the WordPress plugin repo](https://wordpress.org/plugins/wa11y).**
+
 ## Tools
 
 The mission for the Wa11y plugin is to provide a plethora of tools to help you evaluate and improve the accessibility of your website. If you would like to see any new tools added to the plugin, please create an issue in this repo and label it an "enhancement".
@@ -39,14 +41,15 @@ Here is a list of the filters available for this plugin:
 
 ## Development
 
-If you would like to contribute to this plugin, it will require a few steps to get the code inititate on your local or testing environment.
+If you would like to contribute to this plugin, it will require a few steps to get the code inititated and compiled on your local or testing environment.
 
-**You will need to have bower and npm installed.
-If you would like to submit changes to the plugin, please work on a different branch and then create a pull request towards the master branch.**
+**You will need to have bower and npm installed.**
+
+**If you would like to submit changes to the plugin, please work on a different branch and then create a pull request towards the master branch.**
 
 1. Clone this repo
 2. Open the directory in the command line.
 3. Run `npm install` 
 4. Run `bower install` 
-5. Run `gulp` to take care of/compile all of your assets
+5. Run `gulp` to compile all of the assets
     * You can also run `gulp watch` to watch your assets for changes/updates
