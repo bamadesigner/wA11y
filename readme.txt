@@ -1,7 +1,7 @@
 === Wa11y - The Web Accessibility Toolbox ===
 Contributors: bamadesigner
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=ZCAN2UX7QHZPL&lc=US&item_name=Rachel%20Carden%20%28Wa11y%29&currency_code=USD&bn=PP%2dDonationsBF%3abtn_donate_SM%2egif%3aNonHosted
-Tags: a11y, wa11y, accessibility, tota11y, wave, tools, evaluation
+Tags: a11y, wa11y, accessibility, tota11y, wave, tools, evaluation, hi roy
 Requires at least: 3.0
 Tested up to: 4.5.3
 Stable tag: 1.0.0
