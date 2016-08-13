@@ -1,7 +1,7 @@
 === Wa11y ===
 Contributors: bamadesigner
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=ZCAN2UX7QHZPL&lc=US&item_name=Rachel%20Carden%20%28Wa11y%29&currency_code=USD&bn=PP%2dDonationsBF%3abtn_donate_SM%2egif%3aNonHosted
-Tags: a11y, wa11y, accessibility
+Tags: a11y, wa11y, accessibility, tota11y, wave, tools, evaluation
 Requires at least: 3.0
 Tested up to: 4.5.3
 Stable tag: 1.0.0
@@ -79,7 +79,7 @@ Here is a list of the filters available for this plugin:
 
 == Resources ==
 
-**A11y PRO TIP: Take advantage of in-browser testing tools, like [WAVE](http://wave.webaim.org/) and [HTML_CodeSniffer](http://squizlabs.github.io/HTML_CodeSniffer/), to evaluate WordPress theme demos before you purchase.**
+**WA11Y PRO TIP: Take advantage of in-browser testing tools, like [WAVE](http://wave.webaim.org/) and [HTML_CodeSniffer](http://squizlabs.github.io/HTML_CodeSniffer/), to evaluate WordPress theme demos before you purchase.**
 
 = A Few Basic Accessibility Principles =
 
