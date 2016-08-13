@@ -3,7 +3,8 @@
 /**
  * The class that powers admin functionality.
  *
- * Class Wa11y_Admin
+ * Class    Wa11y_Admin
+ * @since   1.0.0
  */
 class Wa11y_Admin {
 
@@ -43,18 +44,18 @@ class Wa11y_Admin {
 	/**
 	 * Method to keep our instance from being cloned.
 	 *
-	 * @since    1.0.0
-	 * @access    private
-	 * @return    void
+	 * @since   1.0.0
+	 * @access  private
+	 * @return  void
 	 */
 	private function __clone() {}
 
 	/**
 	 * Method to keep our instance from being unserialized.
 	 *
-	 * @since    1.0.0
-	 * @access    private
-	 * @return    void
+	 * @since   1.0.0
+	 * @access  private
+	 * @return  void
 	 */
 	private function __wakeup() {}
 
@@ -89,7 +90,7 @@ class Wa11y_Admin {
 	/**
 	 * Register our settings.
 	 *
-	 * @since    1.0.0
+	 * @since   1.0.0
 	 */
 	public function register_settings() {
 		register_setting( 'wa11y_settings', 'wa11y_settings', array( $this, 'sanitize_settings' ) );

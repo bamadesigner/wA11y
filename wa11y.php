@@ -34,7 +34,8 @@ if ( is_admin() ) {
 /**
  * The class that powers general plugin functionality.
  *
- * Class Wa11y
+ * Class    Wa11y
+ * @since   1.0.0
  */
 class Wa11y {
 
@@ -73,7 +74,7 @@ class Wa11y {
 	 * @access	protected
 	 * @var		array
 	 */
-	protected $can_load_tools = array();
+	protected $can_load_tools;
 
 	/**
 	 * Holds the class instance.
@@ -279,7 +280,7 @@ class Wa11y {
 	 *
 	 * @since   1.0.0
 	 * @filter  'wa11y_wave_url' - string containing the WAVE evaluation URL. Passes the $post object if it exists.
-	 * @param 	WP_Admin_Bar - $wp_admin_bar - WP_Admin_Bar instance, passed by reference
+	 * @param   WP_Admin_Bar - $wp_admin_bar - WP_Admin_Bar instance, passed by reference
 	 */
 	public function add_to_toolbar( $wp_admin_bar ) {
 
@@ -377,7 +378,7 @@ class Wa11y {
 	 * Checks whether or not tota11y is set to load.
 	 *
 	 * @since   1.0.0
-	 * @filter  'wa11y_load_tota11' - boolean on whether or not to load the tota11y tool. Passes the tota11y settings.
+	 * @filter  'wa11y_load_tota11y' - boolean on whether or not to load the tota11y tool. Passes the tota11y settings.
 	 * @return	boolean - true if we're set to load tota11y, otherwise false
 	 */
 	public function can_load_tota11y() {
