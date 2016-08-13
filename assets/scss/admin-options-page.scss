@@ -1,3 +1,19 @@
+// A few variables
+$settings-red: #770000;
+
+// Tota11y
+$tota11y-red: #db0f0f;
+$tota11y-orange: #ffb710;
+$tota11y-yellow: #f5d800;
+$tota11y-green: #56d516;
+$tota11y-blue: #139fb4;
+$tota11y-indigo: #1251af;
+$tota11y-violet: #5c12af;
+
+// WAVE
+$wave-red: #BF1722;
+$wave-gray: #363636;
+
 // Customize the save buttons
 #save-wa11y-settings-side,
 #save-wa11y-settings-bottom {
@@ -48,7 +64,6 @@
         margin: 0 4px 2px 0;
         vertical-align: middle;
     }
-
 }
 
 // Setup all the .inside
@@ -59,7 +74,6 @@
         margin: 0;
         padding: 0;
     }
-
 }
 
 #wa11y-promote-mb {
@@ -84,12 +98,15 @@
         margin: 0 4px 2px 0;
         vertical-align: middle;
     }
-
 }
 
 // Setup the settings boxes
 .wa11y-tool-settings {
     position: relative;
+
+    .highlight-red {
+        color: $settings-red;
+    }
 
     .tool-header {
         background: #eee;
@@ -109,7 +126,6 @@
             &:before {
                 color: #016288;
             }
-
         }
 
         label.tool-label {
@@ -126,7 +142,6 @@
             .thinner {
                 font-weight: normal;
             }
-
         }
 
         .tool-desc {
@@ -134,7 +149,6 @@
             line-height: 1.6;
             margin: 8px 0 0 0;
         }
-
     }
 
     .tool-body {
@@ -154,7 +168,6 @@
         *:last-child {
             margin-bottom: 0;
         }
-
     }
 
     // Customize the tota11y section
@@ -172,34 +185,35 @@
             a {
                 color: #fff;
             }
-
         }
 
         .tota11y-red {
-            color: #db0f0f;
+            color: $tota11y-red;
         }
 
         .tota11y-orange {
-            color: #ffb710;
+            color: $tota11y-orange;
         }
 
         .tota11y-yellow {
-            color: #f5d800;
+            color: $tota11y-yellow;
         }
 
         .tota11y-green {
-            color: #56d516;
-        }
-        .tota11y-blue {
-            color: #139fb4;
-        }
-        .tota11y-indigo {
-            color: #1251af;
-        }
-        .tota11y-violet {
-            color: #5c12af;
+            color: $tota11y-green;
         }
 
+        .tota11y-blue {
+            color: $tota11y-blue;
+        }
+
+        .tota11y-indigo {
+            color: $tota11y-indigo;
+        }
+
+        .tota11y-violet {
+            color: $tota11y-violet;
+        }
     }
 
     // Customize the WAVE section
@@ -213,111 +227,105 @@
         }
 
         .wave-red {
-            color: #BF1722;
+            color: $wave-red;
         }
+
         .wave-gray {
-            color: #363636;
+            color: $wave-gray;
         }
-
     }
-
 }
 
+.wa11y-tool-settings {
 
+	.tool-settings-warning {
+		display: block;
+		background: #faf2f2; /*5%*/
+		padding: 12px 20px 12px 20px;
+		margin: 0;
+		border: 0;
+		border-top: 1px solid #f5e5e5; /*10%*/
+		font-style: italic;
+		color: $settings-red;
+		font-weight: bold;
+	}
 
+	ul.tool-settings-list {
+		display: block;
+		list-style: none;
+		margin: 0;
+		padding: 0;
+		border: 0;
+		border-top: 1px solid #d4e8ef; /*17%*/
+		border-bottom: 1px solid #d4e8ef; /*17%*/
 
+		& > li {
+			display: block;
+			background: #f8f8f8;
+			list-style: none;
+			margin: 0;
+			padding: 12px 20px 7px 20px;
+			border: 0;
+			border-bottom: 1px solid #e8e6e6;
 
+			&:last-child {
+				border-bottom: 0;
+			}
 
-.wa11y-tool-settings .tool-settings-warning {
-    display: block;
-    background: #faf2f2; /*5%*/
-    padding: 12px 20px 12px 20px;
-    margin: 0;
-    border: 0;
-    border-top: 1px solid #f5e5e5; /*10%*/
-    font-style: italic;
-    color: #770000;
-    font-weight: bold;
-}
+			&.disabled {
+				background: rgba( 234, 159, 70, 0.15 );
 
-.wa11y-tool-settings ul.tool-settings-list {
-    display: block;
-    list-style: none;
-    margin: 0;
-    padding: 0;
-    border: 0;
-    border-top: 1px solid #d4e8ef; /*17%*/
-    border-bottom: 1px solid #d4e8ef; /*17%*/
+				.tool-option-header {
+					text-decoration: line-through;
+				}
 
-    & > li {
-        display: block;
-        background: #f8f8f8;
-        list-style: none;
-        margin: 0;
-        padding: 12px 20px 7px 20px;
-        border: 0;
-        border-bottom: 1px solid #e8e6e6;
+				.tool-option-disabled-message {
+					display: block;
+					opacity: 1;
+					font-style: italic;
+					margin: 0 0 5px 0;
+				}
+			}
+		}
 
-        &:last-child {
-            border-bottom: 0;
-        }
+		label.tool-option-header {
+			display: inline-block;
+			margin: 0 10px 5px 0;
+			font-size: 14px;
+			font-weight: bold;
+		}
 
-        &.disabled {
-	        background: rgba( 234, 159, 70, 0.15 );
+		.tool-setting-text {
+			margin: 0 10px 5px 0;
+		}
 
-            .tool-option-header {
-	            text-decoration: line-through;
-            }
+		.tool-option-select {
+			width: 300px;
+			margin: 0 0 5px 0;
+		}
 
-            .tool-option-disabled-message {
-                display: block;
-                opacity: 1;
-                font-style: italic;
-                margin: 0 0 5px 0;
-            }
+		.tool-option-checkbox {
+			display: inline-block;
+			margin: 0 10px 5px 10px;
+		}
 
-        }
+		.tool-option-label {
+			display: inline-block;
+			margin: 0 0 5px 0;
+		}
 
-    }
+		label.tool-option-header + .tool-option-checkbox {
+			margin-left: 0;
+		}
 
-    label.tool-option-header {
-        display: inline-block;
-        margin: 0 10px 5px 0;
-        font-size: 14px;
-        font-weight: bold;
-    }
+		.tool-option-checkbox + .tool-option-label {
+			margin-left: -5px;
+		}
 
-    .tool-setting-text {
-        margin: 0 10px 5px 0;
-    }
-
-    .tool-option-select {
-        width: 300px;
-        margin: 0 0 5px 0;
-    }
-
-    .tool-option-checkbox {
-        display: inline-block;
-        margin: 0 10px 5px 10px;
-    }
-
-    .tool-option-label {
-        display: inline-block;
-        margin: 0 0 5px 0;
-    }
-
-    label.tool-option-header + .tool-option-checkbox {
-        margin-left: 0;
-    }
-
-    .tool-option-checkbox + .tool-option-label {
-        margin-left: -5px;
-    }
-
-    .tool-option-side-note {
-        display: inline-block;
-        margin: 0 0 5px 0;
-        font-style: italic;
-    }
-
+		.tool-option-side-note {
+			display: inline-block;
+			margin: 0 0 5px 0;
+			font-style: italic;
+		}
+	}
 }

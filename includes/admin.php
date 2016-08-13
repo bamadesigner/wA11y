@@ -479,7 +479,7 @@ class Wa11y_Admin {
 						<p><?php printf( __( '%1$s provides a simple, straight forward evaluation of any public webpage and allows you to filter the evaluation by standard: Full, Section 508, and WCAG 2.0 A and AA. If your page does contain errors, the report provides documentation to explain the issue and how to fix it. %2$s also provides a color contrast checker.', 'wa11y' ), 'WAVE', 'WAVE' ); ?></p>
 
 						<h3 class="tool-subheader"><?php printf( __( 'Best Uses For %s', 'wa11y' ), 'WAVE' ); ?></h3>
-						<p><?php printf( __( '%1$s is built to scan, and provide feedback on, an entire document so this tool is best used to evaluate pages on the front-end of your site. A big difference between %2$s and %3$s is that %4$s can only evaluate publicly-accessible pages so it\'s not ideal for local/staging environments or content that is password-protected.', 'wa11y' ), 'WAVE', 'WAVE', 'tota11y', 'WAVE' ); ?></p>
+						<p><?php printf( __( '%1$s is built to scan, and provide feedback on, an entire document so this tool is best used to evaluate pages on the front-end of your site. A big difference between %2$s and %3$s is that <strong>%4$s can only evaluate publicly-accessible pages</strong> so it\'s not ideal for local/staging environments or content that is password-protected.', 'wa11y' ), 'WAVE', 'WAVE', 'tota11y', 'WAVE' ); ?></p>
 
 						<h3 class="tool-subheader"><?php _e( 'Other Resources', 'wa11y' ); ?></h3>
 						<p><?php
@@ -524,7 +524,7 @@ class Wa11y_Admin {
 
 							<li><label class="tool-option-header" for="wave-toolbar"><?php printf( __( 'Add link to %s evalution to the WordPress toolbar', 'wa11y' ), 'WAVE' ); ?>:</label>
 								<input class="tool-option-checkbox" id="wave-toolbar" type="checkbox" name="wa11y_settings[tools][wave][load_in_toolbar]" value="1"<?php checked( isset( $wave_settings[ 'load_in_toolbar' ] ) && $wave_settings[ 'load_in_toolbar' ] > 0 ); ?> />
-								<span class="tool-option-side-note"><?php printf( __( "In the front-end, this will allow you to quickly evaluate any page that you're viewing. In the admin, the link will only display on screens where you are editing a post or a page.", 'wa11y' ), 'WAVE' ); ?></span>
+								<span class="tool-option-side-note"><?php _e( "In the front-end, this will allow you to quickly evaluate any page that you're viewing. In the admin, the link will only display on screens where you are editing a post or a page.", 'wa11y' ); ?> <span class="highlight-red"><strong><?php printf( __( '%s can only evaluate publicly-accessible pages.', 'wa11y' ), 'WAVE' ); ?></strong></span></span>
 							</li>
 
 							<li<?php echo $disable_admin_wave ? ' class="disabled"' : null; ?>><label class="tool-option-header" for="wave-admin"><?php printf( __( 'Display %s evaluation when editing content', 'wa11y' ), 'WAVE' ); ?>:</label>
@@ -534,7 +534,7 @@ class Wa11y_Admin {
 								if ( $disable_admin_wave ) { ?>
 									<span class="tool-option-disabled-message"><?php printf( __( 'At this time, the %1$s evaluation iframe cannot be embedded on a site using SSL because the %2$s site does not use SSL.', 'wa11y' ), 'WAVE', 'WAVE' ); ?></span>
 								<?php } else { ?>
-									<span class="tool-option-side-note"><?php printf( __( 'The %s evaluation will only display on screens where you are editing a post or a page.', 'wa11y' ), 'WAVE' ); ?></span>
+									<span class="tool-option-side-note"><?php printf( __( 'The %1$s evaluation will only display on screens where you are editing a post or a page. <strong>%1$s can only evaluate publicly-accessible pages.</strong>', 'wa11y' ), 'WAVE', 'WAVE' ); ?> <span class="highlight-red"><strong><?php printf( __( '%s can only evaluate publicly-accessible pages.', 'wa11y' ), 'WAVE' ); ?></strong></span></span>
 								<?php }
 
 								?>
