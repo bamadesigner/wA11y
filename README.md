@@ -108,13 +108,12 @@ Standards were issued in 2000.
 
 If you would like to contribute to this plugin, it will require a few steps to get the code inititated and compiled on your local or testing environment.
 
-**You will need to have bower and npm installed.**
+**You will need to have npm installed.**
 
 **If you would like to submit changes to the plugin, please work on a different branch and then create a pull request towards the master branch.**
 
 1. Clone this repo
 2. Open the directory in the command line.
-3. Run `npm install` 
-4. Run `bower install` 
+3. Run `npm install`
 5. Run `gulp` to compile all of the assets
     * You can also run `gulp watch` to watch your assets for changes/updates

@@ -22,9 +22,9 @@ Wa11y is a WordPress plugin that provides a toolbox of resources to help you imp
 "W" + "a11y" is my abbreviation for "web accessibility". **[#wa11y](https://twitter.com/search?q=%23wa11y)**
 
 = What Is Web Accessibility? =
-Web accessibility refers to  the inclusive practice of  removing barriers that prevent interaction with, or access to, websites by people with disabilities.
+Web accessibility refers to the inclusive practice of removing barriers that prevent interaction with, or access to, websites by people with disabilities.
 
-Data shows 1 in 5 people have a disability. If your site is inaccessible, **you could be excluding 20%  of your potential users,  customers, students,  and more.**
+Data shows 1 in 5 people have a disability. If your site is inaccessible, **you could be excluding 20% of your potential users, customers, students, and more.**
 
 The foundation for good accessibility is great markup which also means that good accessibility can improve your SEO.
 
@@ -83,22 +83,22 @@ Here is a list of the filters available for this plugin:
 
 = A Few Basic Accessibility Principles =
 
-* All non-text content needs  a text equivalent to help convey information to those with sensory disabilities.
+* All non-text content needs a text equivalent to help convey information to those with sensory disabilities.
     * For example, images and videos need text equivalents to convey information and context to those who have trouble with vision and/or hearing.
-* Color usage should have  sufficient contrast and should not be used as the sole method for conveying information or direction.
+* Color usage should have sufficient contrast and should not be used as the sole method for conveying information or direction.
     * For example, if your website has directions in red, and a user cannot see red, then that direction is inaccessible.
     * Links, or actions on your website, should always be signified with something other than simply a different color. For example, an underline is the most common trait.
-* Pages should have  proper heading structure  in order to be readable without a stylesheet for those who do not navigate visually.
-* All site functionality  should be available  using the keyboard  for persons who do  not use a mouse.
+* Pages should have proper heading structure in order to be readable without a stylesheet for those who do not navigate visually.
+* All site functionality should be available using the keyboard for persons who do not use a mouse.
     * Tab order is important.
 * Adding ARIA attributes are helpful to provide screen reader users with more context and greater interactivity with content.
 * Responsive web design is important to ensure your site can be viewed on assistive devices of various sizes.
 
 = Web Accessibility Standards =
 
-**WCAG 2.0 - Web Content  Accessibility  Guidelines**
+**WCAG 2.0 - Web Content Accessibility Guidelines**
 
-[WCAG](https://www.w3.org/WAI/intro/wcag) are part of a series of guidelines published by  the [Web Accessibility Initiative (WAI)](https://www.w3.org/WAI/) of the [World Wide Web Consortium (W3C)](https://www.w3.org/), the main international standards organization for the Internet.
+[WCAG](https://www.w3.org/WAI/intro/wcag) are part of a series of guidelines published by the [Web Accessibility Initiative (WAI)](https://www.w3.org/WAI/) of the [World Wide Web Consortium (W3C)](https://www.w3.org/), the main international standards organization for the Internet.
 
 Current version was published in December 2008.
 
@@ -106,7 +106,7 @@ Current version was published in December 2008.
 
 **Section 508**
 
-[Section 508 Standards](https://www.section508.gov/) apply to electronic and  information technology developed, procured, maintained, or used by federal agencies, including computer hardware and software, websites, phone systems, and copiers.
+[Section 508 Standards](https://www.section508.gov/) apply to electronic and information technology developed, procured, maintained, or used by federal agencies, including computer hardware and software, websites, phone systems, and copiers.
 
 Standards were issued in 2000.
 
