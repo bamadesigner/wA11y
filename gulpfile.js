@@ -50,7 +50,7 @@ gulp.task('translate', function () {
         .pipe(wp_pot( {
             domain: 'wa11y',
             destFile:'wa11y.pot',
-            package: 'Wa11y',
+            package: 'wA11y',
             bugReport: 'https://github.com/bamadesigner/wa11y/issues',
             lastTranslator: 'Rachel Carden <bamadesigner@gmail.com>',
             team: 'Rachel Carden <bamadesigner@gmail.com>',

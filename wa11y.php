@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Plugin Name:       Wa11y - The Web Accessibility Toolbox
+ * Plugin Name:       wA11y - The Web Accessibility Toolbox
  * Plugin URI:        https://wordpress.org/plugins/wa11y
  * Description:       A toolbox of resources to help you improve the accessibility of your WordPress website.
  * Version:           1.0.0
@@ -34,10 +34,10 @@ if ( is_admin() ) {
 /**
  * The class that powers general plugin functionality.
  *
- * Class    Wa11y
+ * Class    wA11y
  * @since   1.0.0
  */
-class Wa11y {
+class wA11y {
 
 	/**
 	 * Whether or not this plugin is network active.
@@ -81,7 +81,7 @@ class Wa11y {
 	 *
 	 * @since	1.0.0
 	 * @access	private
-	 * @var		Wa11y
+	 * @var		wA11y
 	 */
 	private static $instance;
 
@@ -90,7 +90,7 @@ class Wa11y {
 	 *
 	 * @access  public
 	 * @since   1.0.0
-	 * @return	Wa11y
+	 * @return	wA11y
 	 */
 	public static function instance() {
 		if ( ! isset( self::$instance ) ) {
@@ -174,7 +174,7 @@ class Wa11y {
 	}
 
 	/**
-	 * Get Wa11y settings
+	 * Get wA11y settings
 	 *
 	 * @since   1.0.0
 	 * @filter  'wa11y_settings' - array with the settings
@@ -290,7 +290,7 @@ class Wa11y {
 			return;
 		}
 
-		// Will hold all of the Wa11y nodes
+		// Will hold all of the wA11y nodes
 		$wa11y_nodes = array();
 
 		// Process each enabled tool
@@ -338,10 +338,10 @@ class Wa11y {
 		// If we have nodes to add...
 		if ( ! empty( $wa11y_nodes ) ) {
 
-			// Add parent Wa11y node
+			// Add parent wA11y node
 			$wp_admin_bar->add_node( array(
 				'id'    	=> 'wa11y',
-				'title' 	=> '<span aria-hidden="true">Wa11y</span><span class="screen-reader-text">Wally</span>',
+				'title' 	=> '<span aria-hidden="true">wA11y</span><span class="screen-reader-text">Wally</span>',
 				'parent'	=> false,
 			));
 
@@ -515,17 +515,17 @@ class Wa11y {
 }
 
 /**
- * Returns the instance of our main Wa11y class.
+ * Returns the instance of our main wA11y class.
  *
  * Will come in handy when we need to access the
  * class to retrieve data throughout the plugin.
  *
  * @since	1.0.0
  * @access	public
- * @return	Wa11y
+ * @return	wA11y
  */
 function wa11y() {
-	return Wa11y::instance();
+	return wA11y::instance();
 }
 
 // Let's get this show on the road

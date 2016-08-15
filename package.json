@@ -1,7 +1,7 @@
 {
-  "name": "Wa11y",
+  "name": "wA11y",
   "version": "1.0.0",
-  "description": "Wa11y is a toolbox of resources to help you improve the accessibility of your WordPress website.",
+  "description": "wA11y is a toolbox of resources to help you improve the accessibility of your WordPress website.",
   "license": "GPL",
   "repository": {
     "type": "git",

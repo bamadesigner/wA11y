@@ -1,10 +1,10 @@
-# Wa11y - The Web Accessibility Toolbox
+# wA11y - The Web Accessibility Toolbox
 
-Wa11y is a WordPress plugin that provides a toolbox of resources to help you improve the accessibility of your WordPress website.
+wA11y is a WordPress plugin that provides a toolbox of resources to help you improve the accessibility of your WordPress website.
 
-**If you're simply wanting to use the plugin, I recommend you [download Wa11y from the WordPress plugin repo](https://wordpress.org/plugins/wa11y).**
+**If you're simply wanting to use the plugin, I recommend you [download wA11y from the WordPress plugin repo](https://wordpress.org/plugins/wa11y).**
 
-## What Does "Wa11y" Mean?
+## What Does "wA11y" Mean?
 
 "A11y" is the commonly used abbreviation for accessibility, since there are eleven letters between the "a" and the "y".
  
@@ -33,9 +33,9 @@ The foundation for good accessibility is great markup which also means that good
 
 For more information about accessibility, including official standards and checklists, [check out our resources](#other-accessibility-resources). 
 
-## Tools Included In Wa11y
+## Tools Included In wA11y
 
-The mission for the Wa11y plugin is to provide a plethora of tools to help you evaluate and improve the accessibility of your website.
+The mission for the wA11y plugin is to provide a plethora of tools to help you evaluate and improve the accessibility of your website.
 
 **If you would like to see any new tools added to the plugin, please create an issue in this repo and label it an "enhancement".**
 
@@ -47,13 +47,13 @@ The mission for the Wa11y plugin is to provide a plethora of tools to help you e
 
 [WAVE](http://wave.webaim.org/) is a free evaluation tool provided by [WebAIM (Web Accessibility In Mind)](http://webaim.org/). It can be used to evaluate a live website for a wide range of accessibility issues.
 
-## WordPress Hooks For Wa11y
+## WordPress Hooks For wA11y
  
-Wa11y provides hooks which allow you to "hook into" the plugin and call your own functions or filter data. There are two types of hooks: actions and filters. You can learn more about hooks [in the WordPress Plugin Handbook](https://developer.wordpress.org/plugins/hooks/).
+wA11y provides hooks which allow you to "hook into" the plugin and call your own functions or filter data. There are two types of hooks: actions and filters. You can learn more about hooks [in the WordPress Plugin Handbook](https://developer.wordpress.org/plugins/hooks/).
 
 ### Filters
 
-Filters provide a way for you to modify a piece of data inside the Wa11y plugin. [Learn more about filters](https://developer.wordpress.org/plugins/hooks/filters/).
+Filters provide a way for you to modify a piece of data inside the wA11y plugin. [Learn more about filters](https://developer.wordpress.org/plugins/hooks/filters/).
 
 Here is a list of the filters available for this plugin:
 
@@ -104,7 +104,7 @@ Standards were issued in 2000.
 * [Web Accessibility Evaluation Tools](https://www.w3.org/WAI/ER/tools)
 * [Getting Started With ARIA](http://a11yproject.com/posts/getting-started-aria)
 
-## Wa11y Development
+## wA11y Development
 
 If you would like to contribute to this plugin, it will require a few steps to get the code inititated and compiled on your local or testing environment.
 

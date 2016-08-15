@@ -1,6 +1,6 @@
-=== Wa11y - The Web Accessibility Toolbox ===
+=== wA11y - The Web Accessibility Toolbox ===
 Contributors: bamadesigner
-Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=ZCAN2UX7QHZPL&lc=US&item_name=Rachel%20Carden%20%28Wa11y%29&currency_code=USD&bn=PP%2dDonationsBF%3abtn_donate_SM%2egif%3aNonHosted
+Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=ZCAN2UX7QHZPL&lc=US&item_name=Rachel%20Carden%20%28wA11y%29&currency_code=USD&bn=PP%2dDonationsBF%3abtn_donate_SM%2egif%3aNonHosted
 Tags: a11y, wa11y, accessibility, tota11y, wave, tools, evaluation, hi roy
 Requires at least: 3.0
 Tested up to: 4.5.3
@@ -8,15 +8,15 @@ Stable tag: 1.0.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
-Wa11y provides a toolbox of resources to help you improve the accessibility of your WordPress website.
+wA11y provides a toolbox of resources to help you improve the accessibility of your WordPress website.
 
 == Description ==
 
-Wa11y is a WordPress plugin that provides a toolbox of resources to help you improve the accessibility of your WordPress website.
+wA11y is a WordPress plugin that provides a toolbox of resources to help you improve the accessibility of your WordPress website.
 
-**If you would like to contribute to the plugin, or report issues, please go through [the Wa11y Github repo](https://github.com/bamadesigner/wa11y).**
+**If you would like to contribute to the plugin, or report issues, please go through [the wA11y Github repo](https://github.com/bamadesigner/wa11y).**
 
-= What Does "Wa11y" Mean? =
+= What Does "wA11y" Mean? =
 "A11y" is the commonly used abbreviation for accessibility, since there are eleven letters between the "a" and the "y".
 
 "W" + "a11y" is my abbreviation for "web accessibility". **[#wa11y](https://twitter.com/search?q=%23wa11y)**
@@ -28,11 +28,11 @@ Data shows 1 in 5 people have a disability. If your site is inaccessible, **you 
 
 The foundation for good accessibility is great markup which also means that good accessibility can improve your SEO.
 
-= Tools Included In Wa11y =
+= Tools Included In wA11y =
 
-The mission for the Wa11y plugin is to provide a plethora of tools to help you evaluate and improve the accessibility of your website.
+The mission for the wA11y plugin is to provide a plethora of tools to help you evaluate and improve the accessibility of your website.
 
-**If you would like to see any new tools added to the plugin, please [create an issue in the Wa11y Github repo](https://github.com/bamadesigner/wa11y) and label it an "enhancement".**
+**If you would like to see any new tools added to the plugin, please [create an issue in the wA11y Github repo](https://github.com/bamadesigner/wa11y) and label it an "enhancement".**
 
 ### Tota11y
 
@@ -46,7 +46,7 @@ The mission for the Wa11y plugin is to provide a plethora of tools to help you e
 
 1. Upload 'wa11y' to the '/wp-content/plugins/' directory
 2. Activate the plugin through the 'Plugins' menu in WordPress
-3. Go to Settings > Wa11y to setup the plugin.
+3. Go to Settings > wA11y to setup the plugin.
 
 == Changelog ==
 
@@ -60,7 +60,7 @@ Plugin launch
 
 == Filters ==
 
-Filters provide a way for you to modify a piece of data inside the Wa11y plugin. [Learn more about filters](https://developer.wordpress.org/plugins/hooks/filters/).
+Filters provide a way for you to modify a piece of data inside the wA11y plugin. [Learn more about filters](https://developer.wordpress.org/plugins/hooks/filters/).
 
 Here is a list of the filters available for this plugin:
 

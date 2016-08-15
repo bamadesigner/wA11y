@@ -3,10 +3,10 @@
 /**
  * The class that powers admin functionality.
  *
- * Class    Wa11y_Admin
+ * Class    wA11y_Admin
  * @since   1.0.0
  */
-class Wa11y_Admin {
+class wA11y_Admin {
 
 	/**
 	 * Holds the options page slug.
@@ -22,7 +22,7 @@ class Wa11y_Admin {
 	 *
 	 * @since   1.0.0
 	 * @access  private
-	 * @var     Wa11y_Admin
+	 * @var     wA11y_Admin
 	 */
 	private static $instance;
 
@@ -31,7 +31,7 @@ class Wa11y_Admin {
 	 *
 	 * @access  public
 	 * @since   1.0.0
-	 * @return  Wa11y_Admin
+	 * @return  wA11y_Admin
 	 */
 	public static function instance() {
 		if ( ! isset( self::$instance ) ) {
@@ -179,7 +179,7 @@ class Wa11y_Admin {
 			if ( ! empty( $settings['load_admin_edit'] ) && true == $settings['load_admin_edit'] ) {
 
 				// Add WAVE Evaluation meta box
-				add_meta_box( 'wa11y-wave-evaluation-mb', 'Wa11y - WAVE ' . __( 'Accessibility Evaluation', 'wa11y' ), array( $this, 'print_post_meta_boxes' ), $post_type, 'normal', 'high' );
+				add_meta_box( 'wa11y-wave-evaluation-mb', 'wA11y - WAVE ' . __( 'Accessibility Evaluation', 'wa11y' ), array( $this, 'print_post_meta_boxes' ), $post_type, 'normal', 'high' );
 
 			}
 
@@ -204,10 +204,10 @@ class Wa11y_Admin {
 				if ( is_ssl() ) {
 
 					// Build anchor element to settings page
-					$settings_page_anchor = '<a href="' . add_query_arg( array( 'page' => 'wa11y' ), admin_url( 'options-general.php' ) ) . '" title="' . sprintf( esc_attr__( 'Visit the %s settings page', 'wa11y' ), 'Wa11y' ) . '" target="_blank">';
+					$settings_page_anchor = '<a href="' . add_query_arg( array( 'page' => 'wa11y' ), admin_url( 'options-general.php' ) ) . '" title="' . sprintf( esc_attr__( 'Visit the %s settings page', 'wa11y' ), 'wA11y' ) . '" target="_blank">';
 
 					?>
-					<p id="wa11y-wave-eval-no-SSL"><strong><?php printf( __( 'At this time, the %1$s evaluation iframe cannot be embedded on a site using SSL because the %2$s site does not use SSL.', 'wa11y' ), 'WAVE', 'WAVE' ); ?></strong> <?php printf( __( 'If you would like to remove this message, please uncheck the "Display %1$s evaluation when editing content" setting on %2$sthe %3$s settings page%4$s.', 'wa11y' ), 'WAVE', $settings_page_anchor, 'Wa11y', '</a>' ); ?></p>
+					<p id="wa11y-wave-eval-no-SSL"><strong><?php printf( __( 'At this time, the %1$s evaluation iframe cannot be embedded on a site using SSL because the %2$s site does not use SSL.', 'wa11y' ), 'WAVE', 'WAVE' ); ?></strong> <?php printf( __( 'If you would like to remove this message, please uncheck the "Display %1$s evaluation when editing content" setting on %2$sthe %3$s settings page%4$s.', 'wa11y' ), 'WAVE', $settings_page_anchor, 'wA11y', '</a>' ); ?></p>
 					<?php
 
 				} else {
@@ -239,7 +239,7 @@ class Wa11y_Admin {
 	public function add_options_page() {
 
 		// Add the options page
-		$this->options_page = add_options_page( 'Wa11y', 'Wa11y', 'manage_options', 'wa11y', array( $this, 'print_options_page' ) );
+		$this->options_page = add_options_page( 'wA11y', 'wA11y', 'manage_options', 'wa11y', array( $this, 'print_options_page' ) );
 
 	}
 
@@ -253,7 +253,7 @@ class Wa11y_Admin {
 		?>
 		<div id="wa11y-options" class="wrap options" role="form">
 
-			<h1><span aria-hidden="true">Wa11y</span><span class="screen-reader-text">Wally</span> - <?php _e( 'The Web Accessibility Toolbox', 'wa11y' ); ?></h1>
+			<h1><span aria-hidden="true">wA11y</span><span class="screen-reader-text">Wally</span> - <?php _e( 'The Web Accessibility Toolbox', 'wa11y' ); ?></h1>
 
 			<form method="post" action="options.php">
 				<?php
@@ -316,7 +316,7 @@ class Wa11y_Admin {
 		$settings = wa11y()->get_settings();
 
 		// About this Plugin
-		add_meta_box( 'wa11y-about-mb', sprintf( __( 'About %s', 'wa11y' ), 'Wa11y' ), array( $this, 'print_options_meta_boxes' ), $this->options_page, 'side', 'core', $settings );
+		add_meta_box( 'wa11y-about-mb', sprintf( __( 'About %s', 'wa11y' ), 'wA11y' ), array( $this, 'print_options_meta_boxes' ), $this->options_page, 'side', 'core', $settings );
 
 		// Spread the Love
 		add_meta_box( 'wa11y-promote-mb', __( 'Spread the Love', 'wa11y' ), array( $this, 'print_options_meta_boxes' ), $this->options_page, 'side', 'core', $settings );
@@ -349,11 +349,11 @@ class Wa11y_Admin {
 
 		switch( $metabox[ 'id' ] ) {
 
-			// About Wa11y
+			// About wA11y
 			case 'wa11y-about-mb':
 
 				// Print the plugin name (with link to site)
-				?><p><?php printf( __( '%s is a toolbox of resources to help you improve the accessibility of your WordPress website.', 'wa11y' ), 'Wa11y' ); ?></p><?php
+				?><p><?php printf( __( '%s is a toolbox of resources to help you improve the accessibility of your WordPress website.', 'wa11y' ), 'wA11y' ); ?></p><?php
 
 				// Print the plugin version and author (with link to site)
 				?><p>
@@ -373,7 +373,7 @@ class Wa11y_Admin {
 					<a href="https://twitter.com/bamadesigner" title="<?php _e( 'Follow bamadesigner on Twitter', 'wa11y' ); ?>" target="_blank"><span class="dashicons dashicons-twitter"></span> <span class="promote-text"><?php _e( 'Follow me on Twitter', 'wa11y' ); ?></span></a>
 				</p>
 				<p class="donate">
-					<a href="https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=ZCAN2UX7QHZPL&lc=US&item_name=Rachel%20Carden%20%28Wa11y%29&currency_code=USD&bn=PP%2dDonationsBF%3abtn_donate_SM%2egif%3aNonHosted" title="<?php esc_attr_e( 'Donate a few bucks to the plugin', 'wa11y' ); ?>" target="_blank"><img src="https://www.paypalobjects.com/en_US/i/btn/btn_donate_SM.gif" alt="<?php esc_attr_e( 'Donate', 'wa11y' ); ?>" /> <span class="promote-text"><?php _e( 'and buy me a coffee', 'wa11y' ); ?></span></a>
+					<a href="https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=ZCAN2UX7QHZPL&lc=US&item_name=Rachel%20Carden%20%28wA11y%29&currency_code=USD&bn=PP%2dDonationsBF%3abtn_donate_SM%2egif%3aNonHosted" title="<?php esc_attr_e( 'Donate a few bucks to the plugin', 'wa11y' ); ?>" target="_blank"><img src="https://www.paypalobjects.com/en_US/i/btn/btn_donate_SM.gif" alt="<?php esc_attr_e( 'Donate', 'wa11y' ); ?>" /> <span class="promote-text"><?php _e( 'and buy me a coffee', 'wa11y' ); ?></span></a>
 				</p>
 				<?php
 				break;
@@ -561,7 +561,7 @@ class Wa11y_Admin {
 	public function add_plugin_action_links( $actions, $plugin_file, $plugin_data, $context ) {
 
 		// Add link to our settings page
-		$actions[ 'settings' ] = '<a href="' . add_query_arg( array( 'page' => 'wa11y' ), admin_url( 'options-general.php' ) ) . '" title="' . sprintf( esc_attr__( 'Visit the %s settings page', 'wa11y' ), 'Wa11y' ) . '">' . __( 'Settings' , 'wa11y' ) . '</a>';
+		$actions[ 'settings' ] = '<a href="' . add_query_arg( array( 'page' => 'wa11y' ), admin_url( 'options-general.php' ) ) . '" title="' . sprintf( esc_attr__( 'Visit the %s settings page', 'wa11y' ), 'wA11y' ) . '">' . __( 'Settings' , 'wa11y' ) . '</a>';
 
 		return $actions;
 	}
@@ -569,17 +569,17 @@ class Wa11y_Admin {
 }
 
 /**
- * Returns the instance of our Wa11y_Admin class.
+ * Returns the instance of our wA11y_Admin class.
  *
  * Will come in handy when we need to access the
  * class to retrieve data throughout the plugin.
  *
  * @since	1.0.0
  * @access	public
- * @return	Wa11y_Admin
+ * @return	wA11y_Admin
  */
 function wa11y_admin() {
-	return Wa11y_Admin::instance();
+	return wA11y_Admin::instance();
 }
 
 // Admin all the things

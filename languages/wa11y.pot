@@ -1,8 +1,8 @@
-# Copyright (C) 2016 Wa11y
-# This file is distributed under the same license as the Wa11y package.
+# Copyright (C) 2016 wA11y
+# This file is distributed under the same license as the wA11y package.
 msgid ""
 msgstr ""
-"Project-Id-Version: Wa11y\n"
+"Project-Id-Version: wA11y\n"
 "Report-Msgid-Bugs-To: https://github.com/bamadesigner/wa11y/issues\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
