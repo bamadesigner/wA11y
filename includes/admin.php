@@ -318,6 +318,9 @@ class wA11y_Admin {
 		// About this Plugin
 		add_meta_box( 'wa11y-about-mb', sprintf( __( 'About %s', 'wa11y' ), 'wA11y' ), array( $this, 'print_options_meta_boxes' ), $this->options_page, 'side', 'core', $settings );
 
+		// About this wA11y.org
+		add_meta_box( 'wa11y-about-org-mb', sprintf( __( 'About %s', 'wa11y' ), 'wA11y.org' ), array( $this, 'print_options_meta_boxes' ), $this->options_page, 'side', 'core', $settings );
+
 		// Spread the Love
 		add_meta_box( 'wa11y-promote-mb', __( 'Spread the Love', 'wa11y' ), array( $this, 'print_options_meta_boxes' ), $this->options_page, 'side', 'core', $settings );
 
@@ -361,6 +364,14 @@ class wA11y_Admin {
 					<strong><?php _e( 'Author', 'wa11y' ); ?>:</strong> <a href="https://bamadesigner.com/" target="_blank">Rachel Carden</a>
 				</p><?php
 
+				break;
+
+			// About wA11y.org
+			case 'wa11y-about-org-mb':
+
+				// Let users know about the website
+				?><p><?php printf( __( '%s is a new community initiative to contribute to web accessibility by providing information, education, resources, and tools.', 'wa11y' ), '<a href="https://wa11y.org">wA11y.org</a>' ); ?></p>
+				<p><?php printf( __( 'If you\'re interested in joining the %1$s community, and would like to contribute to its growth, please subscribe at %2$s.', 'wa11y' ), 'wA11y.org', '<a href="https://wa11y.org">https://wa11y.org</a>' ); ?></p><?php
 				break;
 
 			// Promote
