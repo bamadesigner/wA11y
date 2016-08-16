@@ -18,6 +18,13 @@ Data shows 1 in 5 people have a disability. If your site is inaccessible, **you 
 
 The foundation for good accessibility is great markup which also means that good accessibility can improve your SEO.
 
+## wA11y.org
+
+[wA11y.org](https://wa11y.org) is a new community initiative to contribute to web accessibility by providing information, education, resources, and tools.
+
+If you're interested in joining the wA11y.org community, and would like to contribute to its growth, please subscribe at [https://wa11y.org](https://wa11y.org).
+
+
 ## A Few Basic Accessibility Principles
 
 * All non-text content needs  a text equivalent to help convey information to those with sensory disabilities.
