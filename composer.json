@@ -1,0 +1,22 @@
+{
+    "name": "bamadesigner/wa11y",
+    "description": "A toolbox of resources to help you improve the accessibility of your WordPress website.",
+    "type": "wordpress-plugin",
+    "private": true,
+    "authors": [
+        {
+            "name": "Rachel Carden",
+            "email": "bamadesigner@gmail.com"
+        }
+    ],
+    "require-dev": {
+        "squizlabs/php_codesniffer": "*",
+        "wp-coding-standards/wpcs": "*"
+    },
+    "scripts": {
+        "post-install-cmd": [
+            "./vendor/bin/phpcs --config-set bin vendor/bin/phpcs",
+            "./vendor/bin/phpcs --config-set installed_paths ../../wp-coding-standards/wpcs"
+        ]
+    }
+}

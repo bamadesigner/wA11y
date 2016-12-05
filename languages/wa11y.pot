@@ -12,210 +12,210 @@ msgstr ""
 "Language-Team: Rachel Carden <bamadesigner@gmail.com>\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n\n"
 
-#: includes/admin.php:182
+#: includes/admin.php:190
 msgid "Accessibility Evaluation"
 msgstr ""
 
-#: includes/admin.php:207, includes/admin.php:575
+#: includes/admin.php:213, includes/admin.php:597
 msgid "Visit the %s settings page"
 msgstr ""
 
-#: includes/admin.php:210, includes/admin.php:546
+#: includes/admin.php:216, includes/admin.php:567
 msgid "At this time, the %1$s evaluation iframe cannot be embedded on a site using SSL because the %2$s site does not use SSL."
 msgstr ""
 
-#: includes/admin.php:210
+#: includes/admin.php:216
 msgid "If you would like to remove this message, please uncheck the \"Display %1$s evaluation when editing content\" setting on %2$sthe %3$s settings page%4$s."
 msgstr ""
 
-#: includes/admin.php:222
+#: includes/admin.php:229
 msgid "Open %s evaluation in new window"
 msgstr ""
 
-#: includes/admin.php:256
+#: includes/admin.php:263
 msgid "The Web Accessibility Toolbox"
 msgstr ""
 
-#: includes/admin.php:276, includes/admin.php:291
+#: includes/admin.php:283, includes/admin.php:298
 msgid "Save Your Changes"
 msgstr ""
 
-#: includes/admin.php:319, includes/admin.php:322
+#: includes/admin.php:326, includes/admin.php:329
 msgid "About %s"
 msgstr ""
 
-#: includes/admin.php:325
+#: includes/admin.php:332
 msgid "Spread the Love"
 msgstr ""
 
-#: includes/admin.php:331
+#: includes/admin.php:338
 msgid "Web Accessibility Evaluation Tool"
 msgstr ""
 
-#: includes/admin.php:359
+#: includes/admin.php:366
 msgid "%s is a toolbox of resources to help you improve the accessibility of your WordPress website."
 msgstr ""
 
-#: includes/admin.php:363
+#: includes/admin.php:370
 msgid "Version"
 msgstr ""
 
-#: includes/admin.php:364
+#: includes/admin.php:371
 msgid "Author"
 msgstr ""
 
-#: includes/admin.php:373
+#: includes/admin.php:381
 msgid "%s is a new community initiative to contribute to web accessibility by providing information, education, resources, and tools."
 msgstr ""
 
-#: includes/admin.php:374
+#: includes/admin.php:382
 msgid "If you're interested in joining the %1$s community, and would like to contribute to its growth, please subscribe at %2$s."
 msgstr ""
 
-#: includes/admin.php:381, includes/admin.php:381
+#: includes/admin.php:391, includes/admin.php:391
 msgid "Give the plugin a good rating"
 msgstr ""
 
-#: includes/admin.php:384
+#: includes/admin.php:394
 msgid "Follow bamadesigner on Twitter"
 msgstr ""
 
-#: includes/admin.php:384
+#: includes/admin.php:394
 msgid "Follow me on Twitter"
 msgstr ""
 
-#: includes/admin.php:387
+#: includes/admin.php:397
 msgid "Donate a few bucks to the plugin"
 msgstr ""
 
-#: includes/admin.php:387
+#: includes/admin.php:397
 msgid "Donate"
 msgstr ""
 
-#: includes/admin.php:387
+#: includes/admin.php:397
 msgid "and buy me a coffee"
 msgstr ""
 
-#: includes/admin.php:402
+#: includes/admin.php:414
 msgid "Enable %s"
 msgstr ""
 
-#: includes/admin.php:403
+#: includes/admin.php:415
 msgid "%1$s%2$s%3$s is an accessibility visualization toolkit provided by your friends at %4$s%5$s%6$s. It is a single JavaScript file that inserts a small button in the bottom corner of your document and helps visualize how your site performs with assistive technologies."
 msgstr ""
 
-#: includes/admin.php:408, includes/admin.php:489
+#: includes/admin.php:420, includes/admin.php:506
 msgid "Why %s Is Awesome"
 msgstr ""
 
-#: includes/admin.php:409
+#: includes/admin.php:421
 msgid "%1$s consists of several plugins, each with their own functionality, that works to help you visualize accessibility violations (and successes) while also educating you on best practices. Beyond simply pointing out errors, many %2$s plugins also suggest ways to fix these violations - specifically tailored to your document."
 msgstr ""
 
-#: includes/admin.php:411, includes/admin.php:492
+#: includes/admin.php:423, includes/admin.php:509
 msgid "Best Uses For %s"
 msgstr ""
 
-#: includes/admin.php:412
+#: includes/admin.php:424
 msgid "%1$s is built to scan, and provide feedback on, an entire document so this tool is best used to evaluate pages on the front-end of your site. <strong>%2$s can scan any page that you can load</strong> so the page does not have to be published."
 msgstr ""
 
-#: includes/admin.php:414, includes/admin.php:495
+#: includes/admin.php:426, includes/admin.php:512
 msgid "Other Resources"
 msgstr ""
 
-#: includes/admin.php:418
+#: includes/admin.php:430
 msgid "View the available %1$s %2$s extensions"
 msgstr ""
 
-#: includes/admin.php:421
+#: includes/admin.php:433
 msgid "There are several %1$s%2$s extensions%3$s available."
 msgstr ""
 
-#: includes/admin.php:427
+#: includes/admin.php:439
 msgid "If no user roles are selected or user capability is provided, %s will load for all logged-in users."
 msgstr ""
 
-#: includes/admin.php:442
+#: includes/admin.php:455
 msgid "Only load %s for specific user roles"
 msgstr ""
 
-#: includes/admin.php:452
+#: includes/admin.php:468
 msgid "Only load %s for a specific user capability"
 msgstr ""
 
-#: includes/admin.php:458
+#: includes/admin.php:474
 msgid "Load %s in the admin"
 msgstr ""
 
-#: includes/admin.php:460
+#: includes/admin.php:476
 msgid "This will load the %s button on all pages in the admin to give you a glimpse of admin accessibility."
 msgstr ""
 
-#: includes/admin.php:483
+#: includes/admin.php:500
 msgid "Enable %1$s %2$s(Web Accessibility Evaluation Tool)%3$s"
 msgstr ""
 
-#: includes/admin.php:484
+#: includes/admin.php:501
 msgid "%1$s%2$s%3$s is a free evaluation tool provided by %4$s%5$s (Web Accessibility In Mind)%6$s. It can be used to evaluate a live website for a wide range of accessibility issues. When this tool is enabled, a 'View %7$s evaluation' button will be placed in your WordPress admin bar to help you quickly evaluate the page you're viewing."
 msgstr ""
 
-#: includes/admin.php:490
+#: includes/admin.php:507
 msgid "%1$s provides a simple, straight forward evaluation of any public webpage and allows you to filter the evaluation by standard: Full, Section 508, and WCAG 2.0 A and AA. If your page does contain errors, the report provides documentation to explain the issue and how to fix it. %2$s also provides a color contrast checker."
 msgstr ""
 
-#: includes/admin.php:493
+#: includes/admin.php:510
 msgid "%1$s is built to scan, and provide feedback on, an entire document so this tool is best used to evaluate pages on the front-end of your site. A big difference between %2$s and %3$s is that <strong>%4$s can only evaluate publicly-accessible pages</strong> so it's not ideal for local/staging environments or content that is password-protected."
 msgstr ""
 
-#: includes/admin.php:499
+#: includes/admin.php:516
 msgid "Learn more about the %1$s %2$s extension"
 msgstr ""
 
-#: includes/admin.php:500
+#: includes/admin.php:517
 msgid "Learn more about the %s API"
 msgstr ""
 
-#: includes/admin.php:503
+#: includes/admin.php:520
 msgid "%1$s also offers %2$sa %3$s extension%4$s and %5$san API%6$s for those who need more in-depth usage."
 msgstr ""
 
-#: includes/admin.php:509
+#: includes/admin.php:526
 msgid "If no user roles are selected or user capability is provided, %s will display for all logged-in users."
 msgstr ""
 
-#: includes/admin.php:525
+#: includes/admin.php:543
 msgid "Only show %s for specific user roles"
 msgstr ""
 
-#: includes/admin.php:534
+#: includes/admin.php:555
 msgid "Only show %s for a specific user capability"
 msgstr ""
 
-#: includes/admin.php:536
+#: includes/admin.php:557
 msgid "Add link to %s evalution to the WordPress toolbar"
 msgstr ""
 
-#: includes/admin.php:538
+#: includes/admin.php:559
 msgid "In the front-end, this will allow you to quickly evaluate any page that you're viewing. In the admin, the link will only display on screens where you are editing a post or a page."
 msgstr ""
 
-#: includes/admin.php:538, includes/admin.php:548
+#: includes/admin.php:559, includes/admin.php:569
 msgid "%s can only evaluate publicly-accessible pages."
 msgstr ""
 
-#: includes/admin.php:541
+#: includes/admin.php:562
 msgid "Display %s evaluation when editing content"
 msgstr ""
 
-#: includes/admin.php:548
+#: includes/admin.php:569
 msgid "The %1$s evaluation will only display on screens where you are editing a post or a page. <strong>%1$s can only evaluate publicly-accessible pages.</strong>"
 msgstr ""
 
-#: includes/admin.php:575
+#: includes/admin.php:597
 msgid "Settings"
 msgstr ""
 
-#: wa11y.php:322
+#: wa11y.php:324
 msgid "View %s evaluation"
 msgstr ""

@@ -2,6 +2,7 @@
 var autoprefixer = require('gulp-autoprefixer');
 var clean_css = require('gulp-clean-css');
 var gulp = require('gulp');
+var phpcs = require('gulp-phpcs');
 var rename = require('gulp-rename');
 var sass = require('gulp-sass');
 var sort = require('gulp-sort');
@@ -11,7 +12,8 @@ var wp_pot = require('gulp-wp-pot');
 
 // Define the source paths for each file type
 var src = {
-    scss: 	'assets/scss/*'
+    scss: 'assets/scss/*',
+    php: ['**/*.php','!vendor/**','!node_modules/**']
 };
 
 // Sass is pretty awesome, right?
@@ -44,7 +46,7 @@ gulp.task('sass', function() {
 });*/
 
 // Create the .pot translation file
-gulp.task('translate', function () {
+gulp.task('translate', function() {
     gulp.src('**/*.php')
         .pipe(sort())
         .pipe(wp_pot( {
@@ -59,11 +61,24 @@ gulp.task('translate', function () {
         .pipe(gulp.dest('languages'));
 });
 
+// Check our PHP
+gulp.task('phpcs', function() {
+    return gulp.src(src.php)
+		.pipe(phpcs({
+			standard: 'WordPress-Core'
+		}))
+		.pipe(phpcs.reporter('log'));
+});
+
 // I've got my eyes on you(r file changes)
 gulp.task('watch', function() {
 	gulp.watch(src.scss, ['sass']);
-	gulp.watch('**/*.php', ['translate']);
+	gulp.watch(src.php, ['translate']);
+	gulp.watch(src.php, ['phpcs']);
 });
+
+// Let's test things out
+gulp.task('test', ['phpcs']);
 
 // Let's get this party started
 gulp.task('default', ['sass','translate','watch']);
