@@ -4,7 +4,7 @@
  * Plugin URI:      https://wordpress.org/plugins/wa11y
  * Description:     A toolbox of resources to help you improve the accessibility of your WordPress website.
  * Version:         1.0.0
- * Author:          Rachel Carden
+ * Author:          Rachel Cherry
  * Author URI:      https://bamadesigner.com
  * License:         GPL-2.0+
  * License URI:     http://www.gnu.org/licenses/gpl-2.0.txt

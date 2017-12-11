@@ -368,7 +368,7 @@ class Wa11y_Admin {
 				// Print the plugin version and author (with link to site).
 				?><p>
 					<strong><?php _e( 'Version', 'wa11y' ); ?>:</strong> <?php echo WA11Y_VERSION; ?><br />
-					<strong><?php _e( 'Author', 'wa11y' ); ?>:</strong> <a href="https://bamadesigner.com/" target="_blank">Rachel Carden</a>
+					<strong><?php _e( 'Author', 'wa11y' ); ?>:</strong> <a href="https://bamadesigner.com/" target="_blank">Rachel Cherry</a>
 				</p><?php
 
 				break;
