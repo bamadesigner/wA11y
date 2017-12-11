@@ -40,8 +40,12 @@ msgstr ""
 msgid "Save Your Changes"
 msgstr ""
 
-#: includes/admin.php:326, includes/admin.php:329
+#: includes/admin.php:326
 msgid "About %s"
+msgstr ""
+
+#: includes/admin.php:329
+msgid "Accessibility Resources"
 msgstr ""
 
 #: includes/admin.php:332
@@ -65,11 +69,11 @@ msgid "Author"
 msgstr ""
 
 #: includes/admin.php:381
-msgid "%s is a new community initiative to contribute to web accessibility by providing information, education, resources, and tools."
+msgid "The %1$s community has a %2$sgreat list of accessibility resources and tools%3$s available on their website."
 msgstr ""
 
 #: includes/admin.php:382
-msgid "If you're interested in joining the %1$s community, and would like to contribute to its growth, please subscribe at %2$s."
+msgid "This resource is open-source and %1$s would love for you to contribute. %2$sVisit the %3$s Resources repo%4$s to learn how to contribute."
 msgstr ""
 
 #: includes/admin.php:391, includes/admin.php:391
@@ -216,6 +220,6 @@ msgstr ""
 msgid "Settings"
 msgstr ""
 
-#: wa11y.php:324
+#: wa11y.php:323
 msgid "View %s evaluation"
 msgstr ""

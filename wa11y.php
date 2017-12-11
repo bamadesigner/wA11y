@@ -12,7 +12,6 @@
  * Domain Path:     /languages
  *
  * @package         wA11y
- * @todo            Provide a resources meta box for the options page.
  */
 
 // If this file is called directly, abort.

@@ -325,8 +325,8 @@ class Wa11y_Admin {
 		// About this plugin.
 		add_meta_box( 'wa11y-about-mb', sprintf( __( 'About %s', 'wa11y' ), 'wA11y' ), array( $this, 'print_options_meta_boxes' ), $this->options_page, 'side', 'core', $settings );
 
-		// About this wA11y.org.
-		add_meta_box( 'wa11y-about-org-mb', sprintf( __( 'About %s', 'wa11y' ), 'wA11y.org' ), array( $this, 'print_options_meta_boxes' ), $this->options_page, 'side', 'core', $settings );
+		// Resources.
+		add_meta_box( 'wa11y-resources-mb', __( 'Accessibility Resources', 'wa11y' ), array( $this, 'print_options_meta_boxes' ), $this->options_page, 'side', 'core', $settings );
 
 		// Spread the Love.
 		add_meta_box( 'wa11y-promote-mb', __( 'Spread the Love', 'wa11y' ), array( $this, 'print_options_meta_boxes' ), $this->options_page, 'side', 'core', $settings );
@@ -373,13 +373,13 @@ class Wa11y_Admin {
 
 				break;
 
-			// About wA11y.org.
-			case 'wa11y-about-org-mb':
+			// Resources.
+			case 'wa11y-resources-mb':
 
 				// Let users know about the website.
 				?>
-				<p><?php printf( __( '%s is a new community initiative to contribute to web accessibility by providing information, education, resources, and tools.', 'wa11y' ), '<a href="https://wa11y.org">wA11y.org</a>' ); ?></p>
-				<p><?php printf( __( 'If you\'re interested in joining the %1$s community, and would like to contribute to its growth, please subscribe at %2$s.', 'wa11y' ), 'wA11y.org', '<a href="https://wa11y.org">https://wa11y.org</a>' ); ?></p>
+				<p><?php printf( __( 'The %1$s community has a %2$sgreat list of accessibility resources and tools%3$s available on their website.', 'wa11y' ), 'WPCampus', '<a href="https://wpcampus.org/resources/accessibility/">', '</a>' ); ?></p>
+				<p><?php printf( __( 'This resource is open-source and %1$s would love for you to contribute. %2$sVisit the %3$s Resources repo%4$s to learn how to contribute.', 'wa11y' ), 'WPCampus', '<a href="https://github.com/wpcampus/wpcampus-resources">', 'WPCampus', '</a>' ); ?></p>
 				<?php
 				break;
 
