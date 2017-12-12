@@ -3,8 +3,8 @@
  * Plugin Name:     wA11y - The Web Accessibility Toolbox
  * Plugin URI:      https://wordpress.org/plugins/wa11y
  * Description:     A toolbox of resources to help you improve the accessibility of your WordPress website.
- * Version:         1.0.0
- * Author:          Rachel Carden
+ * Version:         1.0.1
+ * Author:          Rachel Cherry
  * Author URI:      https://bamadesigner.com
  * License:         GPL-2.0+
  * License URI:     http://www.gnu.org/licenses/gpl-2.0.txt
@@ -12,19 +12,12 @@
  * Domain Path:     /languages
  *
  * @package         wA11y
- * @todo            Provide a resources meta box for the options page.
  */
 
 // If this file is called directly, abort.
 if ( ! defined( 'WPINC' ) ) {
 	die;
 }
-
-// If you define them, will they be used?
-define( 'WA11Y_VERSION', '1.0.0' );
-define( 'WA11Y_PLUGIN_URL', 'https://wordpress.org/plugins/wa11y' );
-define( 'WA11Y_PLUGIN_FILE', 'wa11y/wa11y.php' );
-define( 'WA11Y_TOTA11Y_VERSION', '0.1.3' );
 
 // We only need you in the admin.
 if ( is_admin() ) {
@@ -40,6 +33,15 @@ if ( is_admin() ) {
  * @since   1.0.0
  */
 class Wa11y {
+
+	/**
+	 * The current version of the plugin.
+	 *
+	 * @since   1.0.1
+	 * @access  public
+	 * @var     string
+	 */
+	public $plugin_version = '1.0.1';
 
 	/**
 	 * Whether or not this plugin is network active.
@@ -103,21 +105,14 @@ class Wa11y {
 	}
 
 	/**
-	 * Method to keep our instance from being cloned.
+	 * Method to keep our instance from
+	 * being cloned or unserialized.
 	 *
 	 * @since	1.0.0
 	 * @access	private
 	 * @return	void
 	 */
 	private function __clone() {}
-
-	/**
-	 * Method to keep our instance from being unserialized.
-	 *
-	 * @since	1.0.0
-	 * @access	private
-	 * @return	void
-	 */
 	private function __wakeup() {}
 
 	/**
@@ -129,16 +124,10 @@ class Wa11y {
 	protected function __construct() {
 
 		// Is this plugin network active?
-		$this->is_network_active = is_multisite() && ( $plugins = get_site_option( 'active_sitewide_plugins' ) ) && isset( $plugins[ WA11Y_PLUGIN_FILE ] );
+		$this->is_network_active = is_multisite() && ( $plugins = get_site_option( 'active_sitewide_plugins' ) ) && isset( $plugins['wA11y/wa11y.php'] );
 
 		// Load our text domain.
 		add_action( 'init', array( $this, 'textdomain' ) );
-
-		// Runs on install.
-		register_activation_hook( __FILE__, array( $this, 'install' ) );
-
-		// Runs when the plugin is upgraded.
-		add_action( 'upgrader_process_complete', array( $this, 'upgrader_process_complete' ), 1, 2 );
 
 		// Add items to the toolbar.
 		add_action( 'admin_bar_menu', array( $this, 'add_to_toolbar' ), 100 );
@@ -147,22 +136,6 @@ class Wa11y {
 		add_action( 'wp_enqueue_scripts', array( $this, 'enqueue_styles_scripts' ) );
 
 	}
-
-	/**
-	 * Runs when the plugin is installed.
-	 *
-	 * @access  public
-	 * @since   1.0.0
-	 */
-	public function install() {}
-
-	/**
-	 * Runs when the plugin is upgraded.
-	 *
-	 * @access  public
-	 * @since   1.0.0
-	 */
-	public function upgrader_process_complete() {}
 
 	/**
 	 * Internationalization FTW.
@@ -330,7 +303,6 @@ class Wa11y {
 					}
 
 					break;
-
 			}
 		}
 
@@ -349,7 +321,6 @@ class Wa11y {
 				$wp_admin_bar->add_node( array_merge( $node, array( 'parent' => 'wa11y' ) ) );
 			}
 		}
-
 	}
 
 	/**
@@ -366,10 +337,9 @@ class Wa11y {
 		if ( wa11y()->can_load_tota11y() ) {
 
 			// This file belongs in the header.
-			wp_enqueue_script( 'tota11y', plugins_url( '/tools/tota11y/tota11y.min.js', __FILE__ ), array(), WA11Y_VERSION );
+			wp_enqueue_script( 'tota11y', plugins_url( '/tools/tota11y/tota11y.min.js', __FILE__ ), array(), $this->plugin_version );
 
 		}
-
 	}
 
 	/**

@@ -50,21 +50,14 @@ class Wa11y_Admin {
 	}
 
 	/**
-	 * Method to keep our instance from being cloned.
+	 * Method to keep our instance from
+	 * being cloned or unserialized.
 	 *
 	 * @since   1.0.0
 	 * @access  private
 	 * @return  void
 	 */
 	private function __clone() {}
-
-	/**
-	 * Method to keep our instance from being unserialized.
-	 *
-	 * @since   1.0.0
-	 * @access  private
-	 * @return  void
-	 */
 	private function __wakeup() {}
 
 	/**
@@ -91,7 +84,7 @@ class Wa11y_Admin {
 		add_action( 'admin_head-settings_page_wa11y', array( $this, 'add_options_meta_boxes' ) );
 
 		// Add plugin action links.
-		add_filter( 'plugin_action_links_wa11y/wa11y.php', array( $this, 'add_plugin_action_links' ), 10, 4 );
+		add_filter( 'plugin_action_links_wA11y/wa11y.php', array( $this, 'add_plugin_action_links' ), 10, 1 );
 
 	}
 
@@ -130,7 +123,7 @@ class Wa11y_Admin {
 			case $this->options_page:
 
 				// Enqueue the styles for our options page.
-				wp_enqueue_style( 'wa11y-admin-options', plugin_dir_url( dirname( __FILE__ ) ) . 'assets/css/admin-options-page.min.css', array(), WA11Y_VERSION );
+				wp_enqueue_style( 'wa11y-admin-options', plugin_dir_url( dirname( __FILE__ ) ) . 'assets/css/admin-options-page.min.css', array(), wa11y()->plugin_version );
 
 				break;
 
@@ -141,15 +134,14 @@ class Wa11y_Admin {
 				if ( wa11y()->can_load_wave() ) {
 
 					// Enqueue our styles for the edit post screen.
-					wp_enqueue_style( 'wa11y-admin-edit-post', plugin_dir_url( dirname( __FILE__ ) ) . 'assets/css/admin-edit-post.min.css', array(), WA11Y_VERSION );
+					wp_enqueue_style( 'wa11y-admin-edit-post', plugin_dir_url( dirname( __FILE__ ) ) . 'assets/css/admin-edit-post.min.css', array(), wa11y()->plugin_version );
 
 				}
 
 				break;
-
 		}
 
-		/**
+		/*
 		 * Load tools in the admin.
 		 */
 
@@ -157,10 +149,9 @@ class Wa11y_Admin {
 		if ( wa11y()->can_load_tota11y() ) {
 
 			// This file belongs in the header.
-			wp_enqueue_script( 'tota11y', plugins_url( '/tools/tota11y/tota11y.min.js', dirname( __FILE__ ) ), array(), WA11Y_VERSION );
+			wp_enqueue_script( 'tota11y', plugins_url( '/tools/tota11y/tota11y.min.js', dirname( __FILE__ ) ), array(), wa11y()->plugin_version );
 
 		}
-
 	}
 
 	/**
@@ -233,9 +224,7 @@ class Wa11y_Admin {
 				endif;
 
 				break;
-
 		}
-
 	}
 
 	/**
@@ -302,11 +291,8 @@ class Wa11y_Admin {
 
 						</div> <!-- #post-body-content -->
 					</div> <!-- #post-body -->
-
 				</div> <!-- #poststuff -->
-
 			</form>
-
 		</div> <!-- .wrap -->
 		<?php
 
@@ -325,8 +311,8 @@ class Wa11y_Admin {
 		// About this plugin.
 		add_meta_box( 'wa11y-about-mb', sprintf( __( 'About %s', 'wa11y' ), 'wA11y' ), array( $this, 'print_options_meta_boxes' ), $this->options_page, 'side', 'core', $settings );
 
-		// About this wA11y.org.
-		add_meta_box( 'wa11y-about-org-mb', sprintf( __( 'About %s', 'wa11y' ), 'wA11y.org' ), array( $this, 'print_options_meta_boxes' ), $this->options_page, 'side', 'core', $settings );
+		// Resources.
+		add_meta_box( 'wa11y-resources-mb', __( 'Accessibility Resources', 'wa11y' ), array( $this, 'print_options_meta_boxes' ), $this->options_page, 'side', 'core', $settings );
 
 		// Spread the Love.
 		add_meta_box( 'wa11y-promote-mb', __( 'Spread the Love', 'wa11y' ), array( $this, 'print_options_meta_boxes' ), $this->options_page, 'side', 'core', $settings );
@@ -363,23 +349,27 @@ class Wa11y_Admin {
 			case 'wa11y-about-mb':
 
 				// Print the plugin name (with link to site).
-				?><p><?php printf( __( '%s is a toolbox of resources to help you improve the accessibility of your WordPress website.', 'wa11y' ), 'wA11y' ); ?></p><?php
+				?>
+				<p><?php printf( __( '%s is a toolbox of resources to help you improve the accessibility of your WordPress website.', 'wa11y' ), 'wA11y' ); ?></p>
+				<?php
 
 				// Print the plugin version and author (with link to site).
-				?><p>
-					<strong><?php _e( 'Version', 'wa11y' ); ?>:</strong> <?php echo WA11Y_VERSION; ?><br />
-					<strong><?php _e( 'Author', 'wa11y' ); ?>:</strong> <a href="https://bamadesigner.com/" target="_blank">Rachel Carden</a>
-				</p><?php
+				?>
+				<p>
+					<strong><?php _e( 'Version', 'wa11y' ); ?>:</strong> <?php echo wa11y()->plugin_version; ?><br />
+					<strong><?php _e( 'Author', 'wa11y' ); ?>:</strong> <a href="https://bamadesigner.com/" target="_blank">Rachel Cherry</a>
+				</p>
+				<?php
 
 				break;
 
-			// About wA11y.org.
-			case 'wa11y-about-org-mb':
+			// Resources.
+			case 'wa11y-resources-mb':
 
 				// Let users know about the website.
 				?>
-				<p><?php printf( __( '%s is a new community initiative to contribute to web accessibility by providing information, education, resources, and tools.', 'wa11y' ), '<a href="https://wa11y.org">wA11y.org</a>' ); ?></p>
-				<p><?php printf( __( 'If you\'re interested in joining the %1$s community, and would like to contribute to its growth, please subscribe at %2$s.', 'wa11y' ), 'wA11y.org', '<a href="https://wa11y.org">https://wa11y.org</a>' ); ?></p>
+				<p><?php printf( __( 'The %1$s community has a %2$sgreat list of accessibility resources and tools%3$s available on their website.', 'wa11y' ), 'WPCampus', '<a href="https://wpcampus.org/resources/accessibility/">', '</a>' ); ?></p>
+				<p><?php printf( __( 'This resource is open-source and %1$s would love for you to contribute. %2$sVisit the %3$s Resources repo%4$s to learn how to contribute.', 'wa11y' ), 'WPCampus', '<a href="https://github.com/wpcampus/wpcampus-resources">', 'WPCampus', '</a>' ); ?></p>
 				<?php
 				break;
 
@@ -388,7 +378,7 @@ class Wa11y_Admin {
 
 				?>
 				<p class="star">
-					<a href="<?php echo WA11Y_PLUGIN_URL; ?>" title="<?php esc_attr_e( 'Give the plugin a good rating', 'wa11y' ); ?>" target="_blank"><span class="dashicons dashicons-star-filled"></span> <span class="promote-text"><?php _e( 'Give the plugin a good rating', 'wa11y' ); ?></span></a>
+					<a href="https://wordpress.org/plugins/wa11y/" title="<?php esc_attr_e( 'Give the plugin a good rating', 'wa11y' ); ?>" target="_blank"><span class="dashicons dashicons-star-filled"></span> <span class="promote-text"><?php _e( 'Give the plugin a good rating', 'wa11y' ); ?></span></a>
 				</p>
 				<p class="twitter">
 					<a href="https://twitter.com/bamadesigner" title="<?php _e( 'Follow bamadesigner on Twitter', 'wa11y' ); ?>" target="_blank"><span class="dashicons dashicons-twitter"></span> <span class="promote-text"><?php _e( 'Follow me on Twitter', 'wa11y' ); ?></span></a>
@@ -411,7 +401,7 @@ class Wa11y_Admin {
 
 					<div class="tool-header">
 						<input class="tool-checkbox" id="tota11y" type="checkbox" name="wa11y_settings[enable_tools][]" value="tota11y"<?php checked( is_array( $enabled_tools_settings ) && in_array( 'tota11y', $enabled_tools_settings ) ); ?> />
-						<label class="tool-label" for="tota11y"><?php printf( __( 'Enable %s', 'wa11y' ), 'tota11y' ); ?> <span class="lighter thinner">[v<?php echo WA11Y_TOTA11Y_VERSION; ?>]</span></label>
+						<label class="tool-label" for="tota11y"><?php printf( __( 'Enable %s', 'wa11y' ), 'tota11y' ); ?> <span class="lighter thinner">[v0.1.3]</span></label>
 						<p class="tool-desc"><?php printf( __( '%1$s%2$s%3$s is an accessibility visualization toolkit provided by your friends at %4$s%5$s%6$s. It is a single JavaScript file that inserts a small button in the bottom corner of your document and helps visualize how your site performs with assistive technologies.', 'wa11y' ), '<a href="http://khan.github.io/tota11y/" target="_blank">', 'tota11y', '</a>', '<a href="http://khanacademy.org/" target="_blank">', 'Khan Academy', '</a>' ); ?></p>
 					</div> <!-- .tool-header -->
 
@@ -469,13 +459,11 @@ class Wa11y_Admin {
 								<input class="tool-setting-text" id="tota11y-user-capability" type="text" name="wa11y_settings[tools][tota11y][load_user_capability]" value="<?php echo isset( $tota11y_settings['load_user_capability'] ) ? $tota11y_settings['load_user_capability'] : null; ?>" />
 								<span class="tool-option-side-note">e.g. view_tota11y</span>
 							</li>
-
 							<li>
 								<label class="tool-option-header" for="tota11y-admin"><?php printf( __( 'Load %s in the admin', 'wa11y' ), 'tota11y' ); ?>:</label>
 								<input class="tool-option-checkbox" id="tota11y-admin" type="checkbox" name="wa11y_settings[tools][tota11y][load_in_admin]" value="1"<?php checked( isset( $tota11y_settings['load_in_admin'] ) && $tota11y_settings['load_in_admin'] > 0 ); ?> />
 								<span class="tool-option-side-note"><?php printf( __( 'This will load the %s button on all pages in the admin to give you a glimpse of admin accessibility.', 'wa11y' ), 'tota11y' ); ?></span>
 							</li>
-
 						</ul>
 					</fieldset>
 				</div> <!-- .wa11y-tool-settings -->
@@ -573,32 +561,27 @@ class Wa11y_Admin {
 							</li>
 						</ul>
 					</fieldset>
-				</div><?php
+				</div>
+				<?php
 
 				break;
-
 		}
-
 	}
 
 	/**
 	 * Adds a settings link to the plugins table.
 	 *
 	 * @since   1.0.0
-	 * @param   array  $actions     An array of plugin action links.
-	 * @param   string $plugin_file Path to the plugin file relative to the plugins directory.
-	 * @param   array  $plugin_data An array of plugin data.
-	 * @param   string $context     The plugin context.
+	 * @param   array  $actions - An array of plugin action links.
 	 * @return  array - the links info after it has been filtered.
 	 */
-	public function add_plugin_action_links( $actions, $plugin_file, $plugin_data, $context ) {
+	public function add_plugin_action_links( $actions ) {
 
 		// Add link to our settings page.
 		$actions['settings'] = '<a href="' . add_query_arg( array( 'page' => 'wa11y' ), admin_url( 'options-general.php' ) ) . '" title="' . sprintf( esc_attr__( 'Visit the %s settings page', 'wa11y' ), 'wA11y' ) . '">' . __( 'Settings', 'wa11y' ) . '</a>';
 
 		return $actions;
 	}
-
 }
 
 /**

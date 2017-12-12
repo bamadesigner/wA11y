@@ -1,84 +1,89 @@
-// Require all the things (that we need)
-var autoprefixer = require('gulp-autoprefixer');
-var clean_css = require('gulp-clean-css');
-var gulp = require('gulp');
-var phpcs = require('gulp-phpcs');
-var rename = require('gulp-rename');
-var sass = require('gulp-sass');
-var sort = require('gulp-sort');
-var uglify = require('gulp-uglify');
-var watch = require('gulp-watch');
-var wp_pot = require('gulp-wp-pot');
+const autoprefixer = require('gulp-autoprefixer');
+const cleanCSS = require('gulp-clean-css');
+const gulp = require('gulp');
+const mergeMediaQueries = require('gulp-merge-media-queries');
+const notify = require('gulp-notify');
+const rename = require('gulp-rename');
+const sass = require('gulp-sass');
+const shell = require('gulp-shell');
+const sort = require('gulp-sort');
+const wp_pot = require('gulp-wp-pot');
 
-// Define the source paths for each file type
-var src = {
-    scss: 'assets/scss/*',
-    php: ['**/*.php','!vendor/**','!node_modules/**']
+// Define the source paths for each file type.
+const src = {
+	php: ['**/*.php','!vendor/**','!node_modules/**'],
+	sass: ['assets/scss/**/*']
 };
 
-// Sass is pretty awesome, right?
+// Define the destination paths for each file type.
+const dest = {
+	sass: 'assets/css',
+	translate: 'languages'
+};
+
+// Take care of SASS.
 gulp.task('sass', function() {
-    return gulp.src(src.scss)
-        .pipe(sass({
-			outputStyle: 'compressed'
-		})
-		.on('error', sass.logError))
-        .pipe(autoprefixer({
-        	browsers: ['last 2 versions'],
+	return gulp.src(src.sass)
+		.pipe(sass({
+			outputStyle: 'expanded'
+		}).on('error', sass.logError))
+		.pipe(mergeMediaQueries())
+		.pipe(autoprefixer({
+			browsers: ['last 2 versions'],
 			cascade: false
+		}))
+		.pipe(cleanCSS({
+			compatibility: 'ie8'
 		}))
 		.pipe(rename({
 			suffix: '.min'
 		}))
-		.pipe(gulp.dest('assets/css'));
+		.pipe(gulp.dest(dest.sass))
+		.pipe(notify('wA11y SASS compiled'));
 });
 
-// Minify the JS
-/*gulp.task('js', function() {
-    gulp.src(src.js)
-        .pipe(uglify({
-            mangle: false
-        }))
-        .pipe(rename({
-			suffix: '.min'
+// "Sniff" our PHP.
+gulp.task('php', function() {
+	// TODO: Clean up. Want to run command and show notify for sniff errors.
+	return gulp.src('wa11y.php', {read: false})
+		.pipe(shell(['composer sniff'], {
+			ignoreErrors: true,
+			verbose: false
 		}))
-        .pipe(gulp.dest('assets/js'))
-});*/
+		.pipe(notify('wA11y PHP sniffed'), {
+			onLast: true,
+			emitError: true
+		});
+});
 
-// Create the .pot translation file
+// Create the .pot translation file.
 gulp.task('translate', function() {
-    gulp.src('**/*.php')
-        .pipe(sort())
-        .pipe(wp_pot( {
-            domain: 'wa11y',
-            destFile:'wa11y.pot',
-            package: 'wA11y',
-            bugReport: 'https://github.com/bamadesigner/wa11y/issues',
-            lastTranslator: 'Rachel Carden <bamadesigner@gmail.com>',
-            team: 'Rachel Carden <bamadesigner@gmail.com>',
-            headers: false
-        } ))
-        .pipe(gulp.dest('languages'));
-});
-
-// Check our PHP
-gulp.task('phpcs', function() {
-    return gulp.src(src.php)
-		.pipe(phpcs({
-			standard: 'WordPress-Core'
+	gulp.src(src.php)
+		.pipe(sort())
+		.pipe(wp_pot({
+			domain: 'wa11y',
+			destFile: 'wa11y.pot',
+			package: 'wA11y',
+			bugReport: 'https://github.com/bamadesigner/wa11y/issues',
+			lastTranslator: 'Rachel Cherry <bamadesigner@gmail.com>',
+			team: 'Rachel Cherry <bamadesigner@gmail.com>',
+			headers: false
 		}))
-		.pipe(phpcs.reporter('log'));
+		.pipe(gulp.dest(dest.translate))
+		.pipe(notify('wA11y translated'));
 });
 
-// I've got my eyes on you(r file changes)
-gulp.task('watch', function() {
-	gulp.watch(src.scss, ['sass']);
-	gulp.watch(src.php, ['translate']);
-	gulp.watch(src.php, ['phpcs']);
+// Test our files.
+gulp.task('test',['php']);
+
+// Compile all the things.
+gulp.task('compile',['sass']);
+
+// I've got my eyes on you(r file changes).
+gulp.task('watch',function() {
+	gulp.watch(src.sass,['sass']);
+	gulp.watch(src.php,['php','translate']);
 });
 
-// Let's test things out
-gulp.task('test', ['phpcs']);
-
-// Let's get this party started
-gulp.task('default', ['sass','translate','watch']);
+// Let's get this party started.
+gulp.task('default',['compile','test','translate']);

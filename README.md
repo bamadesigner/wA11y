@@ -18,27 +18,13 @@ Data shows 1 in 5 people have a disability. If your site is inaccessible, **you 
 
 The foundation for good accessibility is great markup which also means that good accessibility can improve your SEO.
 
-## wA11y.org
+## Accessibility Resources and Tools
 
-[wA11y.org](https://wa11y.org) is a new community initiative to contribute to web accessibility by providing information, education, resources, and tools.
+The WPCampus community has a [great list of accessibility resources and tools](https://wpcampus.org/resources/accessibility/) available on their website.
 
-If you're interested in joining the wA11y.org community, and would like to contribute to its growth, please subscribe at [https://wa11y.org](https://wa11y.org).
+This resource is open-source and WPCampus would love for you to contribute. [Visit the WPCampus Resources repo](https://github.com/wpcampus/wpcampus-resources) to learn how to contribute.
 
-
-## A Few Basic Accessibility Principles
-
-* All non-text content needs  a text equivalent to help convey information to those with sensory disabilities.
-    * For example, images and videos need text equivalents to convey information and context to those who have trouble with vision and/or hearing.
-* Color usage should have  sufficient contrast and should not be used as the sole method for conveying information or direction.
-    * For example, if your website has directions in red, and a user cannot see red, then that direction is inaccessible.
-    * Links, or actions on your website, should always be signified with something other than simply a different color. For example, an underline is the most common trait.
-* Pages should have  proper heading structure  in order to be readable without a stylesheet for those who do not navigate visually.
-* All site functionality  should be available  using the keyboard  for persons who do  not use a mouse.
-    * Tab order is important.
-* Adding ARIA attributes are helpful to provide screen reader users with more context and greater interactivity with content.
-* Responsive web design is important to ensure your site can be viewed on assistive devices of various sizes.
-
-For more information about accessibility, including official standards and checklists, [check out our resources](#other-accessibility-resources). 
+**WA11Y PRO TIP: Take advantage of in-browser testing tools, like [WAVE](http://wave.webaim.org/) and [HTML_CodeSniffer](http://squizlabs.github.io/HTML_CodeSniffer/), to evaluate WordPress theme demos before you purchase.**
 
 ## Tools Included In wA11y
 
@@ -76,40 +62,6 @@ Here is a list of the filters available for this plugin:
 * 'wa11y_load_wave'
     * Allows you to pass a boolean to define whether or not the WAVE tool should be loaded
     * Passes 2 arguments: the default setting and the plugin's settings
-
-## Other Accessibility Resources
-
-There are a multitude of resources available to help you better understand and evaluate accessibility. Please feel free to recommend more to add to the list.
-
-**WA11Y PRO TIP: Take advantage of in-browser testing tools, like [WAVE](http://wave.webaim.org/) and [HTML_CodeSniffer](http://squizlabs.github.io/HTML_CodeSniffer/), to evaluate WordPress theme demos before you purchase.**
-
-### Web Accessibility Standards
-
-#### WCAG 2.0 - Web Content  Accessibility  Guidelines
-
-[WCAG](https://www.w3.org/WAI/intro/wcag) are part of a series of guidelines published by  the [Web Accessibility Initiative (WAI)](https://www.w3.org/WAI/) of the [World Wide Web Consortium (W3C)](https://www.w3.org/), the main international standards organization for the Internet.
-
-Current version was published in December 2008.
-
-* [WCAG 2.0 Checklist](http://webaim.org/standards/wcag/checklist)
-
-#### Section 508
-
-[Section 508 Standards](https://www.section508.gov/) apply to electronic and  information technology developed, procured, maintained, or used by federal agencies, including computer hardware and software, websites, phone systems, and copiers.
-
-Standards were issued in 2000.
-
-* [Section 508 Checklist](http://webaim.org/standards/508/checklist)
-
-### Other Accessibility Tools
-
-* [Color Contrast Checker](http://webaim.org/resources/contrastchecker)
-
-### Articles About Accessibility
-
-* [Which Tool Is Best?](http://webaim.org/articles/tools)
-* [Web Accessibility Evaluation Tools](https://www.w3.org/WAI/ER/tools)
-* [Getting Started With ARIA](http://a11yproject.com/posts/getting-started-aria)
 
 ## wA11y Development
 
