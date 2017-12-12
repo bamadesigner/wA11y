@@ -4,7 +4,7 @@ Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=ZCAN2
 Tags: a11y, wa11y, accessibility, tota11y, wave, tools, evaluation, hi roy
 Requires at least: 3.0
 Tested up to: 4.9.1
-Stable tag: 1.0.1
+Stable tag: 1.0.2
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -50,6 +50,9 @@ The mission for the wA11y plugin is to provide a plethora of tools to help you e
 
 == Changelog ==
 
+= 1.0.2 =
+* Fixed PHP bug on settings page.
+
 = 1.0.1 =
 * Added accessibility resources information to settings page.
 * NOTICE: I removed the plugin's PHP constants.
@@ -58,6 +61,9 @@ The mission for the wA11y plugin is to provide a plethora of tools to help you e
 Plugin launch
 
 == Upgrade Notice ==
+
+= 1.0.2 =
+* Fixed PHP bug on settings page.
 
 = 1.0.1 =
 * Added accessibility resources information to settings page.

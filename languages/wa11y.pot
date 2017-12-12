@@ -16,11 +16,11 @@ msgstr ""
 msgid "Accessibility Evaluation"
 msgstr ""
 
-#: includes/admin.php:204, includes/admin.php:581
+#: includes/admin.php:204, includes/admin.php:585
 msgid "Visit the %s settings page"
 msgstr ""
 
-#: includes/admin.php:207, includes/admin.php:555
+#: includes/admin.php:207, includes/admin.php:556
 msgid "At this time, the %1$s evaluation iframe cannot be embedded on a site using SSL because the %2$s site does not use SSL."
 msgstr ""
 
@@ -204,7 +204,7 @@ msgstr ""
 msgid "In the front-end, this will allow you to quickly evaluate any page that you're viewing. In the admin, the link will only display on screens where you are editing a post or a page."
 msgstr ""
 
-#: includes/admin.php:547, includes/admin.php:557
+#: includes/admin.php:547, includes/admin.php:560
 msgid "%s can only evaluate publicly-accessible pages."
 msgstr ""
 
@@ -212,11 +212,11 @@ msgstr ""
 msgid "Display %s evaluation when editing content"
 msgstr ""
 
-#: includes/admin.php:557
+#: includes/admin.php:560
 msgid "The %1$s evaluation will only display on screens where you are editing a post or a page. <strong>%1$s can only evaluate publicly-accessible pages.</strong>"
 msgstr ""
 
-#: includes/admin.php:581
+#: includes/admin.php:585
 msgid "Settings"
 msgstr ""
 
