@@ -1,3 +1,4 @@
 admin-edit-post.min.css
 admin-options-page.min.css
-/vendor/
+node_modules
+vendor
