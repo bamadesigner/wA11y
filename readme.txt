@@ -21,14 +21,22 @@ wA11y is a WordPress plugin that provides a toolbox of resources to help you imp
 
 "w" + "A11y" is my abbreviation for "web accessibility". **[#wa11y](https://twitter.com/search?q=%23wa11y)**
 
-= What Is Web Accessibility? =
+== What Is Web Accessibility? ==
 Web accessibility refers to the inclusive practice of removing barriers that prevent interaction with, or access to, websites by people with disabilities.
 
 Data shows 1 in 5 people have a disability. If your site is inaccessible, **you could be excluding 20% of your potential users, customers, students, and more.**
 
 The foundation for good accessibility is great markup which also means that good accessibility can improve your SEO.
 
-= Tools Included In wA11y =
+== Accessibility Resources and Tools ==
+
+The WPCampus community has a [great list of accessibility resources and tools](https://wpcampus.org/resources/accessibility/) available on their website.
+
+This resource is open-source and WPCampus would love for you to contribute. [Visit the WPCampus Resources repo](https://github.com/wpcampus/wpcampus-resources) to learn how to contribute.
+
+**WA11Y PRO TIP: Take advantage of in-browser testing tools, like [WAVE](http://wave.webaim.org/) and [HTML_CodeSniffer](http://squizlabs.github.io/HTML_CodeSniffer/), to evaluate WordPress theme demos before you purchase.**
+
+== Tools Included In wA11y ==
 
 The mission for the wA11y plugin is to provide a plethora of tools to help you evaluate and improve the accessibility of your website.
 
@@ -96,11 +104,3 @@ Here is a list of the filters available for this plugin:
 * 'wa11y_load_wave'
     * Allows you to pass a boolean to define whether or not the WAVE tool should be loaded
     * Passes 2 arguments: the default setting and the plugin's settings
-
-== Resources ==
-
-The WPCampus community has a [great list of accessibility resources and tools](https://wpcampus.org/resources/accessibility/) available on their website.
-
-This resource is open-source and WPCampus would love for you to contribute. [Visit the WPCampus Resources repo](https://github.com/wpcampus/wpcampus-resources) to learn how to contribute.
-
-**WA11Y PRO TIP: Take advantage of in-browser testing tools, like [WAVE](http://wave.webaim.org/) and [HTML_CodeSniffer](http://squizlabs.github.io/HTML_CodeSniffer/), to evaluate WordPress theme demos before you purchase.**
