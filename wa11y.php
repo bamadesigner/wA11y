@@ -3,7 +3,7 @@
  * Plugin Name:     wA11y - The Web Accessibility Toolbox
  * Plugin URI:      https://wordpress.org/plugins/wa11y
  * Description:     A toolbox of resources to help you improve the accessibility of your WordPress website.
- * Version:         1.0.0
+ * Version:         1.0.1
  * Author:          Rachel Cherry
  * Author URI:      https://bamadesigner.com
  * License:         GPL-2.0+
