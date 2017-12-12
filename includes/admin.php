@@ -551,11 +551,15 @@ class Wa11y_Admin {
 								<input class="tool-option-checkbox" id="wave-admin" type="checkbox" name="wa11y_settings[tools][wave][load_admin_edit]" value="1"<?php checked( ! $disable_admin_wave && isset( $wave_settings['load_admin_edit'] ) && $wave_settings['load_admin_edit'] > 0 ); disabled( $disable_admin_wave ); ?> />
 								<?php
 
-								if ( $disable_admin_wave ) : ?>
+								if ( $disable_admin_wave ) :
+									?>
 									<span class="tool-option-disabled-message"><?php printf( __( 'At this time, the %1$s evaluation iframe cannot be embedded on a site using SSL because the %2$s site does not use SSL.', 'wa11y' ), 'WAVE', 'WAVE' ); ?></span>
-								else : ?>
+									<?php
+								else :
+									?>
 									<span class="tool-option-side-note"><?php printf( __( 'The %1$s evaluation will only display on screens where you are editing a post or a page. <strong>%1$s can only evaluate publicly-accessible pages.</strong>', 'wa11y' ), 'WAVE', 'WAVE' ); ?> <span class="highlight-red"><strong><?php printf( __( '%s can only evaluate publicly-accessible pages.', 'wa11y' ), 'WAVE' ); ?></strong></span></span>
-								<?php endif;
+									<?php
+								endif;
 
 								?>
 							</li>
