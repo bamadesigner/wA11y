@@ -243,7 +243,7 @@ class Wa11y {
 		}
 
 		// We have no enabled tools.
-		return $this->enabled_tools = false;
+		return $this->enabled_tools = array();
 	}
 
 	/**
