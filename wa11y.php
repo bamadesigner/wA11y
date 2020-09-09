@@ -1,5 +1,7 @@
 <?php
 /**
+ * wA11y toolbox plugin for WordPress.
+ *
  * Plugin Name:     wA11y - The Web Accessibility Toolbox
  * Plugin URI:      https://wordpress.org/plugins/wa11y
  * Description:     A toolbox of resources to help you improve the accessibility of your WordPress website.
@@ -12,6 +14,10 @@
  * Domain Path:     /languages
  *
  * @package         wA11y
+ * @link            https://github.com/bamadesigner/wA11y
+ * @author          Rachel Cherry
+ * @copyright       2016-2020 Rachel Cherry
+ * @license         GPL v2 or later
  */
 
 // If this file is called directly, abort.
