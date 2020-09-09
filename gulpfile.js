@@ -10,62 +10,64 @@ const wp_pot = require('gulp-wp-pot');
 
 // Define the source paths for each file type.
 const src = {
-	php: ['**/*.php','!node_modules/**'],
-	sass: ['assets/scss/**/*']
+    php: ['**/*.php', '!node_modules/**'],
+    sass: ['assets/scss/**/*']
 };
 
 // Define the destination paths for each file type.
 const dest = {
-	sass: 'assets/css',
-	translate: 'languages'
+    sass: 'assets/css',
+    translate: 'languages'
 };
 
 // Take care of SASS.
-gulp.task('sass', function() {
-	return gulp.src(src.sass)
-		.pipe(sass({
-			outputStyle: 'expanded'
-		}).on('error', sass.logError))
-		.pipe(mergeMediaQueries())
-		.pipe(autoprefixer({
-			browsers: ['last 2 versions'],
-			cascade: false
-		}))
-		.pipe(cleanCSS({
-			compatibility: 'ie8'
-		}))
-		.pipe(rename({
-			suffix: '.min'
-		}))
-		.pipe(gulp.dest(dest.sass))
-		.pipe(notify('wA11y SASS compiled'));
+gulp.task('sass', function (done) {
+    return gulp.src(src.sass)
+        .pipe(sass({
+            outputStyle: 'expanded'
+        }).on('error', sass.logError))
+        .pipe(mergeMediaQueries())
+        .pipe(autoprefixer({
+            cascade: false
+        }))
+        .pipe(cleanCSS({
+            compatibility: 'ie8'
+        }))
+        .pipe(rename({
+            suffix: '.min'
+        }))
+        .pipe(gulp.dest(dest.sass))
+        .pipe(notify('wA11y SASS compiled'))
+        .on('end', done);
 });
 
 // Create the .pot translation file.
-gulp.task('translate', function() {
-	gulp.src(src.php)
-		.pipe(sort())
-		.pipe(wp_pot({
-			domain: 'wa11y',
-			destFile: 'wa11y.pot',
-			package: 'wA11y',
-			bugReport: 'https://github.com/bamadesigner/wa11y/issues',
-			lastTranslator: 'Rachel Cherry',
-			team: 'Rachel Cherry',
-			headers: false
-		}))
-		.pipe(gulp.dest(dest.translate))
-		.pipe(notify('wA11y translated'));
+gulp.task('translate', function (done) {
+    return gulp.src(src.php)
+        .pipe(sort())
+        .pipe(wp_pot({
+            domain: 'wa11y',
+            destFile: 'wa11y.pot',
+            package: 'wA11y',
+            bugReport: 'https://github.com/bamadesigner/wa11y/issues',
+            lastTranslator: 'Rachel Cherry',
+            team: 'Rachel Cherry',
+            headers: false
+        }))
+        .pipe(gulp.dest(dest.translate))
+        .pipe(notify('wA11y translated'))
+        .on('end', done);
 });
 
 // Compile all the things.
-gulp.task('compile',['sass']);
-
-// I've got my eyes on you(r file changes).
-gulp.task('watch',function() {
-	gulp.watch(src.sass,['sass']);
-	gulp.watch(src.php,['translate']);
-});
+gulp.task('compile', gulp.series('sass'));
 
 // Let's get this party started.
-gulp.task('default',['compile','translate']);
+gulp.task('default', gulp.series('compile', 'translate'));
+
+// I've got my eyes on you(r file changes).
+gulp.task('watch', gulp.series('default', function (done) {
+    gulp.watch(src.sass, gulp.series('sass'));
+    gulp.watch(src.php, gulp.series('translate'));
+    return done();
+}));

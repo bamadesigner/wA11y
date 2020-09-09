@@ -1,4 +1,4 @@
-# Copyright (C) 2017 wA11y
+# Copyright (C) 2020 wA11y
 # This file is distributed under the same license as the wA11y package.
 msgid ""
 msgstr ""
@@ -7,7 +7,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"PO-Revision-Date: 2017-MO-DA HO:MI+ZONE\n"
+"PO-Revision-Date: 2020-MO-DA HO:MI+ZONE\n"
 "Last-Translator: Rachel Cherry\n"
 "Language-Team: Rachel Cherry\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
@@ -220,6 +220,6 @@ msgstr ""
 msgid "Settings"
 msgstr ""
 
-#: wa11y.php:297
+#: wa11y.php:303
 msgid "View %s evaluation"
 msgstr ""
