@@ -20,7 +20,6 @@ class Wa11y_Admin {
 	 * Holds the options page slug.
 	 *
 	 * @since   1.0.0
-	 * @access  public
 	 * @var     string
 	 */
 	public $options_page;
@@ -29,7 +28,6 @@ class Wa11y_Admin {
 	 * Holds the class instance.
 	 *
 	 * @since   1.0.0
-	 * @access  private
 	 * @var     Wa11y_Admin
 	 */
 	private static $instance;
@@ -37,7 +35,6 @@ class Wa11y_Admin {
 	/**
 	 * Returns the instance of this class.
 	 *
-	 * @access  public
 	 * @since   1.0.0
 	 * @return  Wa11y_Admin
 	 */
@@ -54,7 +51,6 @@ class Wa11y_Admin {
 	 * being cloned or unserialized.
 	 *
 	 * @since   1.0.0
-	 * @access  private
 	 * @return  void
 	 */
 	private function __clone() {}
@@ -63,7 +59,6 @@ class Wa11y_Admin {
 	/**
 	 * Start your engines.
 	 *
-	 * @access  protected
 	 * @since   1.0.0
 	 */
 	protected function __construct() {
@@ -595,7 +590,6 @@ class Wa11y_Admin {
  * class to retrieve data throughout the plugin.
  *
  * @since	1.0.0
- * @access	public
  * @return	Wa11y_Admin
  */
 function wa11y_admin() {

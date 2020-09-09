@@ -44,7 +44,6 @@ class Wa11y {
 	 * The current version of the plugin.
 	 *
 	 * @since   1.0.1
-	 * @access  public
 	 * @var     string
 	 */
 	public $plugin_version = '1.0.3';
@@ -53,7 +52,6 @@ class Wa11y {
 	 * Whether or not this plugin is network active.
 	 *
 	 * @since	1.0.0
-	 * @access	public
 	 * @var		boolean
 	 */
 	public $is_network_active;
@@ -62,7 +60,6 @@ class Wa11y {
 	 * The plugin settings.
 	 *
 	 * @since	1.0.0
-	 * @access	protected
 	 * @var		array
 	 */
 	protected $settings;
@@ -71,7 +68,6 @@ class Wa11y {
 	 * List of enabled tools.
 	 *
 	 * @since	1.0.0
-	 * @access	protected
 	 * @var		array
 	 */
 	protected $enabled_tools;
@@ -81,7 +77,6 @@ class Wa11y {
 	 * we can load tools.
 	 *
 	 * @since	1.0.0
-	 * @access	protected
 	 * @var		array
 	 */
 	protected $can_load_tools;
@@ -90,7 +85,6 @@ class Wa11y {
 	 * Holds the class instance.
 	 *
 	 * @since	1.0.0
-	 * @access	private
 	 * @var		Wa11y
 	 */
 	private static $instance;
@@ -98,7 +92,6 @@ class Wa11y {
 	/**
 	 * Returns the instance of this class.
 	 *
-	 * @access  public
 	 * @since   1.0.0
 	 * @return	Wa11y
 	 */
@@ -115,7 +108,6 @@ class Wa11y {
 	 * being cloned or unserialized.
 	 *
 	 * @since	1.0.0
-	 * @access	private
 	 * @return	void
 	 */
 	private function __clone() {}
@@ -124,7 +116,6 @@ class Wa11y {
 	/**
 	 * Start your engines.
 	 *
-	 * @access  protected
 	 * @since   1.0.0
 	 */
 	protected function __construct() {
@@ -147,7 +138,6 @@ class Wa11y {
 	 * Internationalization FTW.
 	 * Load our textdomain.
 	 *
-	 * @access  public
 	 * @since   1.0.0
 	 */
 	public function textdomain() {
@@ -491,7 +481,6 @@ class Wa11y {
  * class to retrieve data throughout the plugin.
  *
  * @since	1.0.0
- * @access	public
  * @return	Wa11y
  */
 function wa11y() {
