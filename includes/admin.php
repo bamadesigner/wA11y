@@ -20,7 +20,6 @@ class Wa11y_Admin {
 	 * Holds the options page slug.
 	 *
 	 * @since   1.0.0
-	 * @access  public
 	 * @var     string
 	 */
 	public $options_page;
@@ -29,7 +28,6 @@ class Wa11y_Admin {
 	 * Holds the class instance.
 	 *
 	 * @since   1.0.0
-	 * @access  private
 	 * @var     Wa11y_Admin
 	 */
 	private static $instance;
@@ -37,7 +35,6 @@ class Wa11y_Admin {
 	/**
 	 * Returns the instance of this class.
 	 *
-	 * @access  public
 	 * @since   1.0.0
 	 * @return  Wa11y_Admin
 	 */
@@ -54,7 +51,6 @@ class Wa11y_Admin {
 	 * being cloned or unserialized.
 	 *
 	 * @since   1.0.0
-	 * @access  private
 	 * @return  void
 	 */
 	private function __clone() {}
@@ -63,7 +59,6 @@ class Wa11y_Admin {
 	/**
 	 * Start your engines.
 	 *
-	 * @access  protected
 	 * @since   1.0.0
 	 */
 	protected function __construct() {
@@ -197,31 +192,19 @@ class Wa11y_Admin {
 
 			case 'wa11y-wave-evaluation-mb':
 
-				// If SSL, we can't load the iframe because WAVE isn't SSL so add a message.
-				if ( is_ssl() ) :
+				// Build WAVE evaluation URL.
+				$wave_url = 'https://wave.webaim.org/report#/' . urlencode( get_permalink( $post->ID ) );
 
-					// Build anchor element to settings page.
-					$settings_page_anchor = '<a href="' . add_query_arg( array( 'page' => 'wa11y' ), admin_url( 'options-general.php' ) ) . '" title="' . sprintf( esc_attr__( 'Visit the %s settings page', 'wa11y' ), 'wA11y' ) . '" target="_blank">';
+				// Filter the WAVE url - includes $post object.
+				$wave_url = apply_filters( 'wa11y_wave_url', $wave_url, $post );
 
-					?>
-					<p id="wa11y-wave-eval-no-SSL"><strong><?php printf( __( 'At this time, the %1$s evaluation iframe cannot be embedded on a site using SSL because the %2$s site does not use SSL.', 'wa11y' ), 'WAVE', 'WAVE' ); ?></strong> <?php printf( __( 'If you would like to remove this message, please uncheck the "Display %1$s evaluation when editing content" setting on %2$sthe %3$s settings page%4$s.', 'wa11y' ), 'WAVE', $settings_page_anchor, 'wA11y', '</a>' ); ?></p>
-					<?php
-
-				else :
-
-					// Build WAVE evaluation URL.
-					$wave_url = 'http://wave.webaim.org/report#/' . urlencode( get_permalink( $post->ID ) );
-
-					// Filter the WAVE url - includes $post object.
-					$wave_url = apply_filters( 'wa11y_wave_url', $wave_url, $post );
-
-					// Print the WAVE evaluation iframe.
-					?>
-					<a class="wa11y-wave-open-evaluation" href="<?php echo $wave_url; ?>" target="_blank"><?php printf( __( 'Open %s evaluation in new window', 'wa11y' ), 'WAVE' ); ?></a>
-					<iframe id="wa11y-wave-evaluation-mb-iframe" src="<?php echo $wave_url; ?>"></iframe>
-					<?php
-
-				endif;
+				// Print the WAVE evaluation iframe.
+				?>
+                <a class="wa11y-wave-open-evaluation"
+                   href="<?php echo $wave_url; ?>"
+                   target="_blank"><?php printf( __( 'Open %s evaluation in new window', 'wa11y' ), 'WAVE' ); ?></a>
+                <iframe id="wa11y-wave-evaluation-mb-iframe" src="<?php echo $wave_url; ?>"></iframe>
+				<?php
 
 				break;
 		}
@@ -401,7 +384,7 @@ class Wa11y_Admin {
 
 					<div class="tool-header">
 						<input class="tool-checkbox" id="tota11y" type="checkbox" name="wa11y_settings[enable_tools][]" value="tota11y"<?php checked( is_array( $enabled_tools_settings ) && in_array( 'tota11y', $enabled_tools_settings ) ); ?> />
-						<label class="tool-label" for="tota11y"><?php printf( __( 'Enable %s', 'wa11y' ), 'tota11y' ); ?> <span class="lighter thinner">[v0.1.3]</span></label>
+						<label class="tool-label" for="tota11y"><?php printf( __( 'Enable %s', 'wa11y' ), 'tota11y' ); ?> <span class="lighter thinner">[v0.2.0]</span></label>
 						<p class="tool-desc"><?php printf( __( '%1$s%2$s%3$s is an accessibility visualization toolkit provided by your friends at %4$s%5$s%6$s. It is a single JavaScript file that inserts a small button in the bottom corner of your document and helps visualize how your site performs with assistive technologies.', 'wa11y' ), '<a href="http://khan.github.io/tota11y/" target="_blank">', 'tota11y', '</a>', '<a href="http://khanacademy.org/" target="_blank">', 'Khan Academy', '</a>' ); ?></p>
 					</div> <!-- .tool-header -->
 
@@ -477,9 +460,6 @@ class Wa11y_Admin {
 				// Get WAVE settings.
 				$wave_settings = wa11y()->get_settings( 'wave' );
 
-				// Have to disable the admin WAVE evaluation if SSL because WAVE isn't SSL.
-				$disable_admin_wave = is_ssl();
-
 				?>
 				<div class="wa11y-tool-settings wave-tool-settings">
 
@@ -547,21 +527,9 @@ class Wa11y_Admin {
 								<span class="tool-option-side-note"><?php _e( "In the front-end, this will allow you to quickly evaluate any page that you're viewing. In the admin, the link will only display on screens where you are editing a post or a page.", 'wa11y' ); ?> <span class="highlight-red"><strong><?php printf( __( '%s can only evaluate publicly-accessible pages.', 'wa11y' ), 'WAVE' ); ?></strong></span></span>
 							</li>
 
-							<li<?php echo $disable_admin_wave ? ' class="disabled"' : null; ?>><label class="tool-option-header" for="wave-admin"><?php printf( __( 'Display %s evaluation when editing content', 'wa11y' ), 'WAVE' ); ?>:</label>
-								<input class="tool-option-checkbox" id="wave-admin" type="checkbox" name="wa11y_settings[tools][wave][load_admin_edit]" value="1"<?php checked( ! $disable_admin_wave && isset( $wave_settings['load_admin_edit'] ) && $wave_settings['load_admin_edit'] > 0 ); disabled( $disable_admin_wave ); ?> />
-								<?php
-
-								if ( $disable_admin_wave ) :
-									?>
-									<span class="tool-option-disabled-message"><?php printf( __( 'At this time, the %1$s evaluation iframe cannot be embedded on a site using SSL because the %2$s site does not use SSL.', 'wa11y' ), 'WAVE', 'WAVE' ); ?></span>
-									<?php
-								else :
-									?>
-									<span class="tool-option-side-note"><?php printf( __( 'The %1$s evaluation will only display on screens where you are editing a post or a page. <strong>%1$s can only evaluate publicly-accessible pages.</strong>', 'wa11y' ), 'WAVE', 'WAVE' ); ?> <span class="highlight-red"><strong><?php printf( __( '%s can only evaluate publicly-accessible pages.', 'wa11y' ), 'WAVE' ); ?></strong></span></span>
-									<?php
-								endif;
-
-								?>
+							<li><label class="tool-option-header" for="wave-admin"><?php printf( __( 'Display %s evaluation when editing content', 'wa11y' ), 'WAVE' ); ?>:</label>
+								<input class="tool-option-checkbox" id="wave-admin" type="checkbox" name="wa11y_settings[tools][wave][load_admin_edit]" value="1"<?php checked( isset( $wave_settings['load_admin_edit'] ) && $wave_settings['load_admin_edit'] > 0 ); ?> />
+                                <span class="tool-option-side-note"><?php printf( __( 'The %1$s evaluation will only display on screens where you are editing a post or a page. <strong>%1$s can only evaluate publicly-accessible pages.</strong>', 'wa11y' ), 'WAVE', 'WAVE' ); ?> <span class="highlight-red"><strong><?php printf( __( '%s can only evaluate publicly-accessible pages.', 'wa11y' ), 'WAVE' ); ?></strong></span></span>
 							</li>
 						</ul>
 					</fieldset>
@@ -595,7 +563,6 @@ class Wa11y_Admin {
  * class to retrieve data throughout the plugin.
  *
  * @since	1.0.0
- * @access	public
  * @return	Wa11y_Admin
  */
 function wa11y_admin() {
