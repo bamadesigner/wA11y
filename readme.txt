@@ -59,7 +59,7 @@ The mission for the wA11y plugin is to provide a plethora of tools to help you e
 == Changelog ==
 
 = 1.0.3 =
-* Extremely minor updates. Nothing of note has changed.
+* Updating totally to v0.2.0.
 
 = 1.0.2 =
 * Fixed PHP bug on settings page.
@@ -74,7 +74,7 @@ Plugin launch
 == Upgrade Notice ==
 
 = 1.0.3 =
-* Extremely minor updates. Nothing of note has changed.
+* Updating totally to v0.2.0.
 
 = 1.0.2 =
 * Fixed PHP bug on settings page.

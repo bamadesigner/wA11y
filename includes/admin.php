@@ -396,7 +396,7 @@ class Wa11y_Admin {
 
 					<div class="tool-header">
 						<input class="tool-checkbox" id="tota11y" type="checkbox" name="wa11y_settings[enable_tools][]" value="tota11y"<?php checked( is_array( $enabled_tools_settings ) && in_array( 'tota11y', $enabled_tools_settings ) ); ?> />
-						<label class="tool-label" for="tota11y"><?php printf( __( 'Enable %s', 'wa11y' ), 'tota11y' ); ?> <span class="lighter thinner">[v0.1.3]</span></label>
+						<label class="tool-label" for="tota11y"><?php printf( __( 'Enable %s', 'wa11y' ), 'tota11y' ); ?> <span class="lighter thinner">[v0.2.0]</span></label>
 						<p class="tool-desc"><?php printf( __( '%1$s%2$s%3$s is an accessibility visualization toolkit provided by your friends at %4$s%5$s%6$s. It is a single JavaScript file that inserts a small button in the bottom corner of your document and helps visualize how your site performs with assistive technologies.', 'wa11y' ), '<a href="http://khan.github.io/tota11y/" target="_blank">', 'tota11y', '</a>', '<a href="http://khanacademy.org/" target="_blank">', 'Khan Academy', '</a>' ); ?></p>
 					</div> <!-- .tool-header -->
 
