@@ -5,13 +5,12 @@ const mergeMediaQueries = require('gulp-merge-media-queries');
 const notify = require('gulp-notify');
 const rename = require('gulp-rename');
 const sass = require('gulp-sass');
-const shell = require('gulp-shell');
 const sort = require('gulp-sort');
 const wp_pot = require('gulp-wp-pot');
 
 // Define the source paths for each file type.
 const src = {
-	php: ['**/*.php','!vendor/**','!node_modules/**'],
+	php: ['**/*.php','!node_modules/**'],
 	sass: ['assets/scss/**/*']
 };
 
@@ -42,20 +41,6 @@ gulp.task('sass', function() {
 		.pipe(notify('wA11y SASS compiled'));
 });
 
-// "Sniff" our PHP.
-gulp.task('php', function() {
-	// TODO: Clean up. Want to run command and show notify for sniff errors.
-	return gulp.src('wa11y.php', {read: false})
-		.pipe(shell(['composer sniff'], {
-			ignoreErrors: true,
-			verbose: false
-		}))
-		.pipe(notify('wA11y PHP sniffed'), {
-			onLast: true,
-			emitError: true
-		});
-});
-
 // Create the .pot translation file.
 gulp.task('translate', function() {
 	gulp.src(src.php)
@@ -73,17 +58,14 @@ gulp.task('translate', function() {
 		.pipe(notify('wA11y translated'));
 });
 
-// Test our files.
-gulp.task('test',['php']);
-
 // Compile all the things.
 gulp.task('compile',['sass']);
 
 // I've got my eyes on you(r file changes).
 gulp.task('watch',function() {
 	gulp.watch(src.sass,['sass']);
-	gulp.watch(src.php,['php','translate']);
+	gulp.watch(src.php,['translate']);
 });
 
 // Let's get this party started.
-gulp.task('default',['compile','test','translate']);
+gulp.task('default',['compile','translate']);
