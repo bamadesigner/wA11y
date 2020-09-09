@@ -50,8 +50,8 @@ gulp.task('translate', function() {
 			destFile: 'wa11y.pot',
 			package: 'wA11y',
 			bugReport: 'https://github.com/bamadesigner/wa11y/issues',
-			lastTranslator: 'Rachel Cherry <bamadesigner@gmail.com>',
-			team: 'Rachel Cherry <bamadesigner@gmail.com>',
+			lastTranslator: 'Rachel Cherry',
+			team: 'Rachel Cherry',
 			headers: false
 		}))
 		.pipe(gulp.dest(dest.translate))

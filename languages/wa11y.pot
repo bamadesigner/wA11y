@@ -8,8 +8,8 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "PO-Revision-Date: 2017-MO-DA HO:MI+ZONE\n"
-"Last-Translator: Rachel Cherry <bamadesigner@gmail.com>\n"
-"Language-Team: Rachel Cherry <bamadesigner@gmail.com>\n"
+"Last-Translator: Rachel Cherry\n"
+"Language-Team: Rachel Cherry\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #: includes/admin.php:181
