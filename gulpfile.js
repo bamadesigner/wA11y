@@ -11,7 +11,7 @@ const wp_pot = require('gulp-wp-pot');
 // Define the source paths for each file type.
 const src = {
     php: ['**/*.php', '!node_modules/**'],
-    sass: ['assets/scss/**/*']
+    sass: ['assets/css/src/**/*']
 };
 
 // Define the destination paths for each file type.
